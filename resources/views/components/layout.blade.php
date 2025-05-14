@@ -238,7 +238,7 @@
                             <span class="nav-icon">
                                 <i class="ri-survey-line"></i>
                             </span>
-                            <span class="nav-text">Attendance</span>
+                            <span class="nav-text">Data Inventaris</span>
                         </a>
                     </li>
                     
@@ -247,7 +247,7 @@
                             <span class="nav-icon">
                                 <i class="ri-mail-line"></i>
                             </span>
-                            <span class="nav-text">Excuse</span>
+                            <span class="nav-text">Data Ruang</span>
                         </a>
                     </li>
                     
@@ -256,16 +256,16 @@
                             <span class="nav-icon">
                                 <i class="ri-file-user-line"></i>
                             </span>
-                            <span class="nav-text">Employee</span>
+                            <span class="nav-text">Laporan</span>
                         </a>
                     </li>
                     
                     <li class="nav-item">
                         <a class="nav-link" href="/office">
                             <span class="nav-icon">
-                                <i class="ri-building-2-line"></i>
+                                <i class="ri-settings-4-line fs-18"></i>
                             </span>
-                            <span class="nav-text">Office</span>
+                            <span class="nav-text">Pengaturan</span>
                         </a>
                     </li>
 
