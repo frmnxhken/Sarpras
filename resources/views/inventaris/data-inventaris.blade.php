@@ -1,5 +1,5 @@
 <x-layout>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#TambahData">
+    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#TambahData">
         Tambah Data
     </button>
     <div class="modal fade" id="TambahData" tabindex="-1" aria-labelledby="exampleModalCenteredScrollableTitle"
@@ -76,157 +76,165 @@
             </div>
         </div>
     </div>
-    <table class="table table-centered">
-        <thead>
-            <tr>
-                <th scope="col">No</th>
-                <th scope="col">Kode Barang</th>
-                <th scope="col">Nama Barang</th>
-                <th scope="col">Merk / Tipe</th>
-                <th scope="col">Tahun Perolehan</th>
-                <th scope="col">Sumber Dana</th>
-                <th scope="col">Lokasi</th>
-                <th scope="col">Kondisi</th>
-                <th scope="col">Kepemilikan</th>
-                <th scope="col">Gambar</th>
-                <th scope="col">Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>023</td>
-                <td>Kursi</td>
-                <td>DIY</td>
-                <td>2000</td>
-                <td>BOS</td>
-                <td>Lab Kumputer</td>
-                <td>Baik</td>
-                <td>Milik Sekolah</td>
-                <td>
-                    <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
-                        <img src="assets/images/small/img-5.jpg" alt="image"
-                            class="img-fluid avatar-md rounded" />
-                    </a>
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1"
-                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <img src="assets/images/small/img-5.jpg" class="d-block w-100" alt="img-3">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Kembali</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <button type="button" class="btn btn-primary px-2 py-1" data-bs-toggle="modal" data-bs-target="#TambahData">
-                        Mutasi
-                    </button>
-                    <button type="button" class="btn btn-primary px-2 py-1" data-bs-toggle="modal" data-bs-target="#TambahData">
-                        Cetak
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>024</td>
-                <td>Meja</td>
-                <td>DIY</td>
-                <td>2000</td>
-                <td>BOS</td>
-                <td>Lab Kumputer</td>
-                <td>Baik</td>
-                <td>Milik Sekolah</td>
-                <td>
-                    <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
-                        <img src="assets/images/small/img-5.jpg" alt="image"
-                            class="img-fluid avatar-md rounded" />
-                    </a>
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1"
-                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <img src="assets/images/small/img-5.jpg" class="d-block w-100" alt="img-3">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Kembali</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <button type="button" class="btn btn-primary px-2 py-1" data-bs-toggle="modal" data-bs-target="#TambahData">
-                        Mutasi
-                    </button>
-                    <button type="button" class="btn btn-primary px-2 py-1" data-bs-toggle="modal" data-bs-target="#TambahData">
-                        Cetak
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>025</td>
-                <td>Papan Tulis</td>
-                <td>DIY</td>
-                <td>2000</td>
-                <td>BOS</td>
-                <td>Lab Kumputer</td>
-                <td>Baik</td>
-                <td>Milik Sekolah</td>
-                <td>
-                    <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
-                        <img src="assets/images/small/img-5.jpg" alt="image"
-                            class="img-fluid avatar-md rounded" />
-                    </a>
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1"
-                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <img src="assets/images/small/img-5.jpg" class="d-block w-100" alt="img-3">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Kembali</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <button type="button" class="btn btn-primary px-2 py-1" data-bs-toggle="modal" data-bs-target="#TambahData">
-                        Mutasi
-                    </button>
-                    <button type="button" class="btn btn-primary px-2 py-1" data-bs-toggle="modal" data-bs-target="#TambahData">
-                        Cetak
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+         <table class="table table-centered">
+             <thead>
+                 <tr>
+                     <th scope="col">No</th>
+                     <th scope="col">Kode Barang</th>
+                     <th scope="col">Nama Barang</th>
+                     <th scope="col">Merk / Tipe</th>
+                     <th scope="col">Tahun Perolehan</th>
+                     <th scope="col">Sumber Dana</th>
+                     <th scope="col">Lokasi</th>
+                     <th scope="col">Kondisi</th>
+                     <th scope="col">Kepemilikan</th>
+                     <th scope="col">Gambar</th>
+                     <th scope="col">Aksi</th>
+                 </tr>
+             </thead>
+             <tbody class="table-group-divider">
+                 <tr>
+                     <td>1</td>
+                     <td>023</td>
+                     <td>Kursi</td>
+                     <td>DIY</td>
+                     <td>2000</td>
+                     <td>BOS</td>
+                     <td>Lab Kumputer</td>
+                     <td>Baik</td>
+                     <td>Milik Sekolah</td>
+                     <td>
+                         <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                             <img src="assets/images/small/img-5.jpg" alt="image"
+                                 class="img-fluid avatar-md rounded" />
+                         </a>
+                         <div class="modal fade" id="exampleModalCenter" tabindex="-1"
+                             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                             <div class="modal-dialog modal-dialog-centered">
+                                 <div class="modal-content">
+                                     <div class="modal-header">
+                                         <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                             aria-label="Close"></button>
+                                     </div>
+                                     <div class="modal-body">
+                                         <img src="assets/images/small/img-5.jpg" class="d-block w-100" alt="img-3">
+                                     </div>
+                                     <div class="modal-footer">
+                                         <button type="button" class="btn btn-secondary"
+                                             data-bs-dismiss="modal">Kembali</button>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </td>
+                     <td>
+                         <div class="d-flex gap-1 align-items-center">
+                              <button type="button" class="btn btn-primary px-2 py-1">
+                                  Mutasi
+                              </button>
+                              <button type="button" class="btn btn-primary px-2 py-1">
+                                  Cetak
+                              </button>
+                         </div>
+                     </td>
+                 </tr>
+                 <tr>
+                     <td>2</td>
+                     <td>024</td>
+                     <td>Meja</td>
+                     <td>DIY</td>
+                     <td>2000</td>
+                     <td>BOS</td>
+                     <td>Lab Kumputer</td>
+                     <td>Baik</td>
+                     <td>Milik Sekolah</td>
+                     <td>
+                         <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                             <img src="assets/images/small/img-5.jpg" alt="image"
+                                 class="img-fluid avatar-md rounded" />
+                         </a>
+                         <div class="modal fade" id="exampleModalCenter" tabindex="-1"
+                             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                             <div class="modal-dialog modal-dialog-centered">
+                                 <div class="modal-content">
+                                     <div class="modal-header">
+                                         <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                             aria-label="Close"></button>
+                                     </div>
+                                     <div class="modal-body">
+                                         <img src="assets/images/small/img-5.jpg" class="d-block w-100" alt="img-3">
+                                     </div>
+                                     <div class="modal-footer">
+                                         <button type="button" class="btn btn-secondary"
+                                             data-bs-dismiss="modal">Kembali</button>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </td>
+                     <td>
+                         <div class="d-flex gap-1 align-items-center">
+                              <button type="button" class="btn btn-primary px-2 py-1">
+                                  Mutasi
+                              </button>
+                              <button type="button" class="btn btn-primary px-2 py-1">
+                                  Cetak
+                              </button>
+                         </div>
+                     </td>
+                 </tr>
+                 <tr>
+                     <td>3</td>
+                     <td>025</td>
+                     <td>Papan Tulis</td>
+                     <td>DIY</td>
+                     <td>2000</td>
+                     <td>BOS</td>
+                     <td>Lab Kumputer</td>
+                     <td>Baik</td>
+                     <td>Milik Sekolah</td>
+                     <td>
+                         <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                             <img src="assets/images/small/img-5.jpg" alt="image"
+                                 class="img-fluid avatar-md rounded" />
+                         </a>
+                         <div class="modal fade" id="exampleModalCenter" tabindex="-1"
+                             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                             <div class="modal-dialog modal-dialog-centered">
+                                 <div class="modal-content">
+                                     <div class="modal-header">
+                                         <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                             aria-label="Close"></button>
+                                     </div>
+                                     <div class="modal-body">
+                                         <img src="assets/images/small/img-5.jpg" class="d-block w-100" alt="img-3">
+                                     </div>
+                                     <div class="modal-footer">
+                                         <button type="button" class="btn btn-secondary"
+                                             data-bs-dismiss="modal">Kembali</button>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </td>
+                     <td>
+                         <div class="d-flex gap-1 align-items-center">
+                              <button type="button" class="btn btn-primary px-2 py-1">
+                                  Mutasi
+                              </button>
+                              <button type="button" class="btn btn-primary px-2 py-1">
+                                  Cetak
+                              </button>
+                         </div>
+                     </td>
+                 </tr>
+             </tbody>
+         </table>
+    </div>
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
             <li class="page-item"><a class="page-link" href="javascript:void(0);">Previous</a></li>
