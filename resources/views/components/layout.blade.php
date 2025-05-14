@@ -234,7 +234,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/attendance">
+                        <a class="nav-link" href="/menejemen">
                             <span class="nav-icon">
                                 <i class="ri-box-3-line"></i>
                             </span>
