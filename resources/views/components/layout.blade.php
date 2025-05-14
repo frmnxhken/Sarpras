@@ -234,13 +234,23 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/menejemen">
+                        <a class="nav-link menu-arrow" href="#sidebarMultiLevelDemo" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMultiLevelDemo">
                             <span class="nav-icon">
                                 <i class="ri-box-3-line"></i>
                             </span>
                             <span class="nav-text">Menejemen Data</span>
                         </a>
-                    </li>
+                        <div class="collapse" id="sidebarMultiLevelDemo">
+                            <ul class="nav sub-navbar-nav">
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="/inventaris">Data Inventaris</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="/ruang">Data Ruang</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li> <!-- end Menu Item -->
                     
                     <li class="nav-item">
                         <a class="nav-link" href="/verivikasiAjuan">
