@@ -2,8 +2,8 @@
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#TambahData">
         Tambah Data
     </button>
-    <div class="modal fade" id="TambahData" tabindex="-1"
-        aria-labelledby="exampleModalCenteredScrollableTitle" aria-hidden="true">
+    <div class="modal fade" id="TambahData" tabindex="-1" aria-labelledby="exampleModalCenteredScrollableTitle"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -12,61 +12,61 @@
                 </div>
                 <div class="modal-body">
                     <form action="" method="post">
-                         @csrf
-                         <div class="mb-3">
-                              <label for="nama_barang" class="form-label">Nama Barang</label>
-                              <input type="text" class="form-control" id="nama_barang" name="nama_barang">
-                         </div>
-                         <div class="mb-3">
-                              <label for="nama_barang" class="form-label">Merk/Tipe</label>
-                              <input type="text" class="form-control" id="nama_barang" name="nama_barang">
-                         </div>
-                         <div class="mb-3">
-                              <label for="nama_barang" class="form-label">Tahun Perolehan</label>
-                              <input type="date" class="form-control" id="nama_barang" name="nama_barang">
-                         </div>
-                         <div class="mb-3">
-                              <label for="sumber_dana" class="form-label">Sumber Dana</label>
-                              <select class="form-select" id="sumber_dana" name="sumber_dana">
-                                  <option selected>Piliih Sumber Dana</option>
-                                  <option value="bos">BOS</option>
-                                  <option value="dak">DAK</option>
-                                  <option value="hibah">Hibah</option>
-                              </select>
-                         </div>
-                         <div class="mb-3">
-                              <label for="lokasi" class="form-label">Lokasi</label>
-                              <select class="form-select" id="lokasi" name="lokasi">
-                                  <option selected>Pilih Lokasi</option>
-                                  <option value="tes">tes</option>
-                              </select>
-                         </div>
-                         <div class="mb-3">
-                              <label for="harga_perolehan" class="form-label">Harga Perolehan</label>
-                              <input type="number" class="form-control" id="harga_perolehan" name="harga_perolehan">
-                         </div>
-                         <div class="mb-3">
-                              <label for="kondisi" class="form-label">Kondisi</label>
-                              <select class="form-select" id="kondisi" name="kondisi">
-                                  <option selected>Pilih Kondisi</option>
-                                  <option value="Baik">Baik</option>
-                                  <option value="Rusak">Rusak</option>
-                                  <option value="Rusak">Rusak Berat</option>
-                              </select>
-                         </div>
-                         <div class="mb-3">
-                              <label for="kepemilikan" class="form-label">Kepemilikan</label>
-                              <select class="form-select" id="kepemilikan" name="kepemilikan">
-                                  <option selected>Pilih Kepemilikan</option>
-                                  <option value="sekolah">Milik Sekolah</option>
-                                  <option value="negara">Milik Negara</option>
-                                  <option value="pinjam">Pinjam</option>
-                              </select>
-                         </div>
-                         <div class="mb-3">
-                              <label for="upload" class="form-label">Upload foto</label>
-                              <input type="file" accept="image/*" class="form-control" id="upload" name="upload">
-                         </div>
+                        @csrf
+                        <div class="mb-3">
+                            <label for="nama_barang" class="form-label">Nama Barang</label>
+                            <input type="text" class="form-control" id="nama_barang" name="nama_barang">
+                        </div>
+                        <div class="mb-3">
+                            <label for="nama_barang" class="form-label">Merk/Tipe</label>
+                            <input type="text" class="form-control" id="nama_barang" name="nama_barang">
+                        </div>
+                        <div class="mb-3">
+                            <label for="nama_barang" class="form-label">Tahun Perolehan</label>
+                            <input type="date" class="form-control" id="nama_barang" name="nama_barang">
+                        </div>
+                        <div class="mb-3">
+                            <label for="sumber_dana" class="form-label">Sumber Dana</label>
+                            <select class="form-select" id="sumber_dana" name="sumber_dana">
+                                <option selected>Piliih Sumber Dana</option>
+                                <option value="bos">BOS</option>
+                                <option value="dak">DAK</option>
+                                <option value="hibah">Hibah</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="lokasi" class="form-label">Lokasi</label>
+                            <select class="form-select" id="lokasi" name="lokasi">
+                                <option selected>Pilih Lokasi</option>
+                                <option value="tes">tes</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="harga_perolehan" class="form-label">Harga Perolehan</label>
+                            <input type="number" class="form-control" id="harga_perolehan" name="harga_perolehan">
+                        </div>
+                        <div class="mb-3">
+                            <label for="kondisi" class="form-label">Kondisi</label>
+                            <select class="form-select" id="kondisi" name="kondisi">
+                                <option selected>Pilih Kondisi</option>
+                                <option value="Baik">Baik</option>
+                                <option value="Rusak">Rusak</option>
+                                <option value="Rusak">Rusak Berat</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="kepemilikan" class="form-label">Kepemilikan</label>
+                            <select class="form-select" id="kepemilikan" name="kepemilikan">
+                                <option selected>Pilih Kepemilikan</option>
+                                <option value="sekolah">Milik Sekolah</option>
+                                <option value="negara">Milik Negara</option>
+                                <option value="pinjam">Pinjam</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="upload" class="form-label">Upload foto</label>
+                            <input type="file" accept="image/*" class="form-control" id="upload" name="upload">
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -94,64 +94,142 @@
         </thead>
         <tbody>
             <tr>
-               <td>1</td>
-               <td>023</td>
-               <td>Kursi</td>
-               <td>DIY</td>
-               <td>2000</td>
-               <td>BOS</td>
-               <td>Lab Kumputer</td>
-               <td>Baik</td>
-               <td>Milik Sekolah</td>
-               <td>p</td>
-               <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#TambahData">
-                         Mutasi
+                <td>1</td>
+                <td>023</td>
+                <td>Kursi</td>
+                <td>DIY</td>
+                <td>2000</td>
+                <td>BOS</td>
+                <td>Lab Kumputer</td>
+                <td>Baik</td>
+                <td>Milik Sekolah</td>
+                <td>
+                    <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                        <img src="assets/images/small/img-5.jpg" alt="image"
+                            class="img-fluid avatar-md rounded" />
+                    </a>
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                   <img src="assets/images/small/img-5.jpg" class="d-block w-100" alt="img-3">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Kembali</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#TambahData">
+                        Mutasi
                     </button>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#TambahData">
-                         Cetak
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#TambahData">
+                        Cetak
                     </button>
-               </td>
+                </td>
             </tr>
             <tr>
-               <td>2</td>
-               <td>024</td>
-               <td>Meja</td>
-               <td>DIY</td>
-               <td>2000</td>
-               <td>BOS</td>
-               <td>Lab Kumputer</td>
-               <td>Baik</td>
-               <td>Milik Sekolah</td>
-               <td>p</td>
-               <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#TambahData">
-                         Mutasi
+                <td>2</td>
+                <td>024</td>
+                <td>Meja</td>
+                <td>DIY</td>
+                <td>2000</td>
+                <td>BOS</td>
+                <td>Lab Kumputer</td>
+                <td>Baik</td>
+                <td>Milik Sekolah</td>
+                <td>
+                    <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                        <img src="assets/images/small/img-5.jpg" alt="image"
+                            class="img-fluid avatar-md rounded" />
+                    </a>
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                   <img src="assets/images/small/img-5.jpg" class="d-block w-100" alt="img-3">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Kembali</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#TambahData">
+                        Mutasi
                     </button>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#TambahData">
-                         Cetak
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#TambahData">
+                        Cetak
                     </button>
-               </td>
+                </td>
             </tr>
             <tr>
-               <td>3</td>
-               <td>025</td>
-               <td>Papan Tulis</td>
-               <td>DIY</td>
-               <td>2000</td>
-               <td>BOS</td>
-               <td>Lab Kumputer</td>
-               <td>Baik</td>
-               <td>Milik Sekolah</td>
-               <td>p</td>
-               <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#TambahData">
-                         Mutasi
+                <td>3</td>
+                <td>025</td>
+                <td>Papan Tulis</td>
+                <td>DIY</td>
+                <td>2000</td>
+                <td>BOS</td>
+                <td>Lab Kumputer</td>
+                <td>Baik</td>
+                <td>Milik Sekolah</td>
+                <td>
+                    <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                        <img src="assets/images/small/img-5.jpg" alt="image"
+                            class="img-fluid avatar-md rounded" />
+                    </a>
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                   <img src="assets/images/small/img-5.jpg" class="d-block w-100" alt="img-3">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Kembali</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#TambahData">
+                        Mutasi
                     </button>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#TambahData">
-                         Cetak
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#TambahData">
+                        Cetak
                     </button>
-               </td>
+                </td>
             </tr>
         </tbody>
     </table>
