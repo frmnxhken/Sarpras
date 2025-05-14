@@ -236,9 +236,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/attendance">
                             <span class="nav-icon">
-                                <i class="ri-survey-line"></i>
+                                <i class="ri-box-3-line"></i>
                             </span>
-                            <span class="nav-text">Attendance</span>
+                            <span class="nav-text">Menejemen Data</span>
                         </a>
                     </li>
                     
@@ -247,16 +247,16 @@
                             <span class="nav-icon">
                                 <i class="ri-mail-line"></i>
                             </span>
-                            <span class="nav-text">Excuse</span>
+                            <span class="nav-text">Verivikasi Ajuan</span>
                         </a>
                     </li>
                     
                     <li class="nav-item">
                         <a class="nav-link" href="/employee">
                             <span class="nav-icon">
-                                <i class="ri-file-user-line"></i>
+                                <i class="ri-survey-line"></i>
                             </span>
-                            <span class="nav-text">Employee</span>
+                            <span class="nav-text">Lihat Laporan</span>
                         </a>
                     </li>
                     
