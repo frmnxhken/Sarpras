@@ -265,7 +265,7 @@
                             <span class="nav-icon">
                                 <i class="ri-building-2-line"></i>
                             </span>
-                            <span class="nav-text">Office</span>
+                            <span class="nav-text">Tambah Ruangan</span>
                         </a>
                     </li>
 
