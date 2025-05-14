@@ -271,15 +271,6 @@
                     </li>
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="/dataRuang">
-                            <span class="nav-icon">
-                                <i class="ri-building-2-line"></i>
-                            </span>
-                            <span class="nav-text">Data Ruang</span>
-                        </a>
-                    </li>
-                    
-                    <li class="nav-item">
                         <a class="nav-link" href="/pengaturan">
                             <span class="nav-icon">
                                 <i class="ri-settings-4-line fs-18"></i>
