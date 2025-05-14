@@ -118,7 +118,7 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                   <img src="assets/images/small/img-5.jpg" class="d-block w-100" alt="img-3">
+                                    <img src="assets/images/small/img-5.jpg" class="d-block w-100" alt="img-3">
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
@@ -129,12 +129,10 @@
                     </div>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#TambahData">
+                    <button type="button" class="btn btn-primary px-2 py-1" data-bs-toggle="modal" data-bs-target="#TambahData">
                         Mutasi
                     </button>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#TambahData">
+                    <button type="button" class="btn btn-primary px-2 py-1" data-bs-toggle="modal" data-bs-target="#TambahData">
                         Cetak
                     </button>
                 </td>
@@ -164,7 +162,7 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                   <img src="assets/images/small/img-5.jpg" class="d-block w-100" alt="img-3">
+                                    <img src="assets/images/small/img-5.jpg" class="d-block w-100" alt="img-3">
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
@@ -175,12 +173,10 @@
                     </div>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#TambahData">
+                    <button type="button" class="btn btn-primary px-2 py-1" data-bs-toggle="modal" data-bs-target="#TambahData">
                         Mutasi
                     </button>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#TambahData">
+                    <button type="button" class="btn btn-primary px-2 py-1" data-bs-toggle="modal" data-bs-target="#TambahData">
                         Cetak
                     </button>
                 </td>
@@ -210,7 +206,7 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                   <img src="assets/images/small/img-5.jpg" class="d-block w-100" alt="img-3">
+                                    <img src="assets/images/small/img-5.jpg" class="d-block w-100" alt="img-3">
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
@@ -221,16 +217,23 @@
                     </div>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#TambahData">
+                    <button type="button" class="btn btn-primary px-2 py-1" data-bs-toggle="modal" data-bs-target="#TambahData">
                         Mutasi
                     </button>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#TambahData">
+                    <button type="button" class="btn btn-primary px-2 py-1" data-bs-toggle="modal" data-bs-target="#TambahData">
                         Cetak
                     </button>
                 </td>
             </tr>
         </tbody>
     </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item"><a class="page-link" href="javascript:void(0);">Previous</a></li>
+            <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
+            <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
+            <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
+            <li class="page-item"><a class="page-link" href="javascript:void(0);">Next</a></li>
+        </ul>
+    </nav>
 </x-layout>
