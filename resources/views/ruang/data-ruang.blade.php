@@ -1,5 +1,35 @@
 <x-layout>
-    <button type="button" class="btn btn-success">Tambah Ruang</button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenteredScrollable">
+        Tambah Ruang
+    </button>
+    <div class="modal fade" id="exampleModalCenteredScrollable" tabindex="-1"
+        aria-labelledby="exampleModalCenteredScrollableTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenteredScrollableTitle">Tambah Ruang</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="post">
+                         @csrf
+                        <div class="mb-3">
+                            <label for="kode_barang" class="form-label">Kode Ruang</label>
+                            <input type="text" class="form-control" id="kode_barang" name="kode_barang">
+                         </div>
+                         <div class="mb-3">
+                              <label for="nama_barang" class="form-label">Nama Ruang</label>
+                              <input type="text" class="form-control" id="nama_barang" name="nama_barang">
+                         </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                    <button type="button" class="btn btn-primary">Tambah</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <table class="table table-centered">
      <thead>
           <tr>
