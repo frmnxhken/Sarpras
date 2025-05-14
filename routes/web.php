@@ -13,3 +13,7 @@ Route::get('/', function () {
 Route::get('/menejemen', function () {
     return view('inventaris.data-inventaris');
 });
+
+Route::get('/ruang', function () {
+    return view('ruang.data-ruang');
+});
