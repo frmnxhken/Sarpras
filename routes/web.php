@@ -10,7 +10,7 @@ Route::get('/', function () {
     return view('home.app');
 });
 
-Route::get('/menejemen', function () {
+Route::get('/inventaris', function () {
     return view('inventaris.data-inventaris');
 });
 
