@@ -1,4 +1,5 @@
 <x-layout>
+    <button type="button" class="btn btn-success">Tambah Ruang</button>
     <table class="table table-centered">
      <thead>
           <tr>
@@ -27,6 +28,6 @@
                <td>Kelas XII</td>
                <td>2</td>
           </tr>
-     </tbody>
-</table>
+        </tbody>
+    </table>
 </x-layout>
