@@ -90,46 +90,51 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>023</td>
-                    <td>Kursi</td>
-                    <td>Perabot</td>
-                    <td>Lab Kumputer</td>
-                    <td>
-                        <a type="button" data-bs-toggle="modal" data-bs-target="#ImageModal">
-                            <img src="assets/images/small/img-5.jpg" alt="image"
-                                class="img-fluid avatar-md rounded" />
-                        </a>
-                        <div class="modal fade" id="ImageModal" tabindex="-1"
-                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <img src="assets/images/small/img-5.jpg" class="d-block w-100"
-                                            alt="img-3">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Kembali</button>
+                @forelse ($dataInventaris as $item)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $item->kode_barang }}</td>
+                        <td>{{ $item->nama_barang }}</td>
+                        <td>{{ $item->ruangan_id }}</td>
+                        <td>{{ $item->kondisi_barang }}</td>
+                        <td>
+                            <a type="button" data-bs-toggle="modal" data-bs-target="#ImageModal">
+                                <img src="assets/images/small/img-5.jpg" alt="image"
+                                    class="img-fluid avatar-md rounded" />
+                            </a>
+                            <div class="modal fade" id="ImageModal" tabindex="-1"
+                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img src="assets/images/small/img-5.jpg" class="d-block w-100"
+                                                alt="img-3">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Kembali</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="d-flex gap-1 align-items-center">
-                            <a class="btn btn-primary px-2 py-1" href="/detail">
-                                Detail
-                            </a>
-                        </div>
-                    </td>
-                </tr>
+                        </td>
+                        <td>
+                            <div class="d-flex gap-1 align-items-center">
+                                <a class="btn btn-primary px-2 py-1" href="/detail/{{ $item->id }}">
+                                    Detail
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+
+                @empty
+                    Data Kosong
+                @endforelse
             </tbody>
         </table>
     </div>

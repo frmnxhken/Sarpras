@@ -7,60 +7,56 @@
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
-                                <th>No</th>
-                                <td>1</td>
-                            </tr>
-                            <tr>
                                 <th>Kode Barang</th>
-                                <td>023</td>
+                                <td>{{ $details->kode_barang }}</td>
                             </tr>
                             <tr>
                                 <th>Nama Barang</th>
-                                <td>Kursi</td>
+                                <td>{{ $details->nama_barang }}</td>
                             </tr>
                             <tr>
                                 <th>Jenis Barang</th>
-                                <td>Perabot</td>
+                                <td>{{ $details->jenis_barang }}</td>
                             </tr>
                             <tr>
                                 <th>Merk / Spesifikasi</th>
-                                <td>DIY</td>
+                                <td>{{ $details->merk_barang }}</td>
                             </tr>
                             <tr>
                                 <th>Tahun Perolehan</th>
-                                <td>2000</td>
+                                <td>{{ $details->tahun_perolehan }}</td>
                             </tr>
                             <tr>
                                 <th>Sumber Dana</th>
-                                <td>BOS</td>
+                                <td>{{ $details->sumber_dana }}</td>
                             </tr>
                             <tr>
                                 <th>Harga Perolehan</th>
-                                <td>10000</td>
+                                <td>{{ $details->harga_perolehan }}</td>
                             </tr>
                             <tr>
                                 <th>CV Pengadaan</th>
-                                <td>CV. Sekolah</td>
+                                <td>{{ $details->cv_pengadaan }}</td>
                             </tr>
                             <tr>
                                 <th>Jumlah Barang</th>
-                                <td>10</td>
+                                <td>{{ $details->jumlah_barang }}</td>
                             </tr>
                             <tr>
                                 <th>Lokasi</th>
-                                <td>Lab Komputer</td>
+                                <td>{{ $details->ruangan_id }}</td>
                             </tr>
                             <tr>
                                 <th>Kondisi</th>
-                                <td>Baik</td>
+                                <td>{{ $details->kondisi_barang }}</td>
                             </tr>
                             <tr>
                                 <th>Kepemilikan</th>
-                                <td>Milik Sekolah</td>
+                                <td>{{ $details->kepemilikan_barang }}</td>
                             </tr>
                             <tr>
                                 <th>Penanggung Jawab</th>
-                                <td>Penanggung Jawab</td>
+                                <td>{{ $details->penanggung_jawab }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -81,7 +77,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body text-center">
-                    <img src="assets/images/small/img-5.jpg" class="img-fluid" alt="img-3" style="max-width: 100%;">
+                    <img src="{{ asset('/') }}assets/images/small/img-5.jpg" class="d-block w-100" alt="img-3">
                 </div>
             </div>
             <div class="card mb-3">
