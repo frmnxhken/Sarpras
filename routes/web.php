@@ -14,6 +14,10 @@ Route::get('/inventaris', function () {
     return view('inventaris.data-inventaris');
 });
 
+Route::get('/detail', function () {
+    return view('inventaris.detail');
+});
+
 Route::get('/ruang', function () {
     return view('ruang.data-ruang');
 });
