@@ -30,7 +30,7 @@
             </div>
         </div>
     </div>
-    <table class="table table-centered">
+    <table class="table table-bordered">
      <thead>
           <tr>
                <th scope="col">No</th>
