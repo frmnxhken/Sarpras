@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Title Meta -->
     <meta charset="utf-8" />
     <title>Home | BrandUI - Modern UI Kit with Layout</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A fully responsive premium admin dashboard template, Real Estate Management Admin Template" />
+    <meta name="description"
+        content="A fully responsive premium admin dashboard template, Real Estate Management Admin Template" />
     <meta name="author" content="Techzaa" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
@@ -17,6 +19,7 @@
     <script src="{{ asset('/assets') }}/js/config.min.js"></script>
 
 </head>
+
 <body>
 
     <!-- START Wrapper -->
@@ -55,16 +58,20 @@
 
                             <!-- Theme Setting -->
                             <div class="topbar-item d-none d-md-flex">
-                                <button type="button" class="topbar-button" id="theme-settings-btn" data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas">
+                                <button type="button" class="topbar-button" id="theme-settings-btn"
+                                    data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas"
+                                    aria-controls="theme-settings-offcanvas">
                                     <i class="ri-settings-4-line fs-24"></i>
                                 </button>
                             </div>
 
                             <!-- User -->
                             <div class="dropdown topbar-item">
-                                <a type="button" class="topbar-button" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a type="button" class="topbar-button" id="page-header-user-dropdown"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="d-flex align-items-center">
-                                        <img class="rounded-circle" width="32" src="assets/images/users/avatar-1.jpg" alt="avatar-3">
+                                        <img class="rounded-circle" width="32" src="assets/images/users/avatar-1.jpg"
+                                            alt="avatar-3">
                                     </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
@@ -72,14 +79,18 @@
                                     <h6 class="dropdown-header">Welcome Admin!</h6>
 
                                     <a class="dropdown-item" href="/auth/edit-password">
-                                       <iconify-icon icon="solar:lock-keyhole-broken" class="align-middle me-2 fs-18"></iconify-icon><span class="align-middle">Change Password</span>
+                                        <iconify-icon icon="solar:lock-keyhole-broken"
+                                            class="align-middle me-2 fs-18"></iconify-icon><span
+                                            class="align-middle">Change Password</span>
                                     </a>
 
                                     <div class="dropdown-divider my-1"></div>
                                     <form action="/auth/logout" method="post">
                                         @csrf
                                         <button type="submit" class="dropdown-item text-danger" href="auth-signin.html">
-                                            <iconify-icon icon="solar:logout-3-broken" class="align-middle me-2 fs-18"></iconify-icon><span class="align-middle">Logout</span>
+                                            <iconify-icon icon="solar:logout-3-broken"
+                                                class="align-middle me-2 fs-18"></iconify-icon><span
+                                                class="align-middle">Logout</span>
                                         </button>
                                     </form>
                                 </div>
@@ -92,10 +103,12 @@
 
         <!-- Right Sidebar (Theme Settings) -->
         <div>
-            <div class="offcanvas offcanvas-end border-0 rounded-start-4 overflow-hidden" tabindex="-1" id="theme-settings-offcanvas">
+            <div class="offcanvas offcanvas-end border-0 rounded-start-4 overflow-hidden" tabindex="-1"
+                id="theme-settings-offcanvas">
                 <div class="d-flex align-items-center bg-primary p-3 offcanvas-header">
                     <h5 class="text-white m-0">Theme Settings</h5>
-                    <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
                 </div>
 
                 <div class="offcanvas-body p-0">
@@ -106,12 +119,14 @@
                                 <h5 class="mb-3 font-16 fw-semibold">Color Scheme</h5>
 
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="data-bs-theme" id="layout-color-light" value="light">
+                                    <input class="form-check-input" type="radio" name="data-bs-theme"
+                                        id="layout-color-light" value="light">
                                     <label class="form-check-label" for="layout-color-light">Light</label>
                                 </div>
 
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="data-bs-theme" id="layout-color-dark" value="dark">
+                                    <input class="form-check-input" type="radio" name="data-bs-theme"
+                                        id="layout-color-dark" value="dark">
                                     <label class="form-check-label" for="layout-color-dark">Dark</label>
                                 </div>
                             </div>
@@ -120,11 +135,13 @@
                                 <h5 class="my-3 font-16 fw-semibold">Topbar Color</h5>
 
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="data-topbar-color" id="topbar-color-light" value="light">
+                                    <input class="form-check-input" type="radio" name="data-topbar-color"
+                                        id="topbar-color-light" value="light">
                                     <label class="form-check-label" for="topbar-color-light">Light</label>
                                 </div>
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="data-topbar-color" id="topbar-color-dark" value="dark">
+                                    <input class="form-check-input" type="radio" name="data-topbar-color"
+                                        id="topbar-color-dark" value="dark">
                                     <label class="form-check-label" for="topbar-color-dark">Dark</label>
                                 </div>
                             </div>
@@ -134,14 +151,16 @@
                                 <h5 class="my-3 font-16 fw-semibold">Menu Color</h5>
 
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="data-menu-color" id="leftbar-color-light" value="light">
+                                    <input class="form-check-input" type="radio" name="data-menu-color"
+                                        id="leftbar-color-light" value="light">
                                     <label class="form-check-label" for="leftbar-color-light">
                                         Light
                                     </label>
                                 </div>
 
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="data-menu-color" id="leftbar-color-dark" value="dark">
+                                    <input class="form-check-input" type="radio" name="data-menu-color"
+                                        id="leftbar-color-dark" value="dark">
                                     <label class="form-check-label" for="leftbar-color-dark">
                                         Dark
                                     </label>
@@ -152,35 +171,40 @@
                                 <h5 class="my-3 font-16 fw-semibold">Sidebar Size</h5>
 
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="data-menu-size" id="leftbar-size-default" value="default">
+                                    <input class="form-check-input" type="radio" name="data-menu-size"
+                                        id="leftbar-size-default" value="default">
                                     <label class="form-check-label" for="leftbar-size-default">
                                         Default
                                     </label>
                                 </div>
 
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="data-menu-size" id="leftbar-size-small" value="condensed">
+                                    <input class="form-check-input" type="radio" name="data-menu-size"
+                                        id="leftbar-size-small" value="condensed">
                                     <label class="form-check-label" for="leftbar-size-small">
                                         Condensed
                                     </label>
                                 </div>
 
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="data-menu-size" id="leftbar-hidden" value="hidden">
+                                    <input class="form-check-input" type="radio" name="data-menu-size"
+                                        id="leftbar-hidden" value="hidden">
                                     <label class="form-check-label" for="leftbar-hidden">
                                         Hidden
                                     </label>
                                 </div>
 
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="data-menu-size" id="leftbar-size-small-hover-active" value="sm-hover-active">
+                                    <input class="form-check-input" type="radio" name="data-menu-size"
+                                        id="leftbar-size-small-hover-active" value="sm-hover-active">
                                     <label class="form-check-label" for="leftbar-size-small-hover-active">
                                         Small Hover Active
                                     </label>
                                 </div>
 
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="data-menu-size" id="leftbar-size-small-hover" value="sm-hover">
+                                    <input class="form-check-input" type="radio" name="data-menu-size"
+                                        id="leftbar-size-small-hover" value="sm-hover">
                                     <label class="form-check-label" for="leftbar-size-small-hover">
                                         Small Hover
                                     </label>
@@ -234,7 +258,8 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link menu-arrow" href="#sidebarMultiLevelDemo" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMultiLevelDemo">
+                        <a class="nav-link menu-arrow" href="#sidebarMultiLevelDemo" data-bs-toggle="collapse"
+                            role="button" aria-expanded="false" aria-controls="sidebarMultiLevelDemo">
                             <span class="nav-icon">
                                 <i class="ri-box-3-line"></i>
                             </span>
@@ -251,7 +276,7 @@
                             </ul>
                         </div>
                     </li> <!-- end Menu Item -->
-                    
+
                     <li class="nav-item">
                         <a class="nav-link" href="/verivikasiAjuan">
                             <span class="nav-icon">
@@ -260,16 +285,38 @@
                             <span class="nav-text">Verivikasi Ajuan</span>
                         </a>
                     </li>
-                    
+
                     <li class="nav-item">
-                        <a class="nav-link" href="/lihatLaporan">
+                        <a class="nav-link menu-arrow" data-bs-toggle="collapse"
+                            href="#sidebarLihatLaporan" role="button" aria-expanded="false"
+                            aria-controls="sidebarLihatLaporan">
                             <span class="nav-icon">
                                 <i class="ri-survey-line"></i>
                             </span>
-                            <span class="nav-text">Lihat Laporan</span>
+                            <span class="nav-text ms-2">Lihat Laporan</span>
                         </a>
+                        <div class="collapse" id="sidebarLihatLaporan">
+                            <ul class="nav flex-column ms-4">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/laporanInventaris">Inventaris</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/laporanPeminjaman">Peminjaman</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/laporanPerawatan">Perawatan</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/laporanMutasi">Mutasi</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/laporanPenghapusan">Penghapusan</a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
-                    
+
+
                     <li class="nav-item">
                         <a class="nav-link" href="/pengaturan">
                             <span class="nav-icon">
@@ -280,7 +327,8 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link menu-arrow" href="#sidebarMultiLevelDemo" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMultiLevelDemo">
+                        <a class="nav-link menu-arrow" href="#sidebarMultiLevelDemo" data-bs-toggle="collapse"
+                            role="button" aria-expanded="false" aria-controls="sidebarMultiLevelDemo">
                             <span class="nav-icon">
                                 <i class="ri-share-line"></i>
                             </span>
@@ -292,7 +340,9 @@
                                     <a class="sub-nav-link" href="javascript:void(0);">Menu Item 1</a>
                                 </li>
                                 <li class="sub-nav-item">
-                                    <a class="sub-nav-link  menu-arrow" href="#sidebarItemDemoSubItem" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarItemDemoSubItem">
+                                    <a class="sub-nav-link  menu-arrow" href="#sidebarItemDemoSubItem"
+                                        data-bs-toggle="collapse" role="button" aria-expanded="false"
+                                        aria-controls="sidebarItemDemoSubItem">
                                         <span> Menu Item 2 </span>
                                     </a>
                                     <div class="collapse" id="sidebarItemDemoSubItem">
@@ -332,8 +382,9 @@
                         <div class="col-12 text-center">
                             <script>
                                 document.write(new Date().getFullYear())
-                            </script> &copy; BrandUI. Crafted by <iconify-icon icon="solar:hearts-bold-duotone" class="fs-18 align-middle text-danger"></iconify-icon> <a
-                                href="" class="fw-bold footer-text" target="_blank">Techzaa</a>
+                            </script> &copy; BrandUI. Crafted by <iconify-icon icon="solar:hearts-bold-duotone"
+                                class="fs-18 align-middle text-danger"></iconify-icon> <a href=""
+                                class="fw-bold footer-text" target="_blank">Techzaa</a>
                         </div>
                     </div>
                 </div>
