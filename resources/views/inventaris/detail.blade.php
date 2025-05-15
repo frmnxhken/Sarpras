@@ -68,10 +68,10 @@
                         <button class="btn btn-primary px-2 py-1" href="/detail">
                             Cetak
                         </button>
-                        <button class="btn btn-primary px-2 py-1" href="/detail">
+                        <button class="btn btn-warning px-2 py-1" href="/detail">
                             Edit
                         </button>
-                        <button class="btn btn-primary px-2 py-1" href="/detail">
+                        <button class="btn btn-danger px-2 py-1" href="/detail">
                             Hapus
                         </button>
                     </div>
