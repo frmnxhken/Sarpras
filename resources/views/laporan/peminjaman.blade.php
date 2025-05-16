@@ -1,45 +1,56 @@
 <x-layout>
     <div class="container my-5">
-        <h2 class="mb-4 text-center">Laporan Peminjaman Barang</h2>
+        <h2 class="mb-4 text-center">Form Peminjaman Barang</h2>
 
-        <!-- Filter Form -->
         <form class="row g-3 mb-4">
-            <div class="col-md-3">
-                <label for="startDate" class="form-label">Tanggal Mulai</label>
-                <input type="date" class="form-control" id="startDate">
+            <div class="col-md-4">
+                <label for="tanggalPinjam" class="form-label">Tanggal Pinjam</label>
+                <input type="date" class="form-control" id="tanggalPinjam" name="tanggal_pinjam">
             </div>
-            <div class="col-md-3">
-                <label for="endDate" class="form-label">Tanggal Akhir</label>
-                <input type="date" class="form-control" id="endDate">
+            <div class="col-md-4">
+                <label for="namaPeminjam" class="form-label">Nama Peminjam</label>
+                <input type="text" class="form-control" id="namaPeminjam" name="nama_peminjam">
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
+                <label for="unit" class="form-label">Unit</label>
+                <input type="text" class="form-control" id="unit" name="unit">
+            </div>
+            <div class="col-md-4">
+                <label for="barang" class="form-label">Barang</label>
+                <input type="text" class="form-control" id="barang" name="barang">
+            </div>
+            <div class="col-md-4">
+                <label for="jumlah" class="form-label">Jumlah</label>
+                <input type="number" class="form-control" id="jumlah" name="jumlah">
+            </div>
+            <div class="col-md-4">
                 <label for="status" class="form-label">Status</label>
-                <select id="status" class="form-select">
-                    <option selected>Semua</option>
+                <select id="status" name="status" class="form-select">
+                    <option selected disabled>Pilih status</option>
                     <option>Dipinjam</option>
                     <option>Dikembalikan</option>
                     <option>Hilang</option>
                 </select>
             </div>
-            <div class="col-md-3">
-                <label for="peminjam" class="form-label">Nama Peminjam</label>
-                <input type="text" class="form-control" id="peminjam" placeholder="Cari nama...">
-            </div>
             <div class="col-12 d-flex justify-content-end gap-2">
-                <button type="submit" class="btn btn-primary">Filter</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
                 <button type="reset" class="btn btn-secondary">Reset</button>
             </div>
         </form>
+    </div>
+    <div class="container my-5">
+        <h2 class="mb-4 text-center">Daftar Barang yang Dipinjam</h2>
 
-        <!-- Tombol Ekspor -->
-        <div class="d-flex justify-content-end mb-3 gap-2">
-            <button class="btn btn-danger"><i class="bi bi-file-earmark-pdf"></i> Cetak PDF</button>
-            <button class="btn btn-success"><i class="bi bi-file-earmark-excel"></i> Ekspor Excel</button>
+        <!-- Global Search -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <input type="text" id="globalSearch" class="form-control" placeholder="Cari apa saja di tabel...">
+            </div>
         </div>
 
-        <!-- Tabel -->
+        <!-- Tabel Data -->
         <div class="table-responsive">
-            <table class="table table-bordered table-striped">
+            <table id="dataTable" class="table table-bordered table-striped">
                 <thead class="table-dark">
                     <tr>
                         <th>No</th>
@@ -59,7 +70,7 @@
                         <td>Laboratorium</td>
                         <td>Laptop</td>
                         <td>2</td>
-                        <td>Dikembalikan</td>
+                        <td>Dipinjam</td>
                     </tr>
                     <tr>
                         <td>2</td>
@@ -70,9 +81,31 @@
                         <td>1</td>
                         <td>Dipinjam</td>
                     </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>2024-05-05</td>
+                        <td>Rina Amelia</td>
+                        <td>Keuangan</td>
+                        <td>Printer</td>
+                        <td>1</td>
+                        <td>Dikembalikan</td>
+                    </tr>
                     <!-- Tambahkan data sesuai kebutuhan -->
                 </tbody>
             </table>
         </div>
     </div>
+
+    <!-- Script Pencarian Global -->
+    <script>
+        document.getElementById('globalSearch').addEventListener('keyup', function () {
+            const filter = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#dataTable tbody tr');
+
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(filter) ? '' : 'none';
+            });
+        });
+    </script>
 </x-layout>

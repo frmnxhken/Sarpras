@@ -1,13 +1,13 @@
 <x-layout>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenteredScrollable">
+    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#tambahRuang">
         Tambah Ruang
     </button>
-    <div class="modal fade" id="exampleModalCenteredScrollable" tabindex="-1"
-        aria-labelledby="exampleModalCenteredScrollableTitle" aria-hidden="true">
+    <div class="modal fade" id="tambahRuang" tabindex="-1"
+        aria-labelledby="tambahRuangTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenteredScrollableTitle">Tambah Ruang</h5>
+                    <h5 class="modal-title" id="tambahRuangTitle">Tambah Ruang</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
