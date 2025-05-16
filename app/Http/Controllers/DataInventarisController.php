@@ -13,9 +13,9 @@ class DataInventarisController extends Controller
 {
     public function index()
     {   
-        $dataInventaris = DataInventaris::all();
-        $ruangans = Ruangans::all();
-        return view('inventaris.app',compact('dataInventaris', 'ruangans'));
+        $dataInventaris = DataInventaris::with('ruangan')->paginate(8);
+        $ruangan = Ruangans::all();
+        return view('inventaris.app',compact('dataInventaris','ruangan'));
     }
 
     public function show($id)
