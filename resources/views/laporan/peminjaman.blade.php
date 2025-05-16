@@ -69,7 +69,7 @@
     <div class="row align-items-center mb-4">
         <!-- Kolom pencarian -->
         <div class="col-md-6">
-            <input type="text" id="globalSearch" class="form-control" placeholder="Cari apa saja di tabel...">
+            <input type="text" id="globalSearch" class="form-control" placeholder="Cari data peminjaman...">
         </div>
         <div class="col-md-6 text-end">
             <button class="btn btn-danger me-2">
@@ -83,7 +83,7 @@
 
     <!-- Tabel Data -->
     <div class="table-responsive">
-        <table id="dataTable" class="table table-bordered table-striped">
+        <table id="dataPeminjaman" class="table table-bordered table-striped">
             <thead class="table-dark">
                 <tr>
                     <th>No</th>
@@ -131,7 +131,7 @@
     <script>
         document.getElementById('globalSearch').addEventListener('keyup', function () {
             const filter = this.value.toLowerCase();
-            const rows = document.querySelectorAll('#dataTable tbody tr');
+            const rows = document.querySelectorAll('#dataPeminjaman tbody tr');
 
             rows.forEach(row => {
                 const text = row.textContent.toLowerCase();
