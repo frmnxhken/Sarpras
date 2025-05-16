@@ -40,7 +40,6 @@
     </div>
     <div class="container my-5">
         <h2 class="mb-4 text-center">Daftar Barang yang Dipinjam</h2>
-
         <!-- Global Search -->
         <div class="row align-items-center mb-4">
             <!-- Kolom pencarian -->
