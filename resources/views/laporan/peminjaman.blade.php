@@ -42,9 +42,18 @@
         <h2 class="mb-4 text-center">Daftar Barang yang Dipinjam</h2>
 
         <!-- Global Search -->
-        <div class="row mb-4">
+        <div class="row align-items-center mb-4">
+            <!-- Kolom pencarian -->
             <div class="col-md-6">
                 <input type="text" id="globalSearch" class="form-control" placeholder="Cari apa saja di tabel...">
+            </div>
+            <div class="col-md-6 text-end">
+                <button class="btn btn-danger me-2">
+                    <i class="bi bi-file-earmark-pdf"></i> Cetak PDF
+                </button>
+                <button class="btn btn-success">
+                    <i class="bi bi-file-earmark-excel"></i> Ekspor Excel
+                </button>
             </div>
         </div>
 
@@ -90,7 +99,6 @@
                         <td>1</td>
                         <td>Dikembalikan</td>
                     </tr>
-                    <!-- Tambahkan data sesuai kebutuhan -->
                 </tbody>
             </table>
         </div>
