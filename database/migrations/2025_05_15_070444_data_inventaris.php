@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nama_barang');
             $table->string('jenis_barang');
             $table->string('merk_barang');
-            $table->year('tahun_perolehan');
+            $table->year('tahun_perolehan')->nullable();
             $table->enum('sumber_dana', ['BOS', 'DAK', 'Hibah']);
             $table->decimal('harga_perolehan', 15, 2)->nullable();
             $table->string('cv_pengadaan')->nullable();
@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('kondisi_barang')->nullable();
             $table->string('kepemilikan_barang');
             $table->string('penanggung_jawab')->nullable();
+            $table->text('qr_code')->nullable();
             $table->text('gambar_barang')->nullable();
             $table->timestamps();
         });

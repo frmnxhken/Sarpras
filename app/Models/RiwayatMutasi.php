@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Ruangans extends Model
+class RiwayatMutasi extends Model
 {
     protected $guarded=['id'];
     public function dataInventaris()
     {
-        return $this->hasMany(DataInventaris::class);
+        return $this->belongsTo(DataInventaris::class);
     }
 }

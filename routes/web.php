@@ -9,6 +9,7 @@ Route::get('/', function () {
 
 Route::get('/inventaris',[DataInventarisController::class, 'index']);
 Route::get('/detail/{id}', [DataInventarisController::class, 'show']);
+Route::post('/inventaris/tambah', [DataInventarisController::class, 'store']);
 
 Route::get('/ruang', function () {
     return view('ruang.data-ruang',[]);
