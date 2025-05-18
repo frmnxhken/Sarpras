@@ -11,7 +11,7 @@ class DataRuanganController extends Controller
     public function index()
     {
         $dataRuang = Ruangans::withCount('dataInventaris')->get();
-        return view('ruang.data-ruang', compact('dataRuang'));
+        return view('ruang.app', compact('dataRuang'));
     }
 
     public function store(Request $request)
