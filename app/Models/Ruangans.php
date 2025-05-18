@@ -9,6 +9,6 @@ class Ruangans extends Model
     protected $guarded=['id'];
     public function dataInventaris()
     {
-        return $this->hasMany(DataInventaris::class);
+        return $this->hasMany(DataInventaris::class, 'ruangan_id');
     }
 }

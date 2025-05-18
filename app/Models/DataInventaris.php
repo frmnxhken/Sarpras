@@ -9,6 +9,6 @@ class DataInventaris extends Model
     protected $guarded=['id'];
     public function ruangan()
     {
-        return $this->belongsTo(Ruangans::class);
+        return $this->belongsTo(Ruangans::class, 'ruangan_id');
     }
 }

@@ -258,14 +258,14 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link menu-arrow" href="#sidebarMultiLevelDemo" data-bs-toggle="collapse"
+                        <a class="nav-link menu-arrow" href="#sidebarMenejemenData" data-bs-toggle="collapse"
                             role="button" aria-expanded="false" aria-controls="sidebarMultiLevelDemo">
                             <span class="nav-icon">
                                 <i class="ri-box-3-line"></i>
                             </span>
                             <span class="nav-text">Menejemen Data</span>
                         </a>
-                        <div class="collapse" id="sidebarMultiLevelDemo">
+                        <div class="collapse" id="sidebarMenejemenData">
                             <ul class="nav sub-navbar-nav">
                                 <li class="sub-nav-item">
                                     <a class="sub-nav-link" href="/inventaris">Data Inventaris</a>
