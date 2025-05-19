@@ -9,8 +9,8 @@ class PeminjamanController extends Controller
 {
     public function index()
     {
-        $item=Peminjaman::with(['barang.ruangan'])->get();        
-        return view('laporan.peminjaman',compact('item'));
+        $items=Peminjaman::with(['barang.ruangan'])->get();        
+        return view('laporan.peminjaman.app',compact('items'));
     }
 
     public function store(Request $request)

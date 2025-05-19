@@ -19,6 +19,12 @@ Route::delete('/inventaris/detail/{id}', [BarangController::class, 'destroy'])->
 Route::get('/ruang', [DataRuanganController::class, 'index']);
 Route::post('/ruang/tambah', [DataRuanganController::class, 'store']);
 Route::post('/ruang/ubah/{id}', [DataRuanganController::class, 'edit']);
+//hapus
+
+Route::get('/laporanPeminjaman', [PeminjamanController::class, 'index']);
+Route::post('/laporanPeminjaman/tambah', [PeminjamanController::class, 'index'])->name('peminjaman.store');
+Route::put('/laporanPeminjaman/{id}', [PeminjamanController::class, 'index'])->name('peminjaman.update');
+Route::delete('/laporanPeminjaman/{id}', [PeminjamanController::class, 'index'])->name('peminjaman.destroy');
 
 Route::get('/verivikasiAjuan', function () {
     return view('ajuan.app');
@@ -26,7 +32,7 @@ Route::get('/verivikasiAjuan', function () {
 Route::get('/laporanInventaris', function () {
     return view('laporan.inventaris');
 });
-Route::get('/laporanPeminjaman', [PeminjamanController::class, 'index']);
+
 Route::get('/laporanPerawatan', function () {
     return view('laporan.perawatan');
 });
