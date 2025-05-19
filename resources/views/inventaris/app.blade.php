@@ -4,8 +4,8 @@
     </button>
     @include('inventaris.popup.tambah_data')
     <div class="table-responsive">
-        <table id="dataTable" class="table table-bordered table-striped">
-            <thead class="table-dark">
+        <table id="dataTable" class="table table-bordered table-striped align-middle">
+            <thead class="table-light">
                 <tr>
                     <th scope="col">No</th>
                     <th scope="col">Kode Barang</th>
