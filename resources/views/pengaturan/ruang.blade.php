@@ -1,11 +1,14 @@
 <x-layout>
+    <h4 class="mb-4">
+        Data Ruangan
+    </h4>
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#tambahRuang">
         Tambah Ruang
     </button>
     @include('ruang.popup.tambah_ruang')
     <div class="table-responsive">
-        <table id="dataTable" class="table table-bordered table-striped">
-            <thead class="table-dark">
+        <table class="table table-bordered table-striped align-middle" id="">
+            <thead class="table-light">
                 <tr>
                     <th scope="col">No</th>
                     <th scope="col">Kode Ruang</th>

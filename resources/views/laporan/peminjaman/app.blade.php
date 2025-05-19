@@ -20,8 +20,8 @@
 
     <!-- Tabel Data -->
     <div class="table-responsive">
-        <table id="dataPeminjaman" class="table table-bordered table-striped">
-            <thead class="table-dark">
+        <table id="dataPeminjaman" class="table table-bordered table-striped align-middle">
+            <thead class="table-light">
                 <tr>
                     <th>No</th>
                     <th>Tanggal Pinjam</th>

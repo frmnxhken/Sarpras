@@ -1,7 +1,7 @@
 <x-layout>
-    <h2>
-        Kelola Pengguna
-    </h2>
+    <h4 class="mb-4">
+        Kelola pengguna
+    </h4>
 
     <!-- Pencarian Global -->
     <div class="row align-items-center mb-4">
@@ -11,8 +11,8 @@
         </div>
     </div>
     <div class="table-responsive">
-        <table class="table table-bordered table-striped" id="tabelPengguna">
-            <thead class="table-dark">
+        <table class="table table-bordered table-striped align-middle" id="tabelPengguna">
+            <thead class="table-light">
                 <tr>
                     <th>No</th>
                     <th>Nama</th>

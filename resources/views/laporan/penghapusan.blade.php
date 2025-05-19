@@ -61,8 +61,8 @@
         </div>
     </div>
     <div class="table-responsive">
-        <table class="table table-bordered table-striped" id="tabelPenghapusan">
-            <thead class="table-dark">
+        <table id="tabelPenghapusan" class="table table-bordered table-striped align-middle">
+            <thead class="table-light">
                 <tr>
                     <th>No</th>
                     <th>Tanggal</th>
