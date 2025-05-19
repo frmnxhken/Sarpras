@@ -37,6 +37,14 @@ Route::get('/laporanPenghapusan', function () {
     return view('laporan.penghapusan');
 });
 
-Route::get('/pengaturan', function () {
-    return view('pengaturan.app');
+Route::get('/dataRuang', function () {
+    return view('pengaturan.ruang');
+});
+
+Route::get('/kategoriBarang', function () {
+    return view('pengaturan.kategori');
+});
+
+Route::get('/kelolaBarang', function () {
+    return view('pengaturan.kelola');
 });

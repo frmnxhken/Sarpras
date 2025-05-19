@@ -372,13 +372,13 @@
                         <div class="collapse" id="sidebarMenejemenData">
                             <ul class="nav sub-navbar-nav">
                                 <li class="sub-nav-item">
-                                    <a class="sub-nav-link">Kategori Barang</a>
+                                    <a class="sub-nav-link" href="/kategoriBarang">Kategori Barang</a>
                                 </li>
                                 <li class="sub-nav-item">
-                                    <a class="sub-nav-link" href="/ruang">Data Ruangan</a>
+                                    <a class="sub-nav-link" href="/dataRuang">Data Ruangan</a>
                                 </li>
                                 <li class="sub-nav-item">
-                                    <a class="sub-nav-link">Kelola Pengguna</a>
+                                    <a class="sub-nav-link" href="kelolaBarang">Kelola Pengguna</a>
                                 </li>
                             </ul>
                         </div>
