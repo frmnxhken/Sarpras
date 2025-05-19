@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\DataRuanganController;
-use Dflydev\DotAccessData\Data;
+use App\Http\Controllers\PeminjamanController;
+// use Dflydev\DotAccessData\Data;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -25,9 +26,7 @@ Route::get('/verivikasiAjuan', function () {
 Route::get('/laporanInventaris', function () {
     return view('laporan.inventaris');
 });
-Route::get('/laporanPeminjaman', function () {
-    return view('laporan.peminjaman');
-});
+Route::get('/laporanPeminjaman', [PeminjamanController::class, 'index']);
 Route::get('/laporanPerawatan', function () {
     return view('laporan.perawatan');
 });
