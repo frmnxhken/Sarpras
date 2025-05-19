@@ -257,7 +257,7 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link menu-arrow" href="#sidebarMenejemenData" data-bs-toggle="collapse"
                             role="button" aria-expanded="false" aria-controls="sidebarMultiLevelDemo">
                             <span class="nav-icon">
@@ -268,14 +268,23 @@
                         <div class="collapse" id="sidebarMenejemenData">
                             <ul class="nav sub-navbar-nav">
                                 <li class="sub-nav-item">
-                                    <a class="sub-nav-link" href="/inventaris">Data Inventaris</a>
+                                    <a class="sub-nav-link" href="/inventaris">Data Barang</a>
                                 </li>
                                 <li class="sub-nav-item">
-                                    <a class="sub-nav-link" href="/ruang">Data Ruang</a>
+                                    <a class="sub-nav-link" href="/ruang">Data Ruangan</a>
                                 </li>
                             </ul>
                         </div>
-                    </li> <!-- end Menu Item -->
+                    </li> <!-- end Menu Item --> --}}
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/inventaris">
+                            <span class="nav-icon">
+                                <i class="ri-box-3-line"></i>
+                            </span>
+                            <span class="nav-text">Data Barang</span>
+                        </a>
+                    </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="/verivikasiAjuan">
@@ -287,6 +296,42 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link" href="/laporanPeminjaman">
+                            <span class="nav-icon">
+                                <i class="ri-hand-coin-line"></i>
+                            </span>
+                            <span class="nav-text">Peminjaman</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/laporanPerawatan">
+                            <span class="nav-icon">
+                                <i class="ri-tools-line"></i>
+                            </span>
+                            <span class="nav-text">Perawatan</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/laporanMutasi">
+                            <span class="nav-icon">
+                                <i class="ri-shuffle-line"></i>
+                            </span>
+                            <span class="nav-text">Mutasi</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link"href="/laporanPenghapusan">
+                            <span class="nav-icon">
+                                <i class="ri-delete-bin-line"></i>
+                            </span>
+                            <span class="nav-text">Penghapusan</span>
+                        </a>
+                    </li>
+
+                    {{-- <li class="nav-item">
                         <a class="nav-link menu-arrow" data-bs-toggle="collapse"
                             href="#sidebarLihatLaporan" role="button" aria-expanded="false"
                             aria-controls="sidebarLihatLaporan">
@@ -314,19 +359,32 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
-
+                    </li> --}}
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/pengaturan">
+                        <a class="nav-link menu-arrow" href="#sidebarMenejemenData" data-bs-toggle="collapse"
+                            role="button" aria-expanded="false" aria-controls="sidebarMultiLevelDemo">
                             <span class="nav-icon">
                                 <i class="ri-settings-4-line fs-18"></i>
                             </span>
                             <span class="nav-text">Pengaturan</span>
                         </a>
-                    </li>
+                        <div class="collapse" id="sidebarMenejemenData">
+                            <ul class="nav sub-navbar-nav">
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link">Kategori Barang</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="/ruang">Data Ruangan</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link">Kelola Pengguna</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li> <!-- end Menu Item -->
 
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link menu-arrow" href="#sidebarMultiLevelDemo" data-bs-toggle="collapse"
                             role="button" aria-expanded="false" aria-controls="sidebarMultiLevelDemo">
                             <span class="nav-icon">
@@ -355,7 +413,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </li> <!-- end Menu Item -->
+                    </li> <!-- end Menu Item --> --}}
                 </ul>
             </div>
         </div>

@@ -2,26 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DataInventaris;
-use App\Models\Ruangans;
-
+use App\Models\Barang;
 use Illuminate\Http\Request;
+use App\Models\Ruangans;
 use Illuminate\Support\Str;
-// use Illuminate\Support\Facades\Storage;
 
-class DataInventarisController extends Controller
+class BarangController extends Controller
 {
     public function index()
     {
-        $dataInventaris = DataInventaris::with('ruangan')->paginate(8);
+        $dataInventaris = Barang::with('ruangan')->paginate(8);
         $ruangan = Ruangans::all();
         return view('inventaris.app', compact('dataInventaris', 'ruangan'));
     }
 
     public function show($id)
     {
-        $details = DataInventaris::findOrFail($id);
-        return view('inventaris.detail', compact('details'));
+        $item = Barang::findOrFail($id);
+        return view('inventaris.detail', compact('item'));
     }
 
     public function store(Request $request)
@@ -73,7 +71,7 @@ class DataInventarisController extends Controller
 
         unset($validated['kondisi'], $validated['kepemilikan']); // buang agar tidak duplikat kolom
 
-        DataInventaris::create($validated);
+        Barang::create($validated);
 
         return redirect('/inventaris')->with('success', 'Data inventaris berhasil ditambahkan.');
     }
@@ -95,7 +93,7 @@ class DataInventarisController extends Controller
             'upload' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
         ]);
 
-        $barang = DataInventaris::findOrFail($id);
+        $barang = Barang::findOrFail($id);
 
         $barang->update($request->except('upload'));
 
@@ -110,7 +108,7 @@ class DataInventarisController extends Controller
 
     public function destroy($id)
     {
-        $barang = DataInventaris::findOrFail($id);
+        $barang = Barang::findOrFail($id);
         $barang->delete();
         return redirect('/inventaris')->with('success', 'Data inventaris berhasil dihapus.');
     }

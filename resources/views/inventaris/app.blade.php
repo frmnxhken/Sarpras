@@ -55,6 +55,14 @@
                                 <a class="btn btn-primary px-2 py-1" href="{{ route('inventaris.detail', $item->id) }}">
                                     Detail
                                 </a>
+                            <button class="btn btn-danger px-2 py-1" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $loop->iteration }}">
+                                Hapus
+                            </button>
+                            @include('inventaris.popup.confirmation_delete', [
+                                'modalId' => $loop->iteration,
+                                'item' => $item
+                            ])
+                            {{-- @include('inventaris.popup.confirmation_delete') --}}
                             </div>
                         </td>
                     </tr>

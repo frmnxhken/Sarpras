@@ -17,7 +17,7 @@
             <div class="modal-body">
                 <div class="mb-3">
                     <label for="nama_ruangan" class="form-label">Nama Ruangan</label>
-                    <input type="text" class="form-control" id="nama_ruangan" name="nama_ruangan">
+                    <input type="text" class="form-control" id="nama_ruangan" name="nama_ruangan" placeholder="Masukkan Nama Ruangan">
                 </div>
                 @error('nama_ruangan')
                     <div class="alert alert-danger mt-2">{{ $message }}</div>

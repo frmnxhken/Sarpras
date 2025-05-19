@@ -7,8 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Ruangans extends Model
 {
     protected $guarded=['id'];
-    public function dataInventaris()
+    // public function dataInventaris()
+    // {
+    //     return $this->hasMany(DataInventaris::class, 'ruangan_id');
+    // }
+    public function dataBarang()
     {
-        return $this->hasMany(DataInventaris::class, 'ruangan_id');
+        return $this->hasMany(Barang::class, 'ruangan_id'); // sesuaikan foreign key-nya
     }
+
 }

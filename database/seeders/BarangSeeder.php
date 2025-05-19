@@ -1,19 +1,19 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\DataInventaris;
+use App\Models\Barang;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DataInventarisSeeder extends Seeder
+class BarangSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        DataInventaris::create([
+        Barang::create([
             'kode_barang' => 'BRG001',
             'nama_barang' => 'Kursi',
             'jenis_barang' => 'Perabot',
@@ -30,7 +30,7 @@ class DataInventarisSeeder extends Seeder
             'gambar_barang' => null
         ]);
 
-        DataInventaris::create([
+        Barang::create([
             'kode_barang' => 'BRG002',
             'nama_barang' => 'Meja',
             'jenis_barang' => 'Perabot',
@@ -47,7 +47,7 @@ class DataInventarisSeeder extends Seeder
             'gambar_barang' => null
         ]);
 
-        DataInventaris::create([
+        Barang::create([
             'kode_barang' => 'BRG003',
             'nama_barang' => 'Papan Tulis',
             'jenis_barang' => 'Perabot',
@@ -64,7 +64,7 @@ class DataInventarisSeeder extends Seeder
             'gambar_barang' => null
         ]);
 
-        DataInventaris::create([
+        Barang::create([
             'kode_barang' => 'BRG004',
             'nama_barang' => 'Proyektor',
             'jenis_barang' => 'Elektronik',
@@ -81,7 +81,7 @@ class DataInventarisSeeder extends Seeder
             'gambar_barang' => null
         ]);
 
-        DataInventaris::create([
+        Barang::create([
             'kode_barang' => 'BRG005',
             'nama_barang' => 'Komputer',
             'jenis_barang' => 'Elektronik',
@@ -98,7 +98,7 @@ class DataInventarisSeeder extends Seeder
             'gambar_barang' => null
         ]);
 
-        DataInventaris::create([
+        Barang::create([
             'kode_barang' => 'BRG006',
             'nama_barang' => 'Laptop',
             'jenis_barang' => 'Elektronik',
@@ -115,7 +115,7 @@ class DataInventarisSeeder extends Seeder
             'gambar_barang' => null
         ]);
 
-        DataInventaris::create([
+        Barang::create([
             'kode_barang' => 'BRG007',
             'nama_barang' => 'TV',
             'jenis_barang' => 'Elektronik',
@@ -132,7 +132,7 @@ class DataInventarisSeeder extends Seeder
             'gambar_barang' => null
         ]);
 
-        DataInventaris::create([
+        Barang::create([
             'kode_barang' => 'BRG008',
             'nama_barang' => 'AC',
             'jenis_barang' => 'Elektronik',
@@ -149,7 +149,7 @@ class DataInventarisSeeder extends Seeder
             'gambar_barang' => null
         ]);
 
-        DataInventaris::create([
+        Barang::create([
             'kode_barang' => 'BRG009',
             'nama_barang' => 'Kipas Angin',
             'jenis_barang' => 'Elektronik',
@@ -166,7 +166,7 @@ class DataInventarisSeeder extends Seeder
             'gambar_barang' => null
         ]);
 
-        DataInventaris::create([
+        Barang::create([
             'kode_barang' => 'BRG010',
             'nama_barang' => 'Printer',
             'jenis_barang' => 'Elektronik',
@@ -183,7 +183,7 @@ class DataInventarisSeeder extends Seeder
             'gambar_barang' => null
         ]);
 
-        DataInventaris::create([
+        Barang::create([
             'kode_barang' => 'BRG011',
             'nama_barang' => 'Meja Papan',
             'jenis_barang' => 'Perabot',
@@ -200,7 +200,7 @@ class DataInventarisSeeder extends Seeder
             'gambar_barang' => null
         ]);
 
-        DataInventaris::create([
+        Barang::create([
             'kode_barang' => 'BRG012',
             'nama_barang' => 'Rak Buku',
             'jenis_barang' => 'Perabot',
@@ -217,7 +217,7 @@ class DataInventarisSeeder extends Seeder
             'gambar_barang' => null
         ]);
 
-        DataInventaris::create([
+        Barang::create([
             'kode_barang' => 'BRG013',
             'nama_barang' => 'Kulkas',
             'jenis_barang' => 'Elektronik',
@@ -234,7 +234,7 @@ class DataInventarisSeeder extends Seeder
             'gambar_barang' => null
         ]);
 
-        DataInventaris::create([
+        Barang::create([
             'kode_barang' => 'BRG014',
             'nama_barang' => 'Meja Belajar',
             'jenis_barang' => 'Perabot',
@@ -251,7 +251,7 @@ class DataInventarisSeeder extends Seeder
             'gambar_barang' => null
         ]);
 
-        DataInventaris::create([
+        Barang::create([
             'kode_barang' => 'BRG015',
             'nama_barang' => 'AC',
             'jenis_barang' => 'Elektronik',
@@ -268,7 +268,7 @@ class DataInventarisSeeder extends Seeder
             'gambar_barang' => null
         ]);
 
-        DataInventaris::create([
+        Barang::create([
             'kode_barang' => 'BRG016',
             'nama_barang' => 'Televisi',
             'jenis_barang' => 'Elektronik',
@@ -285,7 +285,7 @@ class DataInventarisSeeder extends Seeder
             'gambar_barang' => null
         ]);
 
-        DataInventaris::create([
+        Barang::create([
             'kode_barang' => 'BRG017',
             'nama_barang' => 'Whiteboard',
             'jenis_barang' => 'Perabot',
@@ -302,7 +302,7 @@ class DataInventarisSeeder extends Seeder
             'gambar_barang' => null
         ]);
 
-        DataInventaris::create([
+        Barang::create([
             'kode_barang' => 'BRG018',
             'nama_barang' => 'Sound System',
             'jenis_barang' => 'Elektronik',
@@ -319,7 +319,7 @@ class DataInventarisSeeder extends Seeder
             'gambar_barang' => null
         ]);
 
-        DataInventaris::create([
+        Barang::create([
             'kode_barang' => 'BRG019',
             'nama_barang' => 'Meja Kantor',
             'jenis_barang' => 'Perabot',
@@ -336,7 +336,7 @@ class DataInventarisSeeder extends Seeder
             'gambar_barang' => null
         ]);
 
-        DataInventaris::create([
+        Barang::create([
             'kode_barang' => 'BRG020',
             'nama_barang' => 'Kursi Kantor',
             'jenis_barang' => 'Perabot',

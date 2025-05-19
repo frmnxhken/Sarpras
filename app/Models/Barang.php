@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DataInventaris extends Model
+class Barang extends Model
 {
     protected $guarded=['id'];
     public function ruangan()

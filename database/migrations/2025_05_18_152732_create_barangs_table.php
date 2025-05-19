@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('data_inventaris', function (Blueprint $table) {
+        Schema::create('barangs', function (Blueprint $table) {
             $table->id();
             $table->string('kode_barang')->unique();
             $table->string('nama_barang');
@@ -30,15 +30,6 @@ return new class extends Migration
             $table->text('gambar_barang')->nullable();
             $table->timestamps();
         });
-        Schema::create('riwayat_mutasi', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('data_inventaris_id')->constrained('data_inventaris')->onDelete('cascade');
-            $table->string('asal_mutasi');
-            $table->string('tujuan_mutasi');
-            $table->string('keterangan_mutasi');
-            $table->enum('status_mutasi', ['diterima', 'ditolak', 'proses'])->default('proses');
-            $table->timestamps();
-        });
     }
 
     /**
@@ -46,7 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('data_inventaris');
+        Schema::dropIfExists('barangs');
     }
 };
-

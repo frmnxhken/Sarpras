@@ -8,55 +8,55 @@
                         <tbody>
                             <tr>
                                 <th>Kode Barang</th>
-                                <td>{{ $details->kode_barang }}</td>
+                                <td>{{ $item->kode_barang }}</td>
                             </tr>
                             <tr>
                                 <th>Nama Barang</th>
-                                <td>{{ $details->nama_barang }}</td>
+                                <td>{{ $item->nama_barang }}</td>
                             </tr>
                             <tr>
                                 <th>Jenis Barang</th>
-                                <td>{{ $details->jenis_barang }}</td>
+                                <td>{{ $item->jenis_barang }}</td>
                             </tr>
                             <tr>
                                 <th>Merk / Spesifikasi</th>
-                                <td>{{ $details->merk_barang }}</td>
+                                <td>{{ $item->merk_barang }}</td>
                             </tr>
                             <tr>
                                 <th>Tahun Perolehan</th>
-                                <td>{{ $details->tahun_perolehan }}</td>
+                                <td>{{ $item->tahun_perolehan }}</td>
                             </tr>
                             <tr>
                                 <th>Sumber Dana</th>
-                                <td>{{ $details->sumber_dana }}</td>
+                                <td>{{ $item->sumber_dana }}</td>
                             </tr>
                             <tr>
                                 <th>Harga Perolehan</th>
-                                <td>{{ $details->harga_perolehan }}</td>
+                                <td>{{ $item->harga_perolehan }}</td>
                             </tr>
                             <tr>
                                 <th>CV Pengadaan</th>
-                                <td>{{ $details->cv_pengadaan }}</td>
+                                <td>{{ $item->cv_pengadaan }}</td>
                             </tr>
                             <tr>
                                 <th>Jumlah Barang</th>
-                                <td>{{ $details->jumlah_barang }}</td>
+                                <td>{{ $item->jumlah_barang }}</td>
                             </tr>
                             <tr>
                                 <th>Lokasi</th>
-                                <td>{{ $details->ruangan_id }}</td>
+                                <td>{{ $item->ruangan_id }}</td>
                             </tr>
                             <tr>
                                 <th>Kondisi</th>
-                                <td>{{ $details->kondisi_barang }}</td>
+                                <td>{{ $item->kondisi_barang }}</td>
                             </tr>
                             <tr>
                                 <th>Kepemilikan</th>
-                                <td>{{ $details->kepemilikan_barang }}</td>
+                                <td>{{ $item->kepemilikan_barang }}</td>
                             </tr>
                             <tr>
                                 <th>Penanggung Jawab</th>
-                                <td>{{ $details->penanggung_jawab }}</td>
+                                <td>{{ $item->penanggung_jawab }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -67,11 +67,14 @@
                         <button class="btn btn-warning px-2 py-1" data-bs-toggle="modal" data-bs-target="#editData">
                             Edit
                         </button>
-                        @include('inventaris.popup.edit_data')                        
-                        <button class="btn btn-danger px-2 py-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        @include('inventaris.popup.edit_data')
+                        <button class="btn btn-danger px-2 py-1" data-bs-toggle="modal" data-bs-target="#deleteModal">
                             Hapus
                         </button>
-                        @include('inventaris.popup.confirmation_delete')
+                            @include('inventaris.popup.confirmation_delete', [
+                                'modalId' => '',
+                                'item' => $item
+                            ])
                     </div>
                 </div>
             </div>
