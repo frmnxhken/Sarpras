@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\DataRuanganController;
+use Dflydev\DotAccessData\Data;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -37,14 +38,11 @@ Route::get('/laporanPenghapusan', function () {
     return view('laporan.penghapusan');
 });
 
-Route::get('/dataRuang', function () {
-    return view('pengaturan.ruang');
-});
 
+Route::get('/dataRuang', [DataRuanganController::class, 'index']);
 Route::get('/kategoriBarang', function () {
     return view('pengaturan.kategori');
 });
-
 Route::get('/kelolaBarang', function () {
     return view('pengaturan.kelola');
 });
