@@ -11,12 +11,12 @@
     <meta name="author" content="Techzaa" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 
-    <link href="{{ asset('/assets') }}/css/vendor.min.css" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('/assets') }}/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('/assets') }}/css/app.min.css" rel="stylesheet" type="text/css" />
-    <script src="{{ asset('/assets') }}/js/config.min.js"></script>
+    <link href="{{ asset('/assets/css/vendor.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
+    <script src="{{ asset('/assets/js/config.min.js') }}"></script>
 
 </head>
 
@@ -70,7 +70,7 @@
                                 <a type="button" class="topbar-button" id="page-header-user-dropdown"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="d-flex align-items-center">
-                                        <img class="rounded-circle" width="32" src="assets/images/users/avatar-1.jpg"
+                                        <img class="rounded-circle" width="32" src="{{ asset('/assets/images/users/avatar-1.jpg') }}"
                                             alt="avatar-3">
                                     </span>
                                 </a>
