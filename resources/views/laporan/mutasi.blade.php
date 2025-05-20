@@ -1,68 +1,69 @@
 <x-layout>
 
-    <!-- Tombol Pemicu Modal -->
+    <!-- Tombol Tambah Mutasi -->
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalMutasiBarang">
-        Tambah Mutasi
+        <i class="bi bi-plus-circle me-2"></i>Tambah Mutasi
     </button>
 
-    <!-- Modal -->
+    <!-- Modal Form Mutasi -->
     <div class="modal fade" id="modalMutasiBarang" tabindex="-1" aria-labelledby="modalMutasiLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-width: 600px;">
-            <div class="modal-content">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <form class="modal-content">
 
-                <!-- Header Modal -->
+                <!-- Header -->
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalMutasiLabel">Form Mutasi Barang</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <!-- Body Modal -->
-                <div class="modal-body px-3">
-                    <form class="row g-3 mb-3">
+                <!-- Body -->
+                <div class="modal-body">
+                    <div class="row g-3">
 
-                        <div class="col-12">
+                        <div class="col-md-12">
                             <label for="tanggalMutasi" class="form-label">Tanggal Mutasi</label>
                             <input type="date" class="form-control" id="tanggalMutasi" required>
                         </div>
 
-                        <div class="col-12">
+                        <div class="col-md-12">
                             <label for="namaBarang" class="form-label">Nama Barang</label>
-                            <input type="text" class="form-control" id="namaBarang" required>
+                            <input type="text" class="form-control" id="namaBarang" placeholder="Contoh: Laptop" required>
                         </div>
 
-                        <div class="col-12">
+                        <div class="col-md-12">
                             <label for="jumlah" class="form-label">Jumlah</label>
-                            <input type="number" class="form-control" id="jumlah" required>
+                            <input type="number" class="form-control" id="jumlah" placeholder="Contoh: 2" required>
                         </div>
 
-                        <div class="col-12">
+                        <div class="col-md-12">
                             <label for="dariUnit" class="form-label">Dari Unit</label>
-                            <input type="text" class="form-control" id="dariUnit" required>
+                            <input type="text" class="form-control" id="dariUnit" placeholder="Contoh: Laboratorium" required>
                         </div>
 
-                        <div class="col-12">
+                        <div class="col-md-12">
                             <label for="keUnit" class="form-label">Ke Unit</label>
-                            <input type="text" class="form-control" id="keUnit" required>
+                            <input type="text" class="form-control" id="keUnit" placeholder="Contoh: Keuangan" required>
                         </div>
 
-                        <div class="col-12">
+                        <div class="col-md-12">
                             <label for="keterangan" class="form-label">Keterangan</label>
-                            <input type="text" class="form-control" id="keterangan">
+                            <textarea class="form-control" id="keterangan" rows="3"
+                                placeholder="Contoh: Pindah ke ruangan baru"></textarea>
                         </div>
 
-                        <div class="col-12 d-flex justify-content-end gap-2">
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                            <button type="reset" class="btn btn-secondary">Reset</button>
-                        </div>
-
-                    </form>
+                    </div>
                 </div>
 
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                    <button type="submit" class="btn btn-primary">Simpan Data</button>
+                </div>
+
+            </form>
         </div>
     </div>
 
-    <!-- Kolom pencarian dan tombol ekspor jika dibutuhkan -->
+    <!-- Fitur Pencarian & Ekspor -->
     <div class="row mb-3 align-items-center">
         <div class="col-md-6">
             <input type="text" id="searchMutasi" class="form-control" placeholder="Cari mutasi...">
@@ -73,7 +74,7 @@
         </div>
     </div>
 
-    <!-- Tabel mutasi -->
+    <!-- Tabel Data Mutasi -->
     <div class="table-responsive">
         <table id="tabelMutasi" class="table table-bordered table-striped align-middle">
             <thead class="table-light">
@@ -100,7 +101,7 @@
                 <tr>
                     <td>2</td>
                     <td>2024-05-11</td>
-                    <td>Pc</td>
+                    <td>PC</td>
                     <td>2</td>
                     <td>Laboratorium</td>
                     <td>Ruang Kepsek</td>
@@ -111,7 +112,7 @@
         </table>
     </div>
 
-    <!-- Script filter pencarian mutasi -->
+    <!-- Script Pencarian -->
     <script>
         document.getElementById('searchMutasi').addEventListener('keyup', function () {
             const filter = this.value.toLowerCase();

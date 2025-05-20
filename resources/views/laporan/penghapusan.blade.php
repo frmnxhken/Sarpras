@@ -1,47 +1,50 @@
 <x-layout>
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#TambahPenghapusan">
-        Tambah Penghapusan
+        <i class="bi bi-plus-circle me-2"></i>Tambah Penghapusan
     </button>
 
-    <div class="modal fade" id="TambahPenghapusan" tabindex="-1" aria-labelledby="TambahPenghapusanLabel" aria-hidden="true">
+    <!-- Modal Penghapusan Barang -->
+    <div class="modal fade" id="TambahPenghapusan" tabindex="-1" aria-labelledby="TambahPenghapusanLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
+            <form class="modal-content">
 
-                <!-- Header Modal -->
                 <div class="modal-header">
                     <h5 class="modal-title" id="TambahPenghapusanLabel">Form Penghapusan Barang</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <!-- Body Modal -->
                 <div class="modal-body">
-                    <form class="row g-3">
-                        <div class="col-md-12">
+                    <div class="row g-3">
+                        <div class="col-12">
                             <label for="tglPenghapusan" class="form-label">Tanggal Penghapusan</label>
                             <input type="date" class="form-control" id="tglPenghapusan" required>
                         </div>
-                        <div class="col-md-12">
+
+                        <div class="col-12">
                             <label for="namaBarangHapus" class="form-label">Nama Barang</label>
                             <input type="text" class="form-control" id="namaBarangHapus" placeholder="Contoh: Komputer"
                                 required>
                         </div>
-                        <div class="col-md-12">
+
+                        <div class="col-12">
                             <label for="jumlahHapus" class="form-label">Jumlah</label>
                             <input type="number" class="form-control" id="jumlahHapus" min="1" required>
                         </div>
-                        <div class="col-md-12">
+
+                        <div class="col-12">
                             <label for="alasanHapus" class="form-label">Alasan Penghapusan</label>
                             <input type="text" class="form-control" id="alasanHapus" placeholder="Rusak total / Usang"
                                 required>
                         </div>
 
-                        <div class="col-12 d-flex justify-content-end mt-3">
-                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                            <button type="submit" class="btn btn-primary">Simpan Data</button>
                         </div>
-                    </form>
+                    </div>
                 </div>
-
-            </div>
+            </form>
         </div>
     </div>
 
