@@ -2,6 +2,7 @@
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#TambahData">
         Tambah Data
     </button>
+    <a href="/scan">testing</a>
     @include('inventaris.popup.tambah_data')
     <div class="table-responsive">
         <table id="dataTable" class="table table-bordered table-striped align-middle">
@@ -62,7 +63,6 @@
                                 'modalId' => $loop->iteration,
                                 'item' => $item
                             ])
-                            {{-- @include('inventaris.popup.confirmation_delete') --}}
                             </div>
                         </td>
                     </tr>

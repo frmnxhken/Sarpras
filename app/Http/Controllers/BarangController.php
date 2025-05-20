@@ -6,6 +6,7 @@ use App\Models\Barang;
 use Illuminate\Http\Request;
 use App\Models\Ruangans;
 use Illuminate\Support\Str;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class BarangController extends Controller
 {
@@ -19,6 +20,17 @@ class BarangController extends Controller
     public function show($id)
     {
         $item = Barang::findOrFail($id);
+        $qr = $item->kode_barang;
+
+        $qrCode = QrCode::size(200)->generate($qr);
+        return view('inventaris.detail', compact('item', 'qrCode'));
+    }
+    public function scanResult($kode)
+    {
+        $item = Barang::where('kode_barang', $kode)->firstOrFail();
+        $qr = $item->kode_barang;
+
+        $qrCode = QrCode::size(200)->generate($qr);
         return view('inventaris.detail', compact('item'));
     }
 
@@ -112,4 +124,5 @@ class BarangController extends Controller
         $barang->delete();
         return redirect('/inventaris')->with('success', 'Data inventaris berhasil dihapus.');
     }
+
 }

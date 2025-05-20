@@ -31,6 +31,7 @@
                     <th>Barang</th>
                     <th>Jumlah</th>
                     <th>Status</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,6 +45,9 @@
                         <td>{{ $item->barang->nama_barang }}</td>
                         <td>{{ $item->jumlah_barang }}</td>
                         <td>{{ $item->status_peminjaman }}</td>
+                        <td>
+                            <button>Dikembalikan</button>
+                        </td>
                     </tr>
                 @empty
                     Tidak ada data peminjaman
