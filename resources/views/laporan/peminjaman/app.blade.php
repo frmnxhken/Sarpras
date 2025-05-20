@@ -1,6 +1,6 @@
 <x-layout>
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#TambahPeminjaman">
-        Tambah Peminjaman
+        <i class="bi bi-plus-circle me-2"></i>Tambah Peminjaman
     </button>
     @include('laporan.peminjaman.popup.tambah_peminjaman')
     <div class="row align-items-center mb-4">

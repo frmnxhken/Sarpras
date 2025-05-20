@@ -3,7 +3,7 @@
         Data Ruangan
     </h4>
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#tambahRuang">
-        Tambah Ruang
+        <i class="bi bi-plus-circle me-2"></i>Tambah Ruang
     </button>
     @include('ruang.popup.tambah_ruang')
     <div class="table-responsive">

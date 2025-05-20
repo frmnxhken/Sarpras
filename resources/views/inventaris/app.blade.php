@@ -2,7 +2,7 @@
     <div class="row mb-3">
         <div class="col-md-6">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#TambahData">
-                Tambah Data
+                <i class="bi bi-plus-circle me-2"></i>Tambah Data
             </button>
         </div>
         <div class="col-md-6 text-end">
