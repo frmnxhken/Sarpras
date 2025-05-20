@@ -27,10 +27,11 @@ Route::post('/ruang/tambah', [DataRuanganController::class, 'store']);
 Route::post('/ruang/ubah/{id}', [DataRuanganController::class, 'edit']);
 //hapus
 
-Route::get('/laporanPeminjaman', [PeminjamanController::class, 'index']);
-Route::post('/laporanPeminjaman/tambah', [PeminjamanController::class, 'index'])->name('peminjaman.store');
-Route::put('/laporanPeminjaman/{id}', [PeminjamanController::class, 'index'])->name('peminjaman.update');
-Route::delete('/laporanPeminjaman/{id}', [PeminjamanController::class, 'index'])->name('peminjaman.destroy');
+Route::get('/peminjaman', [PeminjamanController::class, 'index']);
+Route::post('/peminjaman/tambah', [PeminjamanController::class, 'store'])->name('peminjaman.store');
+Route::delete('/peminjaman/{id}', [PeminjamanController::class, 'index'])->name('peminjaman.destroy');
+Route::put('/peminjaman/{id}/status/{status}', [PeminjamanController::class, 'updateStatus'])->name('peminjaman.updateStatus');
+
 
 Route::get('/verivikasiAjuan', function () {
     return view('ajuan.app');
@@ -39,13 +40,13 @@ Route::get('/laporanInventaris', function () {
     return view('laporan.inventaris');
 });
 
-Route::get('/laporanPerawatan', function () {
+Route::get('/perawatan', function () {
     return view('laporan.perawatan');
 });
-Route::get('/laporanMutasi', function () {
+Route::get('/mutasi', function () {
     return view('laporan.mutasi');
 });
-Route::get('/laporanPenghapusan', function () {
+Route::get('/penghapusan', function () {
     return view('laporan.penghapusan');
 });
 

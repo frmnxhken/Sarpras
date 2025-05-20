@@ -298,7 +298,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/laporanPeminjaman">
+                        <a class="nav-link" href="/peminjaman">
                             <span class="nav-icon">
                                 <i class="ri-hand-coin-line"></i>
                             </span>
@@ -307,7 +307,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/laporanPerawatan">
+                        <a class="nav-link" href="/perawatan">
                             <span class="nav-icon">
                                 <i class="ri-tools-line"></i>
                             </span>
@@ -316,7 +316,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/laporanMutasi">
+                        <a class="nav-link" href="/mutasi">
                             <span class="nav-icon">
                                 <i class="ri-shuffle-line"></i>
                             </span>
@@ -325,43 +325,13 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link"href="/laporanPenghapusan">
+                        <a class="nav-link"href="/penghapusan">
                             <span class="nav-icon">
                                 <i class="ri-delete-bin-line"></i>
                             </span>
                             <span class="nav-text">Penghapusan</span>
                         </a>
                     </li>
-
-                    {{-- <li class="nav-item">
-                        <a class="nav-link menu-arrow" data-bs-toggle="collapse"
-                            href="#sidebarLihatLaporan" role="button" aria-expanded="false"
-                            aria-controls="sidebarLihatLaporan">
-                            <span class="nav-icon">
-                                <i class="ri-survey-line"></i>
-                            </span>
-                            <span class="nav-text ms-2">Lihat Laporan</span>
-                        </a>
-                        <div class="collapse" id="sidebarLihatLaporan">
-                            <ul class="nav flex-column ms-4">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/laporanInventaris">Inventaris</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/laporanPeminjaman">Peminjaman</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/laporanPerawatan">Perawatan</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/laporanMutasi">Mutasi</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/laporanPenghapusan">Penghapusan</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li> --}}
 
                     <li class="nav-item">
                         <a class="nav-link menu-arrow" href="#sidebarMenejemenData" data-bs-toggle="collapse"

@@ -44,9 +44,30 @@
                         <td>{{ $item->barang->ruangan->nama_ruangan }}</td>
                         <td>{{ $item->barang->nama_barang }}</td>
                         <td>{{ $item->jumlah_barang }}</td>
-                        <td>{{ $item->status_peminjaman }}</td>
                         <td>
-                            <button>Dikembalikan</button>
+                            <span class="badge @if ($item->status_peminjaman == 'Dipinjam') bg-warning  @elseif ($item->status_peminjaman == 'Dikembalikan') bg-success @else bg-danger @endif text-white">{{ $item->status_peminjaman }}</span>
+                        </td>
+                        <td>
+                            @if ($item->status_peminjaman == 'Dipinjam')
+                                <form
+                                    action="{{ route('peminjaman.updateStatus', ['id' => $item->id, 'status' => 'Dikembalikan']) }}"
+                                    method="POST" class="d-inline">
+                                    @csrf
+                                    @method('PUT')
+                                    <button class="btn btn-success px-2 py-1"
+                                        onclick="return confirm('Yakin ingin mengembalikan?')">Kembalikan</button>
+                                </form>
+
+                                <form
+                                    action="{{ route('peminjaman.updateStatus', ['id' => $item->id, 'status' => 'Hilang']) }}"
+                                    method="POST" class="d-inline">
+                                    @csrf
+                                    @method('PUT')
+                                    <button class="btn btn-danger px-2 py-1"
+                                        onclick="return confirm('Yakin barang ini hilang?')">Hilang</button>
+                                </form>
+                            @endif
+                            {{-- <button>Dikembalikan</button> --}}
                         </td>
                     </tr>
                 @empty
@@ -58,7 +79,7 @@
 
     <!-- Script Pencarian Global -->
     <script>
-        document.getElementById('globalSearch').addEventListener('keyup', function () {
+        document.getElementById('globalSearch').addEventListener('keyup', function() {
             const filter = this.value.toLowerCase();
             const rows = document.querySelectorAll('#dataPeminjaman tbody tr');
 
