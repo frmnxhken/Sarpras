@@ -36,25 +36,25 @@ Route::put('/peminjaman/{id}/{status}/{jumlah_barang}/{barang_id}', [PeminjamanC
 Route::get('/verivikasiAjuan', function () {
     return view('ajuan.app');
 });
-Route::get('/laporanInventaris', function () {
-    return view('laporan.inventaris');
-});
+// Route::get('/laporanInventaris', function () {
+//     return view('laporan.inventaris.app');
+// });
 
 Route::get('/perawatan', function () {
-    return view('laporan.perawatan');
+    return view('laporan.perawatan.app');
 });
 Route::get('/mutasi', function () {
-    return view('laporan.mutasi');
+    return view('laporan.mutasi.app');
 });
 Route::get('/penghapusan', function () {
-    return view('laporan.penghapusan');
+    return view('laporan.penghapusan.app');
 });
 
 
 Route::get('/dataRuang', [DataRuanganController::class, 'index']);
 Route::get('/kategoriBarang', function () {
-    return view('pengaturan.kategori');
+    return view('pengaturan.kategori.app');
 });
 Route::get('/kelolaBarang', function () {
-    return view('pengaturan.kelola');
+    return view('pengaturan.kelola.app');
 });
