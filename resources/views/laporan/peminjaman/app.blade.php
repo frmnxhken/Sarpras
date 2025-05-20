@@ -5,10 +5,21 @@
     @include('laporan.peminjaman.popup.tambah_peminjaman')
     <div class="row align-items-center mb-4">
         <!-- Kolom pencarian -->
-        <div class="col-md-6">
+         <div class="col-md-3">
+            <select class="form-select">
+                <option selected>Semua Status</option>
+                <option>Dipinjam</option>
+                <option>Dikembalikan</option>
+                <option>Hilang</option>
+            </select>
+        </div>
+        <div class="col-md-3">
             <input type="text" id="globalSearch" class="form-control" placeholder="Cari data peminjaman...">
         </div>
-        <div class="col-md-6 text-end">
+        <div class="col-md-2">
+            <button class="btn btn-primary w-100"><i class="ri-search-line me-1"></i>Filter</button>
+        </div>
+        <div class="col-md-4 text-end">
             <button class="btn btn-danger me-2">
                 <i class="bi bi-file-earmark-pdf"></i> Cetak PDF
             </button>
