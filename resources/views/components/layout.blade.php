@@ -11,6 +11,8 @@
     <meta name="author" content="Techzaa" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 
     <link href="{{ asset('/assets/css/vendor.min.css') }}" rel="stylesheet" type="text/css" />

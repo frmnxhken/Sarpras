@@ -1,8 +1,16 @@
 <x-layout>
-    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#TambahData">
-        Tambah Data
-    </button>
-    <a href="/scan">testing</a>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#TambahData">
+                Tambah Data
+            </button>
+        </div>
+        <div class="col-md-6 text-end">
+            <a href="/scan" class="btn btn-outline-primary d-inline-flex align-items-center">
+                <i class="bi bi-qr-code-scan me-2"></i> Scan QR
+            </a>
+        </div>
+    </div>
     @include('inventaris.popup.tambah_data')
     <div class="table-responsive">
         <table id="dataTable" class="table table-bordered table-striped align-middle">
