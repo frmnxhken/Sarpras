@@ -1,6 +1,6 @@
 <x-layout>
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#TambahPeminjaman">
-        Tambah Peminjaman
+        <i class="bi bi-plus-circle me-2"></i>Tambah Peminjaman
     </button>
     @include('laporan.peminjaman.popup.tambah_peminjaman')
     <div class="row align-items-center mb-4">
@@ -45,12 +45,18 @@
                         <td>{{ $item->barang->nama_barang }}</td>
                         <td>{{ $item->jumlah_barang }}</td>
                         <td>
-                            <span class="badge @if ($item->status_peminjaman == 'Dipinjam') bg-warning  @elseif ($item->status_peminjaman == 'Dikembalikan') bg-success @else bg-danger @endif text-white">{{ $item->status_peminjaman }}</span>
+                            <span
+                                class="badge @if ($item->status_peminjaman == 'Dipinjam') bg-warning  @elseif ($item->status_peminjaman == 'Dikembalikan') bg-success @else bg-danger @endif text-white">{{ $item->status_peminjaman }}</span>
                         </td>
                         <td>
                             @if ($item->status_peminjaman == 'Dipinjam')
                                 <form
-                                    action="{{ route('peminjaman.updateStatus', ['id' => $item->id, 'status' => 'Dikembalikan']) }}"
+                                    action="{{ route('peminjaman.updateStatus', [
+                                        'id' => $item->id, 
+                                        'status' => 'Dikembalikan', 
+                                        'jumlah_barang' => $item->jumlah_barang, 
+                                        'barang_id' => $item->barang_id
+                                        ]) }}"
                                     method="POST" class="d-inline">
                                     @csrf
                                     @method('PUT')
@@ -59,7 +65,12 @@
                                 </form>
 
                                 <form
-                                    action="{{ route('peminjaman.updateStatus', ['id' => $item->id, 'status' => 'Hilang']) }}"
+                                    action="{{ route('peminjaman.updateStatus', [
+                                        'id' => $item->id, 
+                                        'status' => 'Hilang',
+                                        'jumlah_barang' => $item->jumlah_barang, 
+                                        'barang_id' => $item->barang_id
+                                        ]) }}"
                                     method="POST" class="d-inline">
                                     @csrf
                                     @method('PUT')

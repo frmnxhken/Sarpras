@@ -30,7 +30,7 @@ Route::post('/ruang/ubah/{id}', [DataRuanganController::class, 'edit']);
 Route::get('/peminjaman', [PeminjamanController::class, 'index']);
 Route::post('/peminjaman/tambah', [PeminjamanController::class, 'store'])->name('peminjaman.store');
 Route::delete('/peminjaman/{id}', [PeminjamanController::class, 'index'])->name('peminjaman.destroy');
-Route::put('/peminjaman/{id}/status/{status}', [PeminjamanController::class, 'updateStatus'])->name('peminjaman.updateStatus');
+Route::put('/peminjaman/{id}/{status}/{jumlah_barang}/{barang_id}', [PeminjamanController::class, 'updateStatus'])->name('peminjaman.updateStatus');
 
 
 Route::get('/verivikasiAjuan', function () {
