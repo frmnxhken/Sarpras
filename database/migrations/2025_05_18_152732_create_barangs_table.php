@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('cv_pengadaan')->nullable();
             $table->integer('jumlah_barang');
             $table->foreignId('ruangan_id')->constrained('ruangans')->onDelete('cascade');
-            $table->string('kondisi_barang')->nullable();
+            $table->enum('kondisi_barang',['baik','rusak','berat'])->default('baik');
             $table->string('kepemilikan_barang');
             $table->string('penanggung_jawab')->nullable();
             $table->text('qr_code')->nullable();
