@@ -103,7 +103,7 @@
                     <td>Pembersihan</td>
                     <td>50000</td>
                     <td>Membersihkan kipas dan casing</td>
-                    <td>Diperbaiki</td>
+                    <td><span class="badge bg-warning">Diperbaiki</span></td>
                     <td>
                         <button class="btn btn-success px-2 py-1" onclick="return confirm('Yakin sudah selesai?')">Selesai</button>
                     </td>
@@ -116,7 +116,7 @@
                     <td>Ganti Tinta</td>
                     <td>75000</td>
                     <td>Mengganti tinta printer warna</td>
-                    <td>Diperbaiki</td>
+                    <td><span class="badge bg-warning">Diperbaiki</span></td>
                     <td>
                         <button class="btn btn-success px-2 py-1" onclick="return confirm('Yakin sudah selesai?')">Selesai</button>
                     </td>
