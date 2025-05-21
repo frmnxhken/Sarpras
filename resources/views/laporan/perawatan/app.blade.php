@@ -59,10 +59,20 @@
 
     <!-- Search and Export Buttons -->
     <div class="row mb-3 align-items-center">
-        <div class="col-md-6">
-            <input type="text" id="searchPerawatan" class="form-control" placeholder="Cari data perawatan...">
+        <div class="col-md-3">
+            <select class="form-select">
+                <option selected>Semua Status</option>
+                <option>Diperbaiki</option>
+                <option>Selesai</option>
+            </select>
         </div>
-        <div class="col-md-6 text-end">
+        <div class="col-md-3">
+            <input type="text" id="globalSearch" class="form-control" placeholder="Cari data peminjaman...">
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary w-100"><i class="ri-search-line me-1"></i>Filter</button>
+        </div>
+        <div class="col-md-4 text-end">
             <button class="btn btn-danger me-2"><i class="bi bi-file-earmark-pdf"></i> Cetak PDF</button>
             <button class="btn btn-success"><i class="bi bi-file-earmark-excel"></i> Ekspor Excel</button>
         </div>
@@ -80,6 +90,8 @@
                     <th>Jenis Perawatan</th>
                     <th>Biaya (Rp)</th>
                     <th>Keterangan</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -91,6 +103,10 @@
                     <td>Pembersihan</td>
                     <td>50000</td>
                     <td>Membersihkan kipas dan casing</td>
+                    <td>Diperbaiki</td>
+                    <td>
+                        <button class="btn btn-success px-2 py-1" onclick="return confirm('Yakin sudah selesai?')">Selesai</button>
+                    </td>
                 </tr>
                 <tr>
                     <td>2</td>
@@ -100,6 +116,10 @@
                     <td>Ganti Tinta</td>
                     <td>75000</td>
                     <td>Mengganti tinta printer warna</td>
+                    <td>Diperbaiki</td>
+                    <td>
+                        <button class="btn btn-success px-2 py-1" onclick="return confirm('Yakin sudah selesai?')">Selesai</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -107,7 +127,7 @@
 
     <!-- Script pencarian -->
     <script>
-        document.getElementById('searchPerawatan').addEventListener('keyup', function () {
+        document.getElementById('searchPerawatan').addEventListener('keyup', function() {
             const filter = this.value.toLowerCase();
             const rows = document.querySelectorAll('#tabelPerawatan tbody tr');
             rows.forEach(row => {
