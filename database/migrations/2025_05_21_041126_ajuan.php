@@ -15,14 +15,14 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('barang_id')->constrained('barangs')->onDelete('cascade');
-            $table->enum('status',['pending','disetujui'])->default('pending');
+            $table->enum('status',['pending','disetujui','ditolak'])->default('pending');
             $table->timestamps();
         });
         Schema::create('ajuan_peminjaman', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('peminjaman_id')->constrained('peminjaman')->onDelete('cascade');
-            $table->enum('status',['pending','disetujui'])->default('pending');
+            $table->enum('status',['pending','disetujui','ditolak'])->default('pending');
             $table->timestamps();
         });
         // Schema::create('ajuan_penghapusan', function (Blueprint $table) {

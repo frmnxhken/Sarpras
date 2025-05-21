@@ -81,31 +81,23 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>2025-05-10</td>
-                    <td>Rudi Hartono</td>
-                    <td>Peminjaman</td>
-                    <td>Proyektor - 2 Unit</td>
-                    <td><span class="badge bg-warning text-dark">Menunggu</span></td>
-                    <td>
-                        <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#modalDetail"><i
-                                class="ri-eye-line"></i> Detail</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>2025-05-11</td>
-                    <td>Hendra Hartono</td>
-                    <td>Pengadaan</td>
-                    <td>Proyektor - 2 Unit</td>
-                    <td><span class="badge bg-success text-dark">Disetuji</span></td>
-                    <td>
-                        <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#modalDetail"><i
-                                class="ri-eye-line"></i> Detail</button>
-                    </td>
-                </tr>
-                <!-- Tambah data lain di sini -->
+                @forelse ( $dataAjuan as $item )
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $item['created_at'] }}</td>
+                        <td>{{ $item['pengaju'] }}</td>
+                        <td>{{ $item['jenis'] }}</td>
+                        <td>{{ $item['barang'] }} - {{ $item['jumlah'] }} Unit</td>
+                        <td><span class="badge bg-warning text-dark">{{ $item['status'] }}</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#modalDetail"><i
+                                    class="ri-eye-line"></i> Detail</button>
+                        </td>
+                    </tr>
+                    
+                @empty
+                    
+                @endforelse
             </tbody>
         </table>
     </div>

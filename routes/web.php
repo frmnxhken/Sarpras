@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AjuanController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\DataRuanganController;
 use App\Http\Controllers\PeminjamanController;
@@ -34,12 +35,7 @@ Route::put('/peminjaman/{id}/{status}/{jumlah_barang}/{barang_id}', [PeminjamanC
 Route::get('/laporan/peminjaman/pdf', [PeminjamanController::class, 'cetakPDF'])->name('peminjaman.cetakPDF');
 Route::get('/laporan/peminjaman/excel', [PeminjamanController::class, 'exportExcel'])->name('peminjaman.exportExcel');
 
-Route::get('/verivikasiAjuan', function () {
-    return view('ajuan.app');
-});
-// Route::get('/laporanInventaris', function () {
-//     return view('laporan.inventaris.app');
-// });
+Route::get('/verivikasiAjuan', [AjuanController::class, 'index']);
 
 Route::get('/perawatan', function () {
     return view('laporan.perawatan.app');

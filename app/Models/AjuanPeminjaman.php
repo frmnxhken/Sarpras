@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class AjuanPeminjaman extends Model
 {
+    protected $guarded = ['id'];
+    protected $table = 'ajuan_peminjaman';
     public function peminjaman()
     {
         return $this->belongsTo(Peminjaman::class, 'peminjaman_id');
