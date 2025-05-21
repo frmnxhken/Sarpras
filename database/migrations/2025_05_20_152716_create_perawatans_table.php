@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('barang_id')->constrained('barangs')->onDelete('cascade');
             $table->string('jenis_perawatan');
             $table->integer('biaya_perawatan')->nullable();
+            $table->integer('jumlah')->nullable();
             $table->text('keterangan')->nullable();
             $table->enum('status', ['selesai', 'belum'])->default('belum');
             $table->timestamps();

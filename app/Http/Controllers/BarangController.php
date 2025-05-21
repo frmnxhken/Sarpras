@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AjuanPengadaan;
 use App\Models\Barang;
 use Illuminate\Http\Request;
 use App\Models\Ruangans;
@@ -83,7 +84,13 @@ class BarangController extends Controller
 
         unset($validated['kondisi'], $validated['kepemilikan']); // buang agar tidak duplikat kolom
 
-        Barang::create($validated);
+        $barang = Barang::create($validated);
+
+        AjuanPengadaan::create([
+            // 'user_id' => auth()->user()->id,
+            'user_id' => 1,
+            'barang_id' => $barang->id,
+        ]);
 
         return redirect('/inventaris')->with('success', 'Data inventaris berhasil ditambahkan.');
     }

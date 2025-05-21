@@ -6,6 +6,7 @@ use App\Models\Peminjaman;
 use App\Models\Barang;
 use Illuminate\Http\Request;
 use App\Exports\PeminjamanExportFiltered;
+use App\Models\AjuanPeminjaman;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
@@ -39,11 +40,17 @@ class PeminjamanController extends Controller
         }
 
         // Simpan peminjaman
-        Peminjaman::create($validated);
+        $peminjaman = Peminjaman::create($validated);
 
         // Kurangi stok barang
         $barang->jumlah_barang -= $validated['jumlah_barang'];
         $barang->save();
+
+        AjuanPeminjaman::create([
+            // 'user_id' => auth()->user()->id,
+            'user_id' => 1,
+            'peminjaman_id' => $peminjaman->id,
+        ]);
         return redirect('/peminjaman');
     }
 
@@ -53,34 +60,6 @@ class PeminjamanController extends Controller
         $jumlah_barang,
         $barang_id
     ) {
-        $peminjaman = Peminjaman::findOrFail($id);
-
-        // Validasi status yang diperbolehkan
-        $allowedStatus = ['Dikembalikan', 'Hilang'];
-        if (!in_array($status, $allowedStatus)) {
-            return back()->with('error', 'Status tidak valid.');
-        }
-
-        $peminjaman->status_peminjaman = $status;
-        $peminjaman->tanggal_pengembalian = now(); // update tanggal pengembalian
-        $peminjaman->save();
-
-        $barang = Barang::findOrFail($barang_id);
-        if ($status == 'Dikembalikan') {
-            $barang->jumlah_barang += $jumlah_barang;
-        }
-        $barang->save();
-
-        return back()->with('success', 'Status peminjaman berhasil diperbarui.');
-    }
-    public function destroy($id)
-    {
-        // Logic to delete peminjaman data
-        // ...
-    }
-
-    public function test($id, $status, $jumlah_barang, $barang_id)
-    {
         $peminjaman = Peminjaman::findOrFail($id);
 
         // Validasi status yang diperbolehkan

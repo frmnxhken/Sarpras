@@ -51,9 +51,14 @@
                         <td>{{ $item->jenis_perawatan }}</td>
                         <td>{{ $item->biaya_perawatan }}</td>
                         <td>{{ $item->keterangan }}</td>
-                        <td><span class="badge bg-warning">{{ $item->status }}</span></td>
+                        <td><span class="badge @if ($item->status == 'belum') bg-warning @elseif ($item->status == 'selesai') bg-success
+                        @endif">{{ $item->status }}</span></td>
                         <td>
-                            <button class="btn btn-success px-2 py-1" onclick="return confirm('Yakin sudah selesai?')">Selesai</button>
+                            <form action="{{ route('perawatan.updateStatus', ['id' => $item->id, 'status' => 'Selesai']) }}" method="post">
+                                @csrf
+                                @method('PUT')
+                                <button type="submit" class="btn btn-primary px-2 py-1" onclick="return confirm('Yakin sudah selesai?')">Selesai</button>
+                            </form>
                         </td>
                     </tr>
                 @empty

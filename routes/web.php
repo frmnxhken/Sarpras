@@ -42,6 +42,11 @@ Route::put('/ajuan/update/{type}/{id}/{status}', [AjuanController::class, 'Updat
 
 
 Route::get('/perawatan', [PerawatanController::class, 'index']);
+Route::put('/perawatan/{id}/{status}', [PerawatanController::class, 'UpdateStatus'])->name('perawatan.updateStatus');
+Route::post('/perawatan', [PerawatanController::class, 'store'])->name('perawatan.store');
+
+
+
 Route::get('/mutasi', function () {
     return view('mutasi.app');
 });
