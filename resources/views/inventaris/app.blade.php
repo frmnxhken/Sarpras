@@ -43,7 +43,8 @@
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalCenterTitle">{{ $item->nama_barang }}</h5>
+                                            <h5 class="modal-title" id="exampleModalCenterTitle">
+                                                {{ $item->nama_barang }}</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
@@ -59,18 +60,20 @@
                                 </div>
                             </div>
                         </td>
-                        <td>
-                            <div class="d-flex gap-1 align-items-center">
-                                <a class="btn btn-primary px-2 py-1" href="{{ route('inventaris.detail', $item->id) }}">
+                        <td class="text-center align-middle">
+                            <div class="d-flex justify-content-center gap-2 p-0">
+                                <a class="btn btn-primary px-2 py-1 m-0"
+                                    href="{{ route('inventaris.detail', $item->id) }}">
                                     Detail
                                 </a>
-                            <button class="btn btn-danger px-2 py-1" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $loop->iteration }}">
-                                Hapus
-                            </button>
-                            @include('inventaris.popup.confirmation_delete', [
-                                'modalId' => $loop->iteration,
-                                'item' => $item
-                            ])
+                                <button class="btn btn-danger px-2 py-1 m-0" data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal{{ $loop->iteration }}">
+                                    Hapus
+                                </button>
+                                @include('inventaris.popup.confirmation_delete', [
+                                    'modalId' => $loop->iteration,
+                                    'item' => $item,
+                                ])
                             </div>
                         </td>
                     </tr>
