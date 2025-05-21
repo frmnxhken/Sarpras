@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             PeminjamanSeeder::class,
             UserSeeder::class,
             AjuanSeeder::class,
+            PerawatanSeeder::class,
         ]);
 
     }

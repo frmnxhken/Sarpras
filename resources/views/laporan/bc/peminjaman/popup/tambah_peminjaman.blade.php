@@ -88,10 +88,10 @@
                         @enderror
                     </div>
                     <div class="col-12">
-                        <label for="laporan" class="form-label">Laporan</label>
-                        <input type="text" class="form-control" id="laporan" name="laporan"
-                            value="{{ old('laporan') }}">
-                        @error('laporan')
+                        <label for="keterangan" class="form-label">Keterangan</label>
+                        <input type="text" class="form-control" id="keterangan" name="keterangan"
+                            value="{{ old('keterangan') }}">
+                        @error('keterangan')
                             <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
                     </div>

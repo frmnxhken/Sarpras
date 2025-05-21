@@ -15,8 +15,8 @@ class PeminjamanController extends Controller
     public function index()
     {
         $barangs = Barang::all();
-        $items = Peminjaman::with(['barang.ruangan'])->where('laporan', NULL)->get();
-        return view('laporan.peminjaman.app', compact('items', 'barangs'));
+        $items = Peminjaman::with(['barang.ruangan'])->get();
+        return view('peminjaman.app', compact('items', 'barangs'));
     }
 
     public function store(Request $request)
@@ -28,7 +28,7 @@ class PeminjamanController extends Controller
             'barang_id' => 'required|exists:barangs,id',
             'jumlah_barang' => 'required|integer|min:1',
             'status_peminjaman' => 'nullable|in:Dipinjam,Dikembalikan,Diperpanjang,Hilang',
-            'laporan' => 'nullable|string',
+            'keterangan' => 'nullable|string',
         ]);
 
         $barang = Barang::findOrFail($validated['barang_id']);

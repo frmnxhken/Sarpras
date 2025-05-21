@@ -20,16 +20,31 @@
                     <dd class="col-sm-8">Ujian Praktik Multimedia</dd>
                     <dt class="col-sm-4">Tanggal Penggunaan</dt>
                     <dd class="col-sm-8">{{ $item['created_at'] }}</dd>
-                    <dt class="col-sm-4">Lampiran</dt>
-                    <dd class="col-sm-8"><a href="#">Surat_Permohonan.pdf</a></dd>
                 </dl>
                 <hr>
                 <label for="catatan" class="form-label">Catatan Verifikasi</label>
                 <textarea class="form-control" id="catatan" rows="2" placeholder="(Opsional) Tambahkan alasan jika ditolak..."></textarea>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-danger">Tolak</button>
-                <button class="btn btn-success">Setujui</button>
+                {{-- <button class="btn btn-danger">Tolak</button> --}}
+                <form
+                    action="{{ route('ajuan.updateStatus', ['id' => $item['id'], 'status' => 'Ditolak', 'type' => $item['model_type']]) }}"
+                    method="POST" class="d-inline">
+                    @csrf
+                    @method('PUT')
+                    <button class="btn btn-danger px-2 py-1"
+                        onclick="return confirm('Yakin ingin ditolak?')">Tolak</button>
+                </form>
+
+                <form
+                    action="{{ route('ajuan.updateStatus', ['id' => $item['id'], 'status' => 'Disetujui', 'type' => $item['model_type']]) }}"
+                    method="POST" class="d-inline">
+                    @csrf
+                    @method('PUT')
+                    <button class="btn btn-success px-2 py-1"
+                        onclick="return confirm('Yakin ingin disetujui?')">Setujui</button>
+                </form>
+                {{-- <button class="btn btn-success">Setujui</button> --}}
             </div>
         </div>
     </div>

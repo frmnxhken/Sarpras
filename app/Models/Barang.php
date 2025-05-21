@@ -20,4 +20,9 @@ class Barang extends Model
     {
         return $this->hasMany(AjuanPengadaan::class, 'barang_id');
     }
+
+    public function perawatan()
+    {
+        return $this->hasMany(Perawatan::class, 'barang_id');
+    }
 }

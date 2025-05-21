@@ -4,6 +4,7 @@ use App\Http\Controllers\AjuanController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\DataRuanganController;
 use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\PerawatanController;
 // use Dflydev\DotAccessData\Data;
 use Illuminate\Support\Facades\Route;
 
@@ -36,15 +37,16 @@ Route::get('/laporan/peminjaman/pdf', [PeminjamanController::class, 'cetakPDF'])
 Route::get('/laporan/peminjaman/excel', [PeminjamanController::class, 'exportExcel'])->name('peminjaman.exportExcel');
 
 Route::get('/verivikasiAjuan', [AjuanController::class, 'index']);
+// Route::put('/verivikasiAjuan{id}/{status}', [AjuanController::class, 'UpdateStatus'])->name('ajuan.updateStatus');
+Route::put('/ajuan/update/{type}/{id}/{status}', [AjuanController::class, 'UpdateStatus'])->name('ajuan.updateStatus');
 
-Route::get('/perawatan', function () {
-    return view('laporan.perawatan.app');
-});
+
+Route::get('/perawatan', [PerawatanController::class, 'index']);
 Route::get('/mutasi', function () {
-    return view('laporan.mutasi.app');
+    return view('mutasi.app');
 });
 Route::get('/penghapusan', function () {
-    return view('laporan.penghapusan.app');
+    return view('penghapusan.app');
 });
 
 

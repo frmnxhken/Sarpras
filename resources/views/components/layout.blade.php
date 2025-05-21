@@ -259,26 +259,6 @@
                         </a>
                     </li>
 
-                    {{-- <li class="nav-item">
-                        <a class="nav-link menu-arrow" href="#sidebarMenejemenData" data-bs-toggle="collapse"
-                            role="button" aria-expanded="false" aria-controls="sidebarMultiLevelDemo">
-                            <span class="nav-icon">
-                                <i class="ri-box-3-line"></i>
-                            </span>
-                            <span class="nav-text">Menejemen Data</span>
-                        </a>
-                        <div class="collapse" id="sidebarMenejemenData">
-                            <ul class="nav sub-navbar-nav">
-                                <li class="sub-nav-item">
-                                    <a class="sub-nav-link" href="/inventaris">Data Barang</a>
-                                </li>
-                                <li class="sub-nav-item">
-                                    <a class="sub-nav-link" href="/ruang">Data Ruangan</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li> <!-- end Menu Item --> --}}
-
                     <li class="nav-item">
                         <a class="nav-link" href="/inventaris">
                             <span class="nav-icon">
@@ -332,6 +312,32 @@
                             <span class="nav-text">Penghapusan</span>
                         </a>
                     </li>
+
+                    {{-- <li class="nav-item">
+                        <a class="nav-link menu-arrow" href="#sidebarLaporan" data-bs-toggle="collapse"
+                            role="button" aria-expanded="false" aria-controls="sidebarMultiLevelDemo">
+                            <span class="nav-icon">
+                                <i class="ri-file-text-line"></i>
+                            </span>
+                            <span class="nav-text">Laporan</span>
+                        </a>
+                        <div class="collapse" id="sidebarLaporan">
+                            <ul class="nav sub-navbar-nav">
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" >Perawatan</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" >Peminjaman</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" >Mutasi</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" >Penghapusan</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li> <!-- end Menu Item --> --}}
 
                     <li class="nav-item">
                         <a class="nav-link menu-arrow" href="#sidebarMenejemenData" data-bs-toggle="collapse"
