@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Peminjaman;
 use App\Models\Barang;
 use Illuminate\Http\Request;
+use App\Exports\PeminjamanExportFiltered;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
 
 class PeminjamanController extends Controller
 {
@@ -43,11 +47,12 @@ class PeminjamanController extends Controller
         return redirect('/peminjaman');
     }
 
-    public function updateStatus($id, $status, 
-    $jumlah_barang
-    ,$barang_id
-    )
-    {
+    public function updateStatus(
+        $id,
+        $status,
+        $jumlah_barang,
+        $barang_id
+    ) {
         $peminjaman = Peminjaman::findOrFail($id);
 
         // Validasi status yang diperbolehkan
@@ -63,7 +68,7 @@ class PeminjamanController extends Controller
         $barang = Barang::findOrFail($barang_id);
         if ($status == 'Dikembalikan') {
             $barang->jumlah_barang += $jumlah_barang;
-        } 
+        }
         $barang->save();
 
         return back()->with('success', 'Status peminjaman berhasil diperbarui.');
@@ -91,9 +96,45 @@ class PeminjamanController extends Controller
         $barang = Barang::findOrFail($barang_id);
         if ($status == 'Dikembalikan') {
             $barang->jumlah_barang += $jumlah_barang;
-        } 
+        }
         $barang->save();
 
         return back()->with('success', 'Status peminjaman berhasil diperbarui.');
+    }
+
+    // public function cetakPDF()
+    // {
+    //     $items = Peminjaman::with(['barang.ruangan'])
+    //         ->whereNull('laporan')
+    //         ->get();
+
+    //     $pdf = Pdf::loadView('laporan.peminjaman.pdf', compact('items'));
+    //     return $pdf->stream('laporan_peminjaman.pdf');
+    // }
+
+    public function cetakPDF(Request $request)
+    {
+        $periode = $request->input('periode', 1); // default 1 bulan
+        $startDate = Carbon::now()->subMonths($periode);
+
+        $items = Peminjaman::with(['barang.ruangan'])
+            ->whereNull('laporan')
+            ->where('tanggal_pinjam', '>=', $startDate)
+            ->get();
+
+        $pdf = Pdf::loadView('laporan.peminjaman.pdf', compact('items', 'periode'));
+        return $pdf->stream('laporan_peminjaman.pdf');
+    }
+
+
+    // public function exportExcel()
+    // {
+    //     return Excel::download(new PeminjamanExportFiltered, 'laporan_peminjaman.xlsx');
+    // }
+
+    public function exportExcel(Request $request)
+    {
+        $periode = $request->input('periode', 1); // default 1 bulan
+        return Excel::download(new PeminjamanExportFiltered($periode), 'laporan_peminjaman.xlsx');
     }
 }

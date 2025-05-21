@@ -31,7 +31,8 @@ Route::get('/peminjaman', [PeminjamanController::class, 'index']);
 Route::post('/peminjaman/tambah', [PeminjamanController::class, 'store'])->name('peminjaman.store');
 Route::delete('/peminjaman/{id}', [PeminjamanController::class, 'index'])->name('peminjaman.destroy');
 Route::put('/peminjaman/{id}/{status}/{jumlah_barang}/{barang_id}', [PeminjamanController::class, 'updateStatus'])->name('peminjaman.updateStatus');
-
+Route::get('/laporan/peminjaman/pdf', [PeminjamanController::class, 'cetakPDF'])->name('peminjaman.cetakPDF');
+Route::get('/laporan/peminjaman/excel', [PeminjamanController::class, 'exportExcel'])->name('peminjaman.exportExcel');
 
 Route::get('/verivikasiAjuan', function () {
     return view('ajuan.app');
