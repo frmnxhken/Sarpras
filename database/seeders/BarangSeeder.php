@@ -27,7 +27,7 @@ class BarangSeeder extends Seeder
             'kondisi_barang' => 'Baik',
             'kepemilikan_barang' => 'Milik Sekolah',
             'penanggung_jawab' => 'Pak Budi',
-            'gambar_barang' => null
+            'gambar_barang' => 'uploads/inventaris/sister.jpg'
         ]);
 
         Barang::create([
@@ -44,7 +44,7 @@ class BarangSeeder extends Seeder
             'kondisi_barang' => 'Baik',
             'kepemilikan_barang' => 'Milik Sekolah',
             'penanggung_jawab' => 'Bu Sari',
-            'gambar_barang' => null
+            'gambar_barang' => 'uploads/inventaris/sister.jpg'
         ]);
 
         Barang::create([
@@ -61,7 +61,7 @@ class BarangSeeder extends Seeder
             'kondisi_barang' => 'Baik',
             'kepemilikan_barang' => 'Milik Sekolah',
             'penanggung_jawab' => 'Pak Joko',
-            'gambar_barang' => null
+            'gambar_barang' => 'uploads/inventaris/sister.jpg'
         ]);
 
         Barang::create([
@@ -78,7 +78,7 @@ class BarangSeeder extends Seeder
             'kondisi_barang' => 'Baik',
             'kepemilikan_barang' => 'Milik Sekolah',
             'penanggung_jawab' => 'Bu Rina',
-            'gambar_barang' => null
+            'gambar_barang' => 'uploads/inventaris/sister.jpg'
         ]);
 
         Barang::create([
@@ -95,7 +95,7 @@ class BarangSeeder extends Seeder
             'kondisi_barang' => 'Baik',
             'kepemilikan_barang' => 'Milik Sekolah',
             'penanggung_jawab' => 'Pak Arif',
-            'gambar_barang' => null
+            'gambar_barang' => 'uploads/inventaris/sister.jpg'
         ]);
 
         Barang::create([
@@ -112,7 +112,7 @@ class BarangSeeder extends Seeder
             'kondisi_barang' => 'Baik',
             'kepemilikan_barang' => 'Milik Sekolah',
             'penanggung_jawab' => 'Bu Mira',
-            'gambar_barang' => null
+            'gambar_barang' => 'uploads/inventaris/sister.jpg'
         ]);
 
         Barang::create([
@@ -129,7 +129,7 @@ class BarangSeeder extends Seeder
             'kondisi_barang' => 'Baik',
             'kepemilikan_barang' => 'Milik Sekolah',
             'penanggung_jawab' => 'Pak Edo',
-            'gambar_barang' => null
+            'gambar_barang' => 'uploads/inventaris/sister.jpg'
         ]);
 
         Barang::create([
@@ -146,7 +146,7 @@ class BarangSeeder extends Seeder
             'kondisi_barang' => 'Baik',
             'kepemilikan_barang' => 'Milik Sekolah',
             'penanggung_jawab' => 'Bu Tuti',
-            'gambar_barang' => null
+            'gambar_barang' => 'uploads/inventaris/sister.jpg'
         ]);
 
         Barang::create([
@@ -163,7 +163,7 @@ class BarangSeeder extends Seeder
             'kondisi_barang' => 'Baik',
             'kepemilikan_barang' => 'Milik Sekolah',
             'penanggung_jawab' => 'Pak Rudi',
-            'gambar_barang' => null
+            'gambar_barang' => 'uploads/inventaris/sister.jpg'
         ]);
 
         Barang::create([
@@ -180,7 +180,7 @@ class BarangSeeder extends Seeder
             'kondisi_barang' => 'Baik',
             'kepemilikan_barang' => 'Milik Sekolah',
             'penanggung_jawab' => 'Bu Fani',
-            'gambar_barang' => null
+            'gambar_barang' => 'uploads/inventaris/img-5.jpg'
         ]);
 
         Barang::create([
@@ -197,7 +197,7 @@ class BarangSeeder extends Seeder
             'kondisi_barang' => 'Baik',
             'kepemilikan_barang' => 'Milik Sekolah',
             'penanggung_jawab' => 'Pak Dani',
-            'gambar_barang' => null
+            'gambar_barang' => 'uploads/inventaris/img-5.jpg'
         ]);
 
         Barang::create([
@@ -214,7 +214,7 @@ class BarangSeeder extends Seeder
             'kondisi_barang' => 'Baik',
             'kepemilikan_barang' => 'Milik Sekolah',
             'penanggung_jawab' => 'Bu Ita',
-            'gambar_barang' => null
+            'gambar_barang' => 'uploads/inventaris/img-5.jpg'
         ]);
 
         Barang::create([
@@ -231,7 +231,7 @@ class BarangSeeder extends Seeder
             'kondisi_barang' => 'Baik',
             'kepemilikan_barang' => 'Milik Sekolah',
             'penanggung_jawab' => 'Pak Anton',
-            'gambar_barang' => null
+            'gambar_barang' => 'uploads/inventaris/img-5.jpg'
         ]);
 
         Barang::create([
@@ -248,7 +248,7 @@ class BarangSeeder extends Seeder
             'kondisi_barang' => 'Baik',
             'kepemilikan_barang' => 'Milik Sekolah',
             'penanggung_jawab' => 'Bu Umi',
-            'gambar_barang' => null
+            'gambar_barang' => 'uploads/inventaris/img-5.jpg'
         ]);
 
         Barang::create([
@@ -265,7 +265,7 @@ class BarangSeeder extends Seeder
             'kondisi_barang' => 'Baik',
             'kepemilikan_barang' => 'Milik Sekolah',
             'penanggung_jawab' => 'Pak Agus',
-            'gambar_barang' => null
+            'gambar_barang' => 'uploads/inventaris/img-5.jpg'
         ]);
 
         Barang::create([
@@ -282,7 +282,7 @@ class BarangSeeder extends Seeder
             'kondisi_barang' => 'Baik',
             'kepemilikan_barang' => 'Milik Sekolah',
             'penanggung_jawab' => 'Bu Sinta',
-            'gambar_barang' => null
+            'gambar_barang' => 'uploads/inventaris/img-5.jpg'
         ]);
 
         Barang::create([
@@ -299,7 +299,7 @@ class BarangSeeder extends Seeder
             'kondisi_barang' => 'Baik',
             'kepemilikan_barang' => 'Milik Sekolah',
             'penanggung_jawab' => 'Pak Andi',
-            'gambar_barang' => null
+            'gambar_barang' => 'uploads/inventaris/img-5.jpg'
         ]);
 
         Barang::create([
@@ -316,7 +316,7 @@ class BarangSeeder extends Seeder
             'kondisi_barang' => 'Baik',
             'kepemilikan_barang' => 'Milik Sekolah',
             'penanggung_jawab' => 'Bu Eka',
-            'gambar_barang' => null
+            'gambar_barang' => 'uploads/inventaris/img-5.jpg'
         ]);
 
         Barang::create([
@@ -333,7 +333,7 @@ class BarangSeeder extends Seeder
             'kondisi_barang' => 'Baik',
             'kepemilikan_barang' => 'Milik Sekolah',
             'penanggung_jawab' => 'Pak Dino',
-            'gambar_barang' => null
+            'gambar_barang' => 'uploads/inventaris/img-5.jpg'
         ]);
 
         Barang::create([
@@ -350,7 +350,7 @@ class BarangSeeder extends Seeder
             'kondisi_barang' => 'Baik',
             'kepemilikan_barang' => 'Milik Sekolah',
             'penanggung_jawab' => 'Bu Lita',
-            'gambar_barang' => null
+            'gambar_barang' => 'uploads/inventaris/sister.jpg'
         ]);
     }
 }

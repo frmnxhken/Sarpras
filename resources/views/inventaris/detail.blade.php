@@ -82,7 +82,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body text-center">
-                    <img src="{{ asset('/') }}assets/images/small/img-5.jpg" class="d-block w-100"
+                    <img src="{{ asset($item->gambar_barang) }}" class="d-block w-100"
                         alt="img-3">
                 </div>
             </div>

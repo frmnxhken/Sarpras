@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('jumlah_barang');
             $table->enum('status_peminjaman',['Dipinjam', 'Dikembalikan', 'Diperpanjang', 'Hilang'])->default('Dipinjam');
             $table->string('laporan')->nullable();
+            $table->enum('ajuan',['pending','disetujui'])->default('pending');
             $table->timestamps();
         });
     }

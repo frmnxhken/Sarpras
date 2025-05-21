@@ -34,22 +34,22 @@
                         <td>{{ $item->ruangan->nama_ruangan ?? '-' }}</td>
                         <td>{{ $item->kondisi_barang }}</td>
                         <td>
-                            <a type="button" data-bs-toggle="modal" data-bs-target="#ImageModal">
-                                <img src="assets/images/small/img-5.jpg" alt="image"
+                            <a type="button" data-bs-toggle="modal" data-bs-target="#ImageModal{{ $loop->iteration }}">
+                                <img src="{{ asset($item->gambar_barang) }}" alt="image"
                                     class="img-fluid avatar-md rounded" />
                             </a>
-                            <div class="modal fade" id="ImageModal" tabindex="-1"
+                            <div class="modal fade" id="ImageModal{{ $loop->iteration }}" tabindex="-1"
                                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                                            <h5 class="modal-title" id="exampleModalCenterTitle">{{ $item->nama_barang }}</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            {{-- <img src="{{ asset($item->gambar_barang) }}" class="d-block w-100"
-                                                alt="img-3"> --}}
+                                            <img src="{{ asset($item->gambar_barang) }}" class="d-block w-100"
+                                                alt="img-3">
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"

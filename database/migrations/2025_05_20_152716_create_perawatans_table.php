@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('biaya_perawatan')->nullable();
             $table->text('keterangan')->nullable();
             $table->enum('status', ['selesai', 'belum'])->default('belum');
+            $table->enum('ajuan',['pending','disetujui'])->default('pending');
             $table->timestamps();
         });
     }

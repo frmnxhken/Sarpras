@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('penanggung_jawab')->nullable();
             $table->text('qr_code')->nullable();
             $table->text('gambar_barang')->nullable();
+            $table->enum('ajuan',['pending','disetujui'])->default('pending');
             $table->timestamps();
         });
     }
