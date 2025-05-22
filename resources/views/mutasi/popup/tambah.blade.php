@@ -48,7 +48,7 @@
                             @foreach ($barangs as $barang)
                                 <option value="{{ $barang->id }}"
                                     {{ old('barang_id') == $barang->id ? 'selected' : '' }}>
-                                    {{ $barang->nama_barang }}
+                                    {{ $barang->nama_barang }} - {{ $barang->ruangan->nama_ruangan }} - Total : {{ $barang->jumlah_barang }}
                                 </option>
                             @endforeach
                         </select>
@@ -60,7 +60,7 @@
                     <div class="col-md-12">
                         <label for="jumlah_barang" class="form-label">Jumlah</label>
                         <input type="number" name="jumlah_barang" class="form-control" id="jumlah_barang"
-                            placeholder="Contoh: 2" value="{{ old('jumlah_barang') }}">
+                            placeholder="Jumlah barang yang ingin dimutasi" value="{{ old('jumlah_barang') }}">
                         @error('jumlah_barang')
                             <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror

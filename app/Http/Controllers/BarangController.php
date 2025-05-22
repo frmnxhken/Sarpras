@@ -13,7 +13,7 @@ class BarangController extends Controller
 {
     public function index()
     {
-        $dataInventaris = Barang::with('ruangan')->paginate(8);
+        $dataInventaris = Barang::with('ruangan')->where('jumlah_barang', '>', 0)->paginate(8);
         $ruangan = Ruangans::all();
         return view('inventaris.app', compact('dataInventaris', 'ruangan'));
     }

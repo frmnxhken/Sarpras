@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AjuanMutasi;
 use App\Models\Barang;
 use App\Models\Mutasi;
 use App\Models\Ruangans;
@@ -12,7 +13,7 @@ class MutasiController extends Controller
 {
     public function index()
     {
-        $barangs = Barang::all();
+        $barangs = Barang::with(['ruangan'])->where('jumlah_barang', '>', 0)->get();
         $mutasi = Mutasi::with(['barang.ruangan'])->get();
         $ruangan = Ruangans::all();
         $ruangans = Ruangans::pluck('nama_ruangan', 'id')->toArray();
@@ -34,6 +35,10 @@ class MutasiController extends Controller
         // Ambil data barang asal
         $barangAsal = Barang::findOrFail($validated['barang_id']);
 
+        if ($validated['tujuan'] == $barangAsal->ruangan_id) {
+            return back()->withErrors(['tujuan' => 'Ruangan tujuan tidak boleh sama dengan ruangan asal.']);
+        }
+
         // Validasi stok tersedia
         if ($validated['jumlah_barang'] > $barangAsal->jumlah_barang) {
             return back()->withErrors(['jumlah_barang' => 'Jumlah melebihi stok yang tersedia.'])->withInput();
@@ -49,15 +54,13 @@ class MutasiController extends Controller
             ->where('merk_barang', $barangAsal->merk_barang)
             ->where('kondisi_barang', $barangAsal->kondisi_barang)
             ->first();
-
         if ($barangTujuan) {
-            // Jika ada, tambahkan jumlahnya
             $barangTujuan->jumlah_barang += $validated['jumlah_barang'];
             $barangTujuan->save();
         } else {
             // Jika tidak ada, buat data baru di ruangan tujuan
             Barang::create([
-                'kode_barang' => strtoupper(Str::random(10)),
+                'kode_barang' => 'BRG-' . strtoupper(Str::random(6)),
                 'kode_asal' => $barangAsal->kode_barang,
                 'nama_barang' => $barangAsal->nama_barang,
                 'jenis_barang' => $barangAsal->jenis_barang,
@@ -76,7 +79,13 @@ class MutasiController extends Controller
         }
 
         // Simpan data mutasi
-        Mutasi::create($validated);
+        $mutasi2 = Mutasi::create($validated);
+
+        AjuanMutasi::create([
+            // 'user_id' => auth()->user()->id,
+            'user_id' => 1,
+            'mutasi_id' => $mutasi2->id,
+        ]);
 
         return redirect()->back()->with('success', 'Data mutasi berhasil disimpan.');
     }

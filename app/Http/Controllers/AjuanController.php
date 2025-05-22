@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AjuanMutasi;
 use App\Models\AjuanPeminjaman;
 use App\Models\AjuanPengadaan;
 use App\Models\AjuanPerawatan;
@@ -14,6 +15,7 @@ class AjuanController extends Controller
         $peminjaman = AjuanPeminjaman::with(['user', 'peminjaman.barang.ruangan'])->get();
         $pengadaan = AjuanPengadaan::with((['user', 'barang.ruangan']))->get();
         $perawatan = AjuanPerawatan::with((['user', 'perawatan.barang.ruangan']))->get();
+        $mutasi = AjuanMutasi::with((['user', 'mutasi.barang.ruangan']))->get();
 
         $dataAjuan = collect();
 
@@ -61,6 +63,21 @@ class AjuanController extends Controller
                 'keterangan' => $item->perawatan->keterangan ?? '-',
             ]);
         }
+
+        foreach ($mutasi as $item) {
+            $dataAjuan->push([
+                'id' => $item->id,
+                'model_type' => 'mutasi',
+                'created_at' => $item->created_at->format('Y-m-d'),
+                'pengaju' => $item->user->name ?? '-',
+                'jenis' => 'Mutasi',
+                'barang' => $item->mutasi->barang->nama_barang ?? '-',
+                'jumlah' => $item->mutasi->jumlah_barang ?? '-',
+                'status' => $item->status,
+                'ruangan' => $item->mutasi->barang->ruangan->nama_ruangan ?? '-',
+                'keterangan' => $item->mutasi->keterangan ?? '-',
+            ]);
+        }
         $dataAjuan = $dataAjuan
             // ->where('status', 'pending')
             ->sortByDesc('created_at')->values();
@@ -75,6 +92,12 @@ class AjuanController extends Controller
             $ajuan = AjuanPeminjaman::find($id);
         } elseif ($type === 'pengadaan') {
             $ajuan = AjuanPengadaan::find($id);
+        } elseif ($type === 'perawatan') {
+            $ajuan = AjuanPerawatan::find($id);
+        } elseif ($type === 'mutasi') {
+            $ajuan = AjuanMutasi::find($id);
+        } elseif ($type === 'penghapusan') {
+            // $ajuan = AjuanPenghapusan::find($id);
         } else {
             return redirect()->back()->with('error', 'Jenis ajuan tidak valid.');
         }
