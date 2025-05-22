@@ -315,16 +315,16 @@
                         <div class="collapse" id="sidebarLaporan">
                             <ul class="nav sub-navbar-nav">
                                 <li class="sub-nav-item">
-                                    <a class="sub-nav-link" >Perawatan</a>
+                                    <a class="sub-nav-link" href="/laporan/perawatan">Perawatan</a>
                                 </li>
                                 <li class="sub-nav-item">
-                                    <a class="sub-nav-link" >Peminjaman</a>
+                                    <a class="sub-nav-link" href="/laporan/peminjaman">Peminjaman</a>
                                 </li>
                                 <li class="sub-nav-item">
-                                    <a class="sub-nav-link" >Mutasi</a>
+                                    <a class="sub-nav-link" href="/laporan/mutasi">Mutasi</a>
                                 </li>
                                 <li class="sub-nav-item">
-                                    <a class="sub-nav-link" >Penghapusan</a>
+                                    <a class="sub-nav-link" href="/laporan/penghapusan">Penghapusan</a>
                                 </li>
                             </ul>
                         </div>

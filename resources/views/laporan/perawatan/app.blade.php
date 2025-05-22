@@ -1,10 +1,4 @@
 <x-layout>
-
-    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalPerawatanBarang">
-        <i class="bi bi-plus-circle me-2"></i>Tambah Perawatan
-    </button>
-
-    <!-- Modal -->
     <div class="modal fade" id="modalPerawatanBarang" tabindex="-1" aria-labelledby="modalPerawatanLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <form class="modal-content">
@@ -57,7 +51,6 @@
         </div>
     </div>
 
-    <!-- Search and Export Buttons -->
     <div class="row mb-3 align-items-center">
         <div class="col-md-3">
             <select class="form-select">
@@ -77,28 +70,27 @@
                 <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-file-earmark-pdf"></i> Cetak PDF
                 </button>
-                <!-- <ul class="dropdown-menu bg-danger" style=" min-width: 100%;">
-                    <li><a class="dropdown-item text-white" href="{{ route('perawatan.cetakPDF') }}?periode=1" target="_blank">1 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" href="{{ route('perawatan.cetakPDF') }}?periode=3" target="_blank">3 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" href="{{ route('perawatan.cetakPDF') }}?periode=6" target="_blank">6 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" href="{{ route('perawatan.cetakPDF') }}?periode=12" target="_blank">1 Tahun</a></li>
-                </ul> -->
+                <ul class="dropdown-menu bg-danger" style=" min-width: 100%;">
+                    <li><a class="dropdown-item text-white" target="_blank">1 Bulan</a></li>
+                    <li><a class="dropdown-item text-white" target="_blank">3 Bulan</a></li>
+                    <li><a class="dropdown-item text-white" target="_blank">6 Bulan</a></li>
+                    <li><a class="dropdown-item text-white" target="_blank">1 Tahun</a></li>
+                </ul>
             </div>
             <div class="btn-group">
                 <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-file-earmark-excel"></i> Ekspor Excel
                 </button>
-                <!-- <ul class="dropdown-menu bg-success" style="min-width: 100%;">
-                    <li><a class="dropdown-item text-white" href="{{ route('perawatan.exportExcel', ['periode' => 1]) }}">1 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" href="{{ route('perawatan.exportExcel', ['periode' => 3]) }}">3 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" href="{{ route('perawatan.exportExcel', ['periode' => 6]) }}">6 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" href="{{ route('perawatan.exportExcel', ['periode' => 12]) }}">1 Tahun</a></li>
-                </ul> -->
+                <ul class="dropdown-menu bg-success" style="min-width: 100%;">
+                    <li><a class="dropdown-item text-white" >1 Bulan</a></li>
+                    <li><a class="dropdown-item text-white" >3 Bulan</a></li>
+                    <li><a class="dropdown-item text-white" >6 Bulan</a></li>
+                    <li><a class="dropdown-item text-white" >1 Tahun</a></li>
+                </ul>
             </div>
         </div>
     </div>
 
-    <!-- Table -->
     <div class="table-responsive">
         <table id="tabelPerawatan" class="table table-bordered table-striped align-middle">
             <thead class="table-light">
@@ -144,17 +136,4 @@
             </tbody>
         </table>
     </div>
-
-    <!-- Script pencarian -->
-    <script>
-        document.getElementById('searchPerawatan').addEventListener('keyup', function() {
-            const filter = this.value.toLowerCase();
-            const rows = document.querySelectorAll('#tabelPerawatan tbody tr');
-            rows.forEach(row => {
-                const text = row.textContent.toLowerCase();
-                row.style.display = text.includes(filter) ? '' : 'none';
-            });
-        });
-    </script>
-
 </x-layout>

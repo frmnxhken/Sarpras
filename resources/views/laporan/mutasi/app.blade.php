@@ -1,22 +1,13 @@
 <x-layout>
-
-    <!-- Tombol Tambah Mutasi -->
-    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalMutasiBarang">
-        <i class="bi bi-plus-circle me-2"></i>Tambah Mutasi
-    </button>
-
-    <!-- Modal Form Mutasi -->
     <div class="modal fade" id="modalMutasiBarang" tabindex="-1" aria-labelledby="modalMutasiLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <form class="modal-content">
 
-                <!-- Header -->
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalMutasiLabel">Form Mutasi Barang</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <!-- Body -->
                 <div class="modal-body">
                     <div class="row g-3">
 
@@ -27,7 +18,8 @@
 
                         <div class="col-md-12">
                             <label for="namaBarang" class="form-label">Nama Barang</label>
-                            <input type="text" class="form-control" id="namaBarang" placeholder="Contoh: Laptop" required>
+                            <input type="text" class="form-control" id="namaBarang" placeholder="Contoh: Laptop"
+                                required>
                         </div>
 
                         <div class="col-md-12">
@@ -37,7 +29,8 @@
 
                         <div class="col-md-12">
                             <label for="dariUnit" class="form-label">Dari Unit</label>
-                            <input type="text" class="form-control" id="dariUnit" placeholder="Contoh: Laboratorium" required>
+                            <input type="text" class="form-control" id="dariUnit" placeholder="Contoh: Laboratorium"
+                                required>
                         </div>
 
                         <div class="col-md-12">
@@ -63,7 +56,6 @@
         </div>
     </div>
 
-    <!-- Fitur Pencarian & Ekspor -->
     <div class="row mb-3 align-items-center">
         <div class="col-md-3">
             <input type="text" id="searchMutasi" class="form-control" placeholder="Cari mutasi...">
@@ -73,26 +65,28 @@
         </div>
         <div class="col-md-7 text-end">
             <div class="btn-group me-2">
-                <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown"
+                    aria-expanded="false">
                     <i class="bi bi-file-earmark-pdf"></i> Cetak PDF
                 </button>
-                <!-- <ul class="dropdown-menu bg-danger" style=" min-width: 100%;">
-                    <li><a class="dropdown-item text-white" href="{{ route('mutasi.cetakPDF') }}?periode=1" target="_blank">1 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" href="{{ route('mutasi.cetakPDF') }}?periode=3" target="_blank">3 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" href="{{ route('mutasi.cetakPDF') }}?periode=6" target="_blank">6 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" href="{{ route('mutasi.cetakPDF') }}?periode=12" target="_blank">1 Tahun</a></li>
-                </ul> -->
+                <ul class="dropdown-menu bg-danger" style=" min-width: 100%;">
+                    <li><a class="dropdown-item text-white"  target="_blank">1 Bulan</a></li>
+                    <li><a class="dropdown-item text-white"  target="_blank">3 Bulan</a></li>
+                    <li><a class="dropdown-item text-white"  target="_blank">6 Bulan</a></li>
+                    <li><a class="dropdown-item text-white"  target="_blank">1 Tahun</a></li>
+                </ul>
             </div>
             <div class="btn-group">
-                <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown"
+                    aria-expanded="false">
                     <i class="bi bi-file-earmark-excel"></i> Ekspor Excel
                 </button>
-                <!-- <ul class="dropdown-menu bg-success" style="min-width: 100%;">
-                    <li><a class="dropdown-item text-white" href="{{ route('mutasi.exportExcel', ['periode' => 1]) }}">1 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" href="{{ route('mutasi.exportExcel', ['periode' => 3]) }}">3 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" href="{{ route('mutasi.exportExcel', ['periode' => 6]) }}">6 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" href="{{ route('mutasi.exportExcel', ['periode' => 12]) }}">1 Tahun</a></li>
-                </ul> -->
+                <ul class="dropdown-menu bg-success" style="min-width: 100%;">
+                    <li><a class="dropdown-item text-white">1 Bulan</a></li>
+                    <li><a class="dropdown-item text-white">3 Bulan</a></li>
+                    <li><a class="dropdown-item text-white">6 Bulan</a></li>
+                    <li><a class="dropdown-item text-white">1 Tahun</a></li>
+                </ul>
             </div>
         </div>
     </div>

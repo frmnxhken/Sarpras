@@ -19,10 +19,6 @@
         <div class="col-md-2">
             <button class="btn btn-primary w-100"><i class="ri-search-line me-1"></i>Filter</button>
         </div>
-        <div class="col-md-4 text-end">
-            <button class="btn btn-danger me-2"><i class="bi bi-file-earmark-pdf"></i> Cetak PDF</button>
-            <button class="btn btn-success"><i class="bi bi-file-earmark-excel"></i> Ekspor Excel</button>
-        </div>
     </div>
 
     <!-- Table -->
