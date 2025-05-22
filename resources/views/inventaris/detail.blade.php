@@ -61,9 +61,9 @@
                         </tbody>
                     </table>
                     <div class="gap-2 d-flex justify-content-end">
-                        <button class="btn btn-primary px-2 py-1" href="/detail">
+                        <!-- <button class="btn btn-primary px-2 py-1" href="/detail">
                             Cetak
-                        </button>
+                        </button> -->
                         <button class="btn btn-warning px-2 py-1" data-bs-toggle="modal" data-bs-target="#editData">
                             Edit
                         </button>
@@ -71,10 +71,10 @@
                         <button class="btn btn-danger px-2 py-1" data-bs-toggle="modal" data-bs-target="#deleteModal">
                             Hapus
                         </button>
-                            @include('inventaris.popup.confirmation_delete', [
-                                'modalId' => '',
-                                'item' => $item
-                            ])
+                        @include('inventaris.popup.confirmation_delete', [
+                        'modalId' => '',
+                        'item' => $item
+                        ])
                     </div>
                 </div>
             </div>
@@ -87,11 +87,49 @@
                 </div>
             </div>
             <div class="card mb-3">
-                <div class="card-body text-center">
+                <div class="card-body text-center" style="min-height: 300px;">
                     <h5>Qr Code</h5>
-                    {{ QrCode::size(242 )->generate($item->kode_barang) }}
+                    <!-- {{ QrCode::size(242 )->generate($item->kode_barang) }} -->
+                    <div id="print-area">
+                        {!! QrCode::size(216)->generate($item->kode_barang) !!}
+                        <p style="margin-top: 10px;">{{ $item->kode_barang }}</p>
+                    </div>
                 </div>
+                <button class="btn btn-primary px-2 py-1"  onclick="printQRCode()">
+                    Cetak
+                </button>
+                <!-- <div class="text-center mb-3">
+                    <button class="btn btn-primary px-2 py-1" onclick="printQRCode()">Cetak</button>
+                </div> -->
             </div>
         </div>
     </div>
 </x-layout>
+<script>
+    function printQRCode() {
+        const printContents = document.getElementById('print-area').innerHTML;
+        const originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = `
+            <html>
+                <head>
+                    <title>Cetak QR Code</title>
+                    <style>
+                        body {
+                            text-align: center;
+                            margin-top: 100px;
+                            font-family: Arial, sans-serif;
+                        }
+                    </style>
+                </head>
+                <body>
+                    ${printContents}
+                </body>
+            </html>
+        `;
+
+        window.print();
+        document.body.innerHTML = originalContents;
+        location.reload();
+    }
+</script>

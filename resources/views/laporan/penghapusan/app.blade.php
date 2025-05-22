@@ -58,12 +58,28 @@
             <button class="btn btn-primary w-100"><i class="ri-search-line me-1"></i>Filter</button>
         </div>
         <div class="col-md-7 text-end">
-            <button class="btn btn-danger me-2">
-                <i class="bi bi-file-earmark-pdf"></i> Cetak PDF
-            </button>
-            <button class="btn btn-success">
-                <i class="bi bi-file-earmark-excel"></i> Ekspor Excel
-            </button>
+            <div class="btn-group me-2">
+                <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-file-earmark-pdf"></i> Cetak PDF
+                </button>
+                <!-- <ul class="dropdown-menu bg-danger" style=" min-width: 100%;">
+                    <li><a class="dropdown-item text-white" href="{{ route('penghapusan.cetakPDF') }}?periode=1" target="_blank">1 Bulan</a></li>
+                    <li><a class="dropdown-item text-white" href="{{ route('penghapusan.cetakPDF') }}?periode=3" target="_blank">3 Bulan</a></li>
+                    <li><a class="dropdown-item text-white" href="{{ route('penghapusan.cetakPDF') }}?periode=6" target="_blank">6 Bulan</a></li>
+                    <li><a class="dropdown-item text-white" href="{{ route('penghapusan.cetakPDF') }}?periode=12" target="_blank">1 Tahun</a></li>
+                </ul> -->
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-file-earmark-excel"></i> Ekspor Excel
+                </button>
+                <!-- <ul class="dropdown-menu bg-success" style="min-width: 100%;">
+                    <li><a class="dropdown-item text-white" href="{{ route('penghapusan.exportExcel', ['periode' => 1]) }}">1 Bulan</a></li>
+                    <li><a class="dropdown-item text-white" href="{{ route('penghapusan.exportExcel', ['periode' => 3]) }}">3 Bulan</a></li>
+                    <li><a class="dropdown-item text-white" href="{{ route('penghapusan.exportExcel', ['periode' => 6]) }}">6 Bulan</a></li>
+                    <li><a class="dropdown-item text-white" href="{{ route('penghapusan.exportExcel', ['periode' => 12]) }}">1 Tahun</a></li>
+                </ul> -->
+            </div>
         </div>
     </div>
     <div class="table-responsive">
