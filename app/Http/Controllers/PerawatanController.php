@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AjuanPerawatan;
 use App\Models\Barang;
 use App\Models\Perawatan;
 use Illuminate\Http\Request;
@@ -36,10 +37,14 @@ class PerawatanController extends Controller
             'biaya_perawatan' => 'nullable|integer|min:0',
             'jumlah' => 'nullable|integer|min:0',
             'keterangan' => 'nullable|string',
-            'status' => 'required|in:selesai,belum',
         ]);
 
-        Perawatan::create($validated);
+        $perawatan = Perawatan::create($validated);
+        AjuanPerawatan::create([
+            // 'user_id' => auth()->user()->id,
+            'user_id' => 1,
+            'perawatan_id' => $perawatan->id,
+        ]);
 
         return redirect()->back()->with('success', 'Data perawatan berhasil disimpan.');
     }

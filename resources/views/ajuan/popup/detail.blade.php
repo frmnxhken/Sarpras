@@ -17,7 +17,7 @@
                     <dt class="col-sm-4">Barang</dt>
                     <dd class="col-sm-8">{{ $item['jumlah'] }} Unit {{ $item['barang'] }}</dd>
                     <dt class="col-sm-4">Keperluan</dt>
-                    <dd class="col-sm-8">Ujian Praktik Multimedia</dd>
+                    <dd class="col-sm-8">{{ $item['keterangan'] }}</dd>
                     <dt class="col-sm-4">Tanggal Penggunaan</dt>
                     <dd class="col-sm-8">{{ $item['created_at'] }}</dd>
                 </dl>

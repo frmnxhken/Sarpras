@@ -8,7 +8,7 @@ class AjuanPerawatan extends Model
 {
     protected $guarded = ['id'];
     protected $table = 'ajuan_perawatan';
-    public function barang()
+    public function perawatan()
     {
         return $this->belongsTo(Perawatan::class, 'perawatan_id');
     }

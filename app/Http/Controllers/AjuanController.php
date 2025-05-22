@@ -28,7 +28,7 @@ class AjuanController extends Controller
                 'jumlah' => $item->peminjaman->jumlah_barang ?? '-',
                 'status' => $item->status,
                 'ruangan' => $item->peminjaman->barang->ruangan->nama_ruangan ?? '-',
-                'keterangan' => '-',
+                'keterangan' => $item->peminjaman->keterangan ?? '-',
             ]);
         }
 
@@ -55,10 +55,10 @@ class AjuanController extends Controller
                 'pengaju' => $item->user->name ?? '-',
                 'jenis' => 'Perawatan',
                 'barang' => $item->perawatan->barang->nama_barang ?? '-',
-                'jumlah' => '-',
+                'jumlah' => $item->perawatan->jumlah ?? '-',
                 'status' => $item->status,
                 'ruangan' => $item->perawatan->barang->ruangan->nama_ruangan ?? '-',
-                'keterangan' => $item->keterangan ?? '-',
+                'keterangan' => $item->perawatan->keterangan ?? '-',
             ]);
         }
         $dataAjuan = $dataAjuan
