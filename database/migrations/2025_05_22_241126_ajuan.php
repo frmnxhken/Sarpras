@@ -39,11 +39,13 @@ return new class extends Migration
             $table->enum('status',['pending','disetujui','ditolak'])->default('pending');
             $table->timestamps();
         });
-        // Schema::create('ajuan_penghapusan', function (Blueprint $table) {
-        //     $table->id();
-            // $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-        //     $table->timestamps();
-        // });
+        Schema::create('ajuan_penghapusan', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('penghapusan_id')->constrained('penghapusan')->onDelete('cascade');
+            $table->enum('status',['pending','disetujui','ditolak'])->default('pending');
+            $table->timestamps();
+        });
     }
 
     /**

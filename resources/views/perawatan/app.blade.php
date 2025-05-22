@@ -60,6 +60,7 @@
                         </td>
                     </tr>
                 @empty
+                    <td colspan="9" class="text-center">Belum ada barang yang dirawat</td>
                     
                 @endforelse
             </tbody>

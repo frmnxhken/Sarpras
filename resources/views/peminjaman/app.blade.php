@@ -87,7 +87,8 @@
                     </td>
                 </tr>
                 @empty
-                Tidak ada data peminjaman
+                
+                    <td colspan="9" class="text-center">Tidak ada data peminjaman</td>
                 @endforelse
             </tbody>
         </table>

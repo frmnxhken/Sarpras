@@ -12,5 +12,9 @@ class Mutasi extends Model
     {
         return $this->belongsTo(Barang::class, 'barang_id');
     }
+    public function ajuan()
+    {
+        return $this->hasMany(AjuanMutasi::class, 'mutasi_id');
+    }
 
 }

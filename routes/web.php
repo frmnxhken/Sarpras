@@ -48,6 +48,7 @@ Route::post('/perawatan', [PerawatanController::class, 'store'])->name('perawata
 
 Route::get('/mutasi', [MutasiController::class, 'index']);
 Route::post('/mutasi', [MutasiController::class, 'store'])->name('mutasi.store');
+Route::put('/mutasi', [MutasiController::class, 'updateStatus'])->name('mutasi.updateStatus');
 
 
 Route::get('/penghapusan', function () {

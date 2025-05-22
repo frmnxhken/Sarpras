@@ -98,7 +98,7 @@
                     </tr>
                     
                 @empty
-                    
+                    <td colspan="7" class="text-center">Belum ada ajuan</td>
                 @endforelse
             </tbody>
         </table>

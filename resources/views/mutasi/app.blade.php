@@ -28,6 +28,8 @@
                     <th>Dari Unit</th>
                     <th>Ke Unit</th>
                     <th>Keterangan</th>
+                    <th>Status Pengajuan</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,11 +43,23 @@
                         <td>
                             {{ $ruangans[$item->tujuan] ?? '-' }}
                         </td>
-                        <td>{{ $item->keterangan }}</td>
+                        <td>{{ $item->keterangan ?? '-' }}</td>
+                        <td>
+                            <span class="badge @if ($item->ajuan[0]->status == 'pending') bg-warning  @elseif ($item->ajuan[0]->status == 'disetujui') bg-success @else bg-danger @endif text-white">{{ $item->ajuan[0]->status }}</span>
+                        </td>
+                        <td>
+                            @if ($item->ajuan[0]->status == 'pending')
+                                <form action="{{ route('mutasi.updateStatus', ['id' => $item->id, 'status' => 'Selesai']) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-primary px-2 py-1">Edit</button>
+                                </form>
+                            @endif
+                        </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="7" class="text-center">Data mutasi kosong</td>
+                        <td colspan="8" class="text-center">Data mutasi kosong</td>
                     </tr>
                 @endforelse
             </tbody>
