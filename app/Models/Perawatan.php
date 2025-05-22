@@ -11,4 +11,9 @@ class Perawatan extends Model
     {
         return $this->belongsTo(Barang::class);
     }
+
+        public function ajuan()
+    {
+        return $this->hasMany(AjuanPerawatan::class, 'perawatan_id');
+    }
 }

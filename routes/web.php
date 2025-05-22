@@ -3,6 +3,7 @@
 use App\Http\Controllers\AjuanController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\DataRuanganController;
+use App\Http\Controllers\MutasiController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PerawatanController;
 // use Dflydev\DotAccessData\Data;
@@ -45,11 +46,9 @@ Route::get('/perawatan', [PerawatanController::class, 'index']);
 Route::put('/perawatan/{id}/{status}', [PerawatanController::class, 'UpdateStatus'])->name('perawatan.updateStatus');
 Route::post('/perawatan', [PerawatanController::class, 'store'])->name('perawatan.store');
 
+Route::get('/mutasi', [MutasiController::class, 'index']);
 
 
-Route::get('/mutasi', function () {
-    return view('mutasi.app');
-});
 Route::get('/penghapusan', function () {
     return view('penghapusan.app');
 });
