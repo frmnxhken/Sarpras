@@ -79,10 +79,10 @@
                     <td>{{ $item->jumlah_barang }}</td>
                     <td>
                         <span
-                            class="badge @if ($item->status_peminjaman == 'Dipinjam') bg-warning  @elseif ($item->status_peminjaman == 'Dikembalikan') bg-success @else bg-danger @endif text-white">{{ $item->status_peminjaman }}</span>
+                            class="badge @if ($item->ajuan[0]->status == 'pending') bg-warning  @elseif ($item->ajuan[0]->status == 'disetujui') bg-success @else bg-danger @endif text-white">{{ $item->ajuan[0]->status }}</span>
                     </td>
                     <td>
-                        @if ($item->status_peminjaman == 'Dipinjam')
+                        @if ($item->ajuan[0]->status == 'disetujui')
                         <form
                             action="{{ route('peminjaman.updateStatus', [
                                         'id' => $item->id, 
@@ -110,6 +110,8 @@
                             <button class="btn btn-danger px-2 py-1"
                                 onclick="return confirm('Yakin barang ini hilang?')">Hilang</button>
                         </form>
+                        @else
+                            Belum Ada Persetujuan
                         @endif
                         {{-- <button>Dikembalikan</button> --}}
                     </td>

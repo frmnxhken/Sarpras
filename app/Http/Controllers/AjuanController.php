@@ -12,10 +12,10 @@ class AjuanController extends Controller
 {
     public function index()
     {
-        $peminjaman = AjuanPeminjaman::with(['user', 'peminjaman.barang.ruangan'])->get();
-        $pengadaan = AjuanPengadaan::with((['user', 'barang.ruangan']))->get();
-        $perawatan = AjuanPerawatan::with((['user', 'perawatan.barang.ruangan']))->get();
-        $mutasi = AjuanMutasi::with((['user', 'mutasi.barang.ruangan']))->get();
+        $peminjaman = AjuanPeminjaman::with(['user', 'peminjaman.barang.ruangan'])->whereIn('status', ['pending', 'ditolak'])->get();
+        $pengadaan = AjuanPengadaan::with((['user', 'barang.ruangan']))->whereIn('status', ['pending', 'ditolak'])->get();
+        $perawatan = AjuanPerawatan::with((['user', 'perawatan.barang.ruangan']))->whereIn('status', ['pending', 'ditolak'])->get();
+        $mutasi = AjuanMutasi::with((['user', 'mutasi.barang.ruangan']))->whereIn('status', ['pending', 'ditolak'])->get();
 
         $dataAjuan = collect();
 

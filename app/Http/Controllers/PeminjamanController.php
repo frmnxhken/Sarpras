@@ -16,7 +16,7 @@ class PeminjamanController extends Controller
     public function index()
     {
         $barangs = Barang::all();
-        $items = Peminjaman::with(['barang.ruangan'])->get();
+        $items = Peminjaman::with(['barang.ruangan','ajuan'])->where('status_peminjaman', 'Dipinjam')->get();
         return view('peminjaman.app', compact('items', 'barangs'));
     }
 

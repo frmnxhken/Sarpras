@@ -37,7 +37,7 @@
                     <th>Jenis Perawatan</th>
                     <th>Biaya (Rp)</th>
                     <th>Keterangan</th>
-                    <th>Status</th>
+                    <th>Status pengajuan</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -50,15 +50,17 @@
                         <td>{{ $item->barang->ruangan->nama_ruangan }}</td>
                         <td>{{ $item->jenis_perawatan }}</td>
                         <td>{{ $item->biaya_perawatan }}</td>
-                        <td>{{ $item->keterangan }}</td>
-                        <td><span class="badge @if ($item->status == 'belum') bg-warning @elseif ($item->status == 'selesai') bg-success
-                        @endif">{{ $item->status }}</span></td>
+                        <td>{{ $item->keterangan ?? '-' }}</td>
+                        <td><span class="badge @if ($item->ajuan[0]->status == 'pending') bg-warning @elseif ($item->ajuan[0]->status == 'disetujui') bg-success
+                        @endif">{{ $item->ajuan[0]->status }}</span></td>
                         <td>
-                            <form action="{{ route('perawatan.updateStatus', ['id' => $item->id, 'status' => 'Selesai']) }}" method="post">
-                                @csrf
-                                @method('PUT')
-                                <button type="submit" class="btn btn-primary px-2 py-1" onclick="return confirm('Yakin sudah selesai?')">Selesai</button>
-                            </form>
+                            @if ($item->ajuan[0]->status == 'disetujui')
+                                <form action="{{ route('perawatan.updateStatus', ['id' => $item->id, 'status' => 'Selesai']) }}" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-primary px-2 py-1" onclick="return confirm('Yakin sudah selesai?')">Selesai</button>
+                                </form>
+                            @endif
                         </td>
                     </tr>
                 @empty
