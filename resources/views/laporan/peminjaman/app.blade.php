@@ -1,10 +1,6 @@
 <x-layout>
-    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#TambahPeminjaman">
-        <i class="bi bi-plus-circle me-2"></i>Tambah Peminjaman
-    </button>
     @include('laporan.peminjaman.popup.tambah_peminjaman')
     <div class="row align-items-center mb-4">
-        <!-- Kolom pencarian -->
         <div class="col-md-3">
             <select class="form-select">
                 <option selected>Semua Status</option>
@@ -25,10 +21,10 @@
                     <i class="bi bi-file-earmark-pdf"></i> Cetak PDF
                 </button>
                 <ul class="dropdown-menu bg-danger" style=" min-width: 100%;">
-                    <li><a class="dropdown-item text-white" href="{{ route('peminjaman.cetakPDF') }}?periode=1" target="_blank">1 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" href="{{ route('peminjaman.cetakPDF') }}?periode=3" target="_blank">3 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" href="{{ route('peminjaman.cetakPDF') }}?periode=6" target="_blank">6 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" href="{{ route('peminjaman.cetakPDF') }}?periode=12" target="_blank">1 Tahun</a></li>
+                    <li><a class="dropdown-item text-white" target="_blank">1 Bulan</a></li>
+                    <li><a class="dropdown-item text-white" target="_blank">3 Bulan</a></li>
+                    <li><a class="dropdown-item text-white" target="_blank">6 Bulan</a></li>
+                    <li><a class="dropdown-item text-white" target="_blank">1 Tahun</a></li>
                 </ul>
             </div>
             <div class="btn-group">
@@ -36,10 +32,10 @@
                     <i class="bi bi-file-earmark-excel"></i> Ekspor Excel
                 </button>
                 <ul class="dropdown-menu bg-success" style="min-width: 100%;">
-                    <li><a class="dropdown-item text-white" href="{{ route('peminjaman.exportExcel', ['periode' => 1]) }}">1 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" href="{{ route('peminjaman.exportExcel', ['periode' => 3]) }}">3 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" href="{{ route('peminjaman.exportExcel', ['periode' => 6]) }}">6 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" href="{{ route('peminjaman.exportExcel', ['periode' => 12]) }}">1 Tahun</a></li>
+                    <li><a class="dropdown-item text-white" >1 Bulan</a></li>
+                    <li><a class="dropdown-item text-white" >3 Bulan</a></li>
+                    <li><a class="dropdown-item text-white" >6 Bulan</a></li>
+                    <li><a class="dropdown-item text-white" >1 Tahun</a></li>
                 </ul>
             </div>
             <!-- <a href="{{ route('peminjaman.cetakPDF') }}" class="btn btn-danger me-2" target="_blank">
@@ -120,17 +116,4 @@
             </tbody>
         </table>
     </div>
-
-    <!-- Script Pencarian Global -->
-    <script>
-        document.getElementById('globalSearch').addEventListener('keyup', function() {
-            const filter = this.value.toLowerCase();
-            const rows = document.querySelectorAll('#dataPeminjaman tbody tr');
-
-            rows.forEach(row => {
-                const text = row.textContent.toLowerCase();
-                row.style.display = text.includes(filter) ? '' : 'none';
-            });
-        });
-    </script>
 </x-layout>

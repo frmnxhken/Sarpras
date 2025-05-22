@@ -54,6 +54,21 @@ Route::get('/penghapusan', function () {
     return view('penghapusan.app');
 });
 
+// laopran
+Route::get('/laporan/mutasi', function () {
+    return view('laporan.mutasi.app');
+});
+Route::get('/laporan/peminjaman', function () {
+    return view('laporan.peminjaman.app');
+});
+Route::get('/laporan/perawatan', function () {
+    return view('laporan.perawatan.app');
+});
+Route::get('/laporan/penghapusan', function () {
+    return view('laporan.penghapusan.app');
+});
+
+Route::get('/dataRuang', [DataRuanganController::class, 'index'])->name('mutasi.exportExcel');
 
 Route::get('/dataRuang', [DataRuanganController::class, 'index']);
 Route::get('/kategoriBarang', function () {

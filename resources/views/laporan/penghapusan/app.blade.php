@@ -1,9 +1,4 @@
 <x-layout>
-    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#TambahPenghapusan">
-        <i class="bi bi-plus-circle me-2"></i>Tambah Penghapusan
-    </button>
-
-    <!-- Modal Penghapusan Barang -->
     <div class="modal fade" id="TambahPenghapusan" tabindex="-1" aria-labelledby="TambahPenghapusanLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -48,9 +43,7 @@
         </div>
     </div>
 
-    <!-- Pencarian Global -->
     <div class="row align-items-center mb-4">
-        <!-- Kolom pencarian -->
         <div class="col-md-3">
             <input type="text" id="globalSearch" class="form-control" placeholder="Cari data penghapusan...">
         </div>
@@ -62,23 +55,23 @@
                 <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-file-earmark-pdf"></i> Cetak PDF
                 </button>
-                <!-- <ul class="dropdown-menu bg-danger" style=" min-width: 100%;">
-                    <li><a class="dropdown-item text-white" href="{{ route('penghapusan.cetakPDF') }}?periode=1" target="_blank">1 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" href="{{ route('penghapusan.cetakPDF') }}?periode=3" target="_blank">3 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" href="{{ route('penghapusan.cetakPDF') }}?periode=6" target="_blank">6 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" href="{{ route('penghapusan.cetakPDF') }}?periode=12" target="_blank">1 Tahun</a></li>
-                </ul> -->
+                <ul class="dropdown-menu bg-danger" style=" min-width: 100%;">
+                    <li><a class="dropdown-item text-white" target="_blank">1 Bulan</a></li>
+                    <li><a class="dropdown-item text-white" target="_blank">3 Bulan</a></li>
+                    <li><a class="dropdown-item text-white" target="_blank">6 Bulan</a></li>
+                    <li><a class="dropdown-item text-white" target="_blank">1 Tahun</a></li>
+                </ul>
             </div>
             <div class="btn-group">
                 <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-file-earmark-excel"></i> Ekspor Excel
                 </button>
-                <!-- <ul class="dropdown-menu bg-success" style="min-width: 100%;">
-                    <li><a class="dropdown-item text-white" href="{{ route('penghapusan.exportExcel', ['periode' => 1]) }}">1 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" href="{{ route('penghapusan.exportExcel', ['periode' => 3]) }}">3 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" href="{{ route('penghapusan.exportExcel', ['periode' => 6]) }}">6 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" href="{{ route('penghapusan.exportExcel', ['periode' => 12]) }}">1 Tahun</a></li>
-                </ul> -->
+                <ul class="dropdown-menu bg-success" style="min-width: 100%;">
+                    <li><a class="dropdown-item text-white" >1 Bulan</a></li>
+                    <li><a class="dropdown-item text-white" >3 Bulan</a></li>
+                    <li><a class="dropdown-item text-white" >6 Bulan</a></li>
+                    <li><a class="dropdown-item text-white" >1 Tahun</a></li>
+                </ul>
             </div>
         </div>
     </div>
