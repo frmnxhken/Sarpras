@@ -36,11 +36,6 @@
                         </div>
 
                         <div class="col-md-12">
-                            <label for="dariUnit" class="form-label">Dari Unit</label>
-                            <input type="text" class="form-control" id="dariUnit" placeholder="Contoh: Laboratorium" required>
-                        </div>
-
-                        <div class="col-md-12">
                             <label for="keUnit" class="form-label">Ke Unit</label>
                             <input type="text" class="form-control" id="keUnit" placeholder="Contoh: Keuangan" required>
                         </div>
