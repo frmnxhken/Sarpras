@@ -8,10 +8,10 @@
         });
     </script>
 @endif
-<!-- Modal Form Mutasi -->
 <div class="modal fade" id="modalMutasiBarang" tabindex="-1" aria-labelledby="modalMutasiLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <form class="modal-content">
+        <form action="{{ route('mutasi.store') }}" method="POST" class="modal-content">
+            @csrf
 
             <!-- Header -->
             <div class="modal-header">
@@ -24,40 +24,80 @@
                 <div class="row g-3">
 
                     <div class="col-md-12">
-                        <label for="tanggalMutasi" class="form-label">Tanggal Mutasi</label>
-                        <input type="date" class="form-control" id="tanggalMutasi" required>
+                        <label for="tanggal_mutasi" class="form-label">Tanggal Mutasi</label>
+                        <input type="date" name="tanggal_mutasi" class="form-control" id="tanggal_mutasi"
+                            value="{{ old('tanggal_mutasi') }}">
+                        @error('tanggal_mutasi')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="col-md-12">
-                        <label for="namaBarang" class="form-label">Nama Barang</label>
-                        <input type="text" class="form-control" id="namaBarang" placeholder="Contoh: Laptop"
-                            required>
+                        <label for="nama_mutasi" class="form-label">Nama Mutasi</label>
+                        <input type="text" name="nama_mutasi" class="form-control" id="nama_mutasi"
+                            placeholder="Contoh: Mutasi ke ruang B" value="{{ old('nama_mutasi') }}">
+                        @error('nama_mutasi')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="col-md-12">
-                        <label for="jumlah" class="form-label">Jumlah</label>
-                        <input type="number" class="form-control" id="jumlah" placeholder="Contoh: 2" required>
+                        <label for="barang_id" class="form-label">Nama Barang</label>
+                        <select name="barang_id" id="barang_id" class="form-select">
+                            <option disabled selected>-- Pilih Barang --</option>
+                            @foreach ($barangs as $barang)
+                                <option value="{{ $barang->id }}"
+                                    {{ old('barang_id') == $barang->id ? 'selected' : '' }}>
+                                    {{ $barang->nama_barang }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('barang_id')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="col-md-12">
-                        <label for="keUnit" class="form-label">Ke Unit</label>
-                        <input type="text" class="form-control" id="keUnit" placeholder="Contoh: Keuangan"
-                            required>
+                        <label for="jumlah_barang" class="form-label">Jumlah</label>
+                        <input type="number" name="jumlah_barang" class="form-control" id="jumlah_barang"
+                            placeholder="Contoh: 2" value="{{ old('jumlah_barang') }}">
+                        @error('jumlah_barang')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="col-md-12">
+                        <label for="tujuan" class="form-label">Ke Unit</label>
+                        <select name="tujuan" id="tujuan" class="form-select">
+                            <option disabled selected>-- Pilih Tujuan Ruangan --</option>
+                            @foreach ($ruangan as $r)
+                                <option value="{{ $r->id }}" {{ old('tujuan') == $r->id ? 'selected' : '' }}>
+                                    {{ $r->nama_ruangan }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('tujuan')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-12">
                         <label for="keterangan" class="form-label">Keterangan</label>
-                        <textarea class="form-control" id="keterangan" rows="3" placeholder="Contoh: Pindah ke ruangan baru"></textarea>
+                        <textarea name="keterangan" id="keterangan" rows="3" class="form-control"
+                            placeholder="Contoh: Pindah karena kebutuhan lab">{{ old('keterangan') }}</textarea>
+                        @error('keterangan')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
                     </div>
 
                 </div>
             </div>
 
+            <!-- Footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
                 <button type="submit" class="btn btn-primary">Simpan Data</button>
             </div>
-
         </form>
     </div>
 </div>

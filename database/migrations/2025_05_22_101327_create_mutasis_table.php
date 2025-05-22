@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('mutasis', function (Blueprint $table) {
             $table->id();
+            $table->date('tanggal_mutasi');
             $table->string('nama_mutasi');
             $table->foreignId('barang_id')->constrained('barangs')->onDelete('cascade');
-            $table->string('tujuan');
+            $table->integer('jumlah_barang');
+            $table->integer('tujuan');
             $table->text('keterangan')->nullable();
             $table->timestamps();
         });

@@ -4,8 +4,7 @@
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalMutasiBarang">
         <i class="bi bi-plus-circle me-2"></i>Tambah Mutasi
     </button>
-
-    
+    @include('mutasi.popup.tambah')
 
     <!-- Fitur Pencarian & Ekspor -->
     <div class="row mb-3 align-items-center">
@@ -36,32 +35,30 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>2024-05-10</td>
-                    <td>Laptop</td>
-                    <td>2</td>
-                    <td>Laboratorium</td>
-                    <td>Keuangan</td>
-                    <td>Pindah ruangan baru</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>2024-05-11</td>
-                    <td>PC</td>
-                    <td>2</td>
-                    <td>Laboratorium</td>
-                    <td>Ruang Kepsek</td>
-                    <td>Pindah ruangan baru</td>
-                </tr>
-                <!-- Tambahkan data lain sesuai kebutuhan -->
+                @forelse ($mutasi as $item)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $item->tanggal_mutasi }}</td>
+                        <td>{{ $item->barang->nama_barang }}</td>
+                        <td>{{ $item->jumlah_barang }}</td>
+                        <td>{{ $item->barang->ruangan->nama_ruangan }}</td>
+                        <td>
+                            {{ $ruangans[$item->tujuan] ?? '-' }}
+                        </td>
+                        <td>{{ $item->keterangan }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="7" class="text-center">Data mutasi kosong</td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
 
     <!-- Script Pencarian -->
     <script>
-        document.getElementById('searchMutasi').addEventListener('keyup', function () {
+        document.getElementById('searchMutasi').addEventListener('keyup', function() {
             const filter = this.value.toLowerCase();
             const rows = document.querySelectorAll('#tabelMutasi tbody tr');
             rows.forEach(row => {

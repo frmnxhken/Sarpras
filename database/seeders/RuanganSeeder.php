@@ -22,5 +22,20 @@ class RuanganSeeder extends Seeder
             'kode_ruangan' => 'R002',
             'nama_ruangan' => 'Ruang Guru',
         ]);
+
+        Ruangans::create([
+            'kode_ruangan' => 'R003',
+            'nama_ruangan' => 'Perpustakaan',
+        ]);
+
+        Ruangans::create([
+            'kode_ruangan' => 'R004',
+            'nama_ruangan' => 'Ruang Kelas 1A',
+        ]);
+
+        Ruangans::create([
+            'kode_ruangan' => 'R005',
+            'nama_ruangan' => 'Ruang Kepala Sekolah',
+        ]);
     }
 }
