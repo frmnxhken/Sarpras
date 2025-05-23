@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-body overflow-hidden position-relative">
                     <iconify-icon icon="solar:asteroid-bold-duotone" class="fs-36 text-info"></iconify-icon>
-                    <h3 class="mb-0 fw-bold mt-3 mb-1">450</h3>
+                    <h3 class="mb-0 fw-bold mt-3 mb-1">{{ $totalBarang }}</h3>
                     <p class="text-muted">Total Barang</p>
                     <a href="#!" class="text-reset fw-semibold fs-12">View More</a>
                     <i class='ri-global-line widget-icon'></i>
@@ -16,7 +16,7 @@
             <div class="card">
                 <div class="card-body overflow-hidden position-relative">
                     <iconify-icon icon="solar:black-hole-line-duotone" class="fs-36 text-success"></iconify-icon>
-                    <h3 class="mb-0 fw-bold mt-3 mb-1">12</h3>
+                    <h3 class="mb-0 fw-bold mt-3 mb-1">{{ $barangRusak }}</h3>
                     <p class="text-muted"> Barang Rusak</p>
                     <a href="#!" class="text-reset fw-semibold fs-12">View More</a>
                     <i class='ri-file-chart-line widget-icon'></i>
@@ -28,7 +28,7 @@
             <div class="card">
                 <div class="card-body overflow-hidden position-relative">
                     <iconify-icon icon="solar:leaf-bold-duotone" class="fs-36 text-primary"></iconify-icon>
-                    <h3 class="mb-0 fw-bold mt-3 mb-1">30</h3>
+                    <h3 class="mb-0 fw-bold mt-3 mb-1">{{ $barangBaru2025 }}</h3>
                     <p class="text-muted">Barang Baru (Thn 2025)</p>
                     <a href="#!" class="text-reset fw-semibold fs-12">View More</a>
                     <i class='ri-drag-move-line widget-icon'></i>

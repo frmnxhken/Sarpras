@@ -6,12 +6,13 @@ use App\Http\Controllers\DataRuanganController;
 use App\Http\Controllers\MutasiController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PerawatanController;
+use App\Http\Controllers\DashboardController;
 // use Dflydev\DotAccessData\Data;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home.app');
-});
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+
 
 Route::get('/inventaris',[BarangController::class, 'index']);
 Route::post('/inventaris/tambah', [BarangController::class, 'store'])->name('inventaris.store');
