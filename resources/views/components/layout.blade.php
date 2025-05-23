@@ -305,6 +305,15 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link" href="/penghapusan">
+                            <span class="nav-icon">
+                                <i class="ri-delete-bin-6-line"></i>
+                            </span>
+                            <span class="nav-text">Penghapusan</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link menu-arrow" href="#sidebarLaporan" data-bs-toggle="collapse"
                             role="button" aria-expanded="false" aria-controls="sidebarMultiLevelDemo">
                             <span class="nav-icon">
@@ -321,7 +330,7 @@
                                     <a class="sub-nav-link" href="/laporan/peminjaman">Peminjaman</a>
                                 </li>
                                 <li class="sub-nav-item">
-                                    <a class="sub-nav-link" href="/laporan/mutasi">Mutasi</a>
+                                    <a class="sub-nav-link" href="/laporan/Penghapusan">Mutasi</a>
                                 </li>
                                 <li class="sub-nav-item">
                                     <a class="sub-nav-link" href="/laporan/penghapusan">Penghapusan</a>
