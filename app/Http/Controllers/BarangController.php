@@ -56,25 +56,20 @@ class BarangController extends Controller
             'upload' => 'nullable|image|mimes:jpeg,png,jpg,svg+xml,webp,gif,heic|max:2048',
         ]);
 
-        // Simpan gambar jika ada
         if ($request->hasFile('upload')) {
-            // $path = $request->file('upload')->store('inventaris/gambar', 'public');
-            // $validated['gambar_barang'] = $path;
-            if ($request->hasFile('upload')) {
-                $file = $request->file('upload');
-                $filename = time() . '_' . $file->getClientOriginalName();
+            $file = $request->file('upload');
+            $filename = time() . '_' . $file->getClientOriginalName();
 
-                $destinationPath = public_path('uploads/inventaris');
+            $destinationPath = public_path('uploads/inventaris');
 
-                if (!file_exists($destinationPath)) {
-                    mkdir($destinationPath, 0777, true);
-                }
-
-                $file->move($destinationPath, $filename);
-
-                // Simpan path relatif dari public/
-                $validated['gambar_barang'] = 'uploads/inventaris/' . $filename;
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0777, true);
             }
+
+            $file->move($destinationPath, $filename);
+
+            // Simpan path relatif dari public/
+            $validated['gambar_barang'] = 'uploads/inventaris/' . $filename;
         }
 
         // Generate kode_barang unik (opsional)

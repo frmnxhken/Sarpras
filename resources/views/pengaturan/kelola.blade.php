@@ -41,12 +41,12 @@
                             @endif
                         </td>
                         <td>
-                            {{-- <a href="{{ route('pengaturan.edit', $user->id) }}" class="btn btn-primary px-2 py-1">Edit</a>
+                            {{-- <a href="{{ route('pengaturan.edit', $user->id) }}" class="btn btn-primary px-2 py-1">Edit</a> --}}
                             <form action="{{ route('pengaturan.destroy', $user->id) }}" method="POST" class="d-inline">
                                 @csrf
-                                @method('DELETE') --}}
+                                @method('DELETE')
                                 <button type="submit" class="btn btn-danger px-2 py-1">Hapus</button>
-                            {{-- </form> --}}
+                            </form>
                         </td>
                     </tr>
                 @endforeach

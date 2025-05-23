@@ -353,10 +353,10 @@
                                     <a class="sub-nav-link" href="/kategoriBarang">Kategori Barang</a>
                                 </li> --}}
                                 <li class="sub-nav-item">
-                                    <a class="sub-nav-link" href="/kelola/ruangan">Kelola Ruangan</a>
+                                    <a class="sub-nav-link" href="/pengaturan/ruangan">Kelola Ruangan</a>
                                 </li>
                                 <li class="sub-nav-item">
-                                    <a class="sub-nav-link" href="/kelola/user">Kelola User</a>
+                                    <a class="sub-nav-link" href="/pengaturan/user">Kelola User</a>
                                 </li>
                                 </li>
                             </ul>
