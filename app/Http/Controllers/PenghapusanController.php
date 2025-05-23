@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class PenghapusanController extends Controller
 {
     public function index(){
-        $data = Penghapusan::all();
+        $data = Penghapusan::with(['barang.ruangan', 'ajuan'])->whereHas('ajuan', function ($query) { $query->where('status', 'pending');})->get();
         return view('penghapusan.app', compact('data'));
     }
 }

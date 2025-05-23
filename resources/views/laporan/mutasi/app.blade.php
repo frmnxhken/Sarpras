@@ -103,6 +103,7 @@
                     <th>Dari Unit</th>
                     <th>Ke Unit</th>
                     <th>Keterangan</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -111,23 +112,23 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->tanggal_mutasi }}</td>
                         <td>{{ $item->barang->nama_barang }}</td>
-                        <td>{{ $item->jumlah }}</td>
-                        <td>{{ $item->dari_unit }}</td>
-                        <td>{{ $item->ke_unit }}</td>
-                        <td>{{ $item->keterangan }}</td>
+                        <td>{{ $item->jumlah_barang }}</td>
+                        <td>{{ $item->barang->ruangan->nama_ruangan }}</td>
+                        <td>{{ $ruangans[$item->tujuan] }}</td>
+                        <td>{{ $item->keterangan ?? '-' }}</td>
+                        <td>
+                            @if ($item->ajuan[0]->status == 'pending')
+                                <span class="badge bg-warning">Belum disetujui</span>
+                            @elseif ($item->ajuan[0]->status == 'disetujui')
+                                <span class="badge bg-success">Dipindah</span>
+                            @else
+                                <span class="badge bg-danger">Ditolak</span>
+                            @endif
+                        </td>
                     </tr>
                 @empty
                     
                 @endforelse
-                <tr>
-                    <td>1</td>
-                    <td>2024-05-10</td>
-                    <td>Laptop</td>
-                    <td>2</td>
-                    <td>Laboratorium</td>
-                    <td>Keuangan</td>
-                    <td>Pindah ruangan baru</td>
-                </tr>
             </tbody>
         </table>
     </div>

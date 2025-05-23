@@ -57,6 +57,7 @@ class MutasiController extends Controller
     public function laporan()
     {
         $mutasi = Mutasi::with(['barang.ruangan', 'ajuan'])->get();
-        return view('laporan.mutasi.app', compact('mutasi'));
+        $ruangans = Ruangans::pluck('nama_ruangan', 'id')->toArray();
+        return view('laporan.mutasi.app', compact('mutasi', 'ruangans'));
     }
 }

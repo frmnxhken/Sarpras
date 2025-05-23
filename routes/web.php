@@ -7,6 +7,7 @@ use App\Http\Controllers\MutasiController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PerawatanController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PenghapusanController;
 // use Dflydev\DotAccessData\Data;
 use Illuminate\Support\Facades\Route;
 
@@ -52,18 +53,13 @@ Route::post('/mutasi', [MutasiController::class, 'store'])->name('mutasi.store')
 Route::put('/mutasi', [MutasiController::class, 'updateStatus'])->name('mutasi.updateStatus');
 
 
-Route::get('/penghapusan', function () {
-    return view('penghapusan.app');
-});
+Route::get('/penghapusan', [PenghapusanController::class, 'index']);
 
 // laopran
 Route::get('/laporan/perawatan', [PerawatanController::class, 'laporan']);
 Route::get('/laporan/peminjaman', [PeminjamanController::class, 'laporan']);
 Route::get('/laporan/mutasi', [MutasiController::class, 'laporan']);
-
-Route::get('/laporan/penghapusan', function () {
-    return view('laporan.penghapusan.app');
-});
+Route::get('/laporan/penghapusan', [PenghapusanController::class, 'index']);
 
 Route::get('/dataRuang', [DataRuanganController::class, 'index'])->name('mutasi.exportExcel');
 

@@ -50,18 +50,22 @@
                         <td><span class="badge @if ($item->ajuan[0]->status == 'pending') bg-warning @elseif ($item->ajuan[0]->status == 'disetujui') bg-success
                         @endif">{{ $item->ajuan[0]->status }}</span></td>
                         <td>
-                            @if ($item->ajuan[0]->status == 'disetujui')
-                                <form action="{{ route('perawatan.updateStatus', ['id' => $item->id, 'status' => 'Selesai']) }}" method="post">
-                                    @csrf
-                                    @method('PUT')
-                                    <button type="submit" class="btn btn-primary px-2 py-1" onclick="return confirm('Yakin sudah selesai?')">Selesai</button>
-                                </form>
-                            @endif
+                            <div class="d-flex gap-1">
+                                @if ($item->ajuan[0]->status == 'disetujui')
+                                    <form action="{{ route('perawatan.updateStatus', ['id' => $item->id, 'status' => 'Selesai']) }}" method="post">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-primary px-2 py-1" onclick="return confirm('Yakin sudah selesai?')">Selesai</button>
+                                    </form>
+                                @elseif ($item->ajuan[0]->status == 'pending')
+                                    <button>Edit</button>
+                                    <button>Hapus</button>
+                                @endif
+                            </div>
                         </td>
                     </tr>
                 @empty
-                    <td colspan="9" class="text-center">Belum ada barang yang dirawat</td>
-                    
+                    <td colspan="9" class="text-center">Belum ada barang yang dirawat</td>\
                 @endforelse
             </tbody>
         </table>

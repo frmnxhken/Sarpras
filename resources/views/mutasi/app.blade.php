@@ -2,7 +2,7 @@
 
     <!-- Tombol Tambah Mutasi -->
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalMutasiBarang">
-        <i class="bi bi-plus-circle me-2"></i>Tambah Mutasi
+        <i class="bi bi-plus-circle me-2"></i>Tambah Pemindahan
     </button>
     @include('mutasi.popup.tambah')
 
@@ -22,7 +22,7 @@
             <thead class="table-light">
                 <tr>
                     <th>No</th>
-                    <th>Tanggal Mutasi</th>
+                    <th>Tanggal Pemindahan</th>
                     <th>Nama Barang</th>
                     <th>Jumlah</th>
                     <th>Dari Unit</th>
@@ -48,13 +48,16 @@
                             <span class="badge @if ($item->ajuan[0]->status == 'pending') bg-warning  @elseif ($item->ajuan[0]->status == 'disetujui') bg-success @else bg-danger @endif text-white">{{ $item->ajuan[0]->status }}</span>
                         </td>
                         <td>
-                            @if ($item->ajuan[0]->status == 'pending')
-                                <form action="{{ route('mutasi.updateStatus', ['id' => $item->id, 'status' => 'Selesai']) }}" method="POST">
-                                    @csrf
-                                    @method('PUT')
-                                    <button type="submit" class="btn btn-primary px-2 py-1">Edit</button>
-                                </form>
-                            @endif
+                            <div class="d-flex gap-1">
+                                @if ($item->ajuan[0]->status == 'pending')
+                                    <form action="{{ route('mutasi.updateStatus', ['id' => $item->id, 'status' => 'Selesai']) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-primary px-2 py-1">Edit</button>
+                                    </form>
+                                    <button type="submit" class="btn btn-danger px-2 py-1">Batal</button>
+                                @endif
+                            </div>
                         </td>
                     </tr>
                 @empty

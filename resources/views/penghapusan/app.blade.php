@@ -21,30 +21,36 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>2024-06-15</td>
-                    <td>Kursi Kantor</td>
-                    <td>5</td>
-                    <td>Rusak parah dan tidak bisa diperbaiki</td>
-                    <td><span class="badge bg-warning">Pending</span></td>
-                    <td>
-                        <button type="submit" class="btn btn-primary px-2 py-1">Edit</button>
-                        <button type="submit" class="btn btn-danger px-2 py-1">Batal</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>2024-06-20</td>
-                    <td>Printer</td>
-                    <td>1</td>
-                    <td>Sudah tidak berfungsi</td>
-                    <td><span class="badge bg-warning">Pending</span></td>
-                    <td>
-                        <button type="submit" class="btn btn-primary px-2 py-1">Edit</button>
-                        <button type="submit" class="btn btn-danger px-2 py-1">Batal</button>
-                    </td>
-                </tr>
+                @forelse ($data as $item)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $item->created_at->format('Y-m-d') }}</td>
+                        <td>{{ $item->barang->nama_barang }}</td>
+                        <td>{{ $item->jumlah }}</td>
+                        <td>{{ $item->keterangan }}</td>
+                        <td><span class="badge bg-warning">{{ $item->ajuan[0]->status }}</span></td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                @if ($item->ajuan[0]->status == 'pending')
+                                    <form 
+                                    {{-- action="{{ route('penghapusan.updateStatus', ['id' => $item->id, 'status' => 'Selesai']) }}"  --}}
+                                    method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-primary px-2 py-1">Edit</button>
+                                    </form>
+                                    <form action="">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger px-2 py-1">Hapus</button>
+                                    </form>
+                                @endif
+                            </div>
+                        </td>
+                    </tr>
+                @empty
+                    <td colspan="7" class="text-center">Tidak ada pengajuan</td>
+                @endforelse
             </tbody>
         </table>
     </div>

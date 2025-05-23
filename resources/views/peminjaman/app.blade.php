@@ -52,42 +52,44 @@
                             class="badge @if ($item->ajuan[0]->status == 'pending') bg-warning  @elseif ($item->ajuan[0]->status == 'disetujui') bg-success @else bg-danger @endif text-white">{{ $item->ajuan[0]->status }}</span>
                     </td>
                     <td>
-                        @if ($item->ajuan[0]->status == 'disetujui')
-                        <form
-                            action="{{ route('peminjaman.updateStatus', [
-                                        'id' => $item->id, 
-                                        'status' => 'Dikembalikan', 
-                                        'jumlah_barang' => $item->jumlah_barang, 
-                                        'barang_id' => $item->barang_id
-                                        ]) }}"
-                            method="POST" class="d-inline">
-                            @csrf
-                            @method('PUT')
-                            <button class="btn btn-success px-2 py-1"
-                                onclick="return confirm('Yakin ingin mengembalikan?')">Kembalikan</button>
-                        </form>
-
-                        <form
-                            action="{{ route('peminjaman.updateStatus', [
-                                        'id' => $item->id, 
-                                        'status' => 'Hilang',
-                                        'jumlah_barang' => $item->jumlah_barang, 
-                                        'barang_id' => $item->barang_id
-                                        ]) }}"
-                            method="POST" class="d-inline">
-                            @csrf
-                            @method('PUT')
-                            <button class="btn btn-danger px-2 py-1"
-                                onclick="return confirm('Yakin barang ini hilang?')">Hilang</button>
-                        </form>
-                        @else
-                            Belum Ada Persetujuan
-                        @endif
-                        {{-- <button>Dikembalikan</button> --}}
+                        <div class="d-flex gap-1">
+                            @if ($item->ajuan[0]->status == 'disetujui')
+                            <form
+                                action="{{ route('peminjaman.updateStatus', [
+                                            'id' => $item->id, 
+                                            'status' => 'Dikembalikan', 
+                                            'jumlah_barang' => $item->jumlah_barang, 
+                                            'barang_id' => $item->barang_id
+                                            ]) }}"
+                                method="POST" class="d-inline">
+                                @csrf
+                                @method('PUT')
+                                <button class="btn btn-success px-2 py-1"
+                                    onclick="return confirm('Yakin ingin mengembalikan?')">Kembalikan</button>
+                            </form>
+    
+                            <form
+                                action="{{ route('peminjaman.updateStatus', [
+                                            'id' => $item->id, 
+                                            'status' => 'Hilang',
+                                            'jumlah_barang' => $item->jumlah_barang, 
+                                            'barang_id' => $item->barang_id
+                                            ]) }}"
+                                method="POST" class="d-inline">
+                                @csrf
+                                @method('PUT')
+                                <button class="btn btn-danger px-2 py-1"
+                                    onclick="return confirm('Yakin barang ini hilang?')">Hilang</button>
+                            </form>
+                            @elseif ($item->ajuan[0]->status == 'pending')
+                                <button>Edit</button>
+                                <button>Batal</button>
+                            @endif
+                            {{-- <button>Dikembalikan</button> --}}
+                        </div>
                     </td>
                 </tr>
                 @empty
-                
                     <td colspan="9" class="text-center">Tidak ada data peminjaman</td>
                 @endforelse
             </tbody>
