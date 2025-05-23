@@ -127,7 +127,7 @@
                         </td>
                     </tr>
                 @empty
-                    
+                        <td colspan="8" class="text-center">Data mutasi kosong</td>
                 @endforelse
             </tbody>
         </table>

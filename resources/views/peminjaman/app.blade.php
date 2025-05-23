@@ -82,10 +82,16 @@
                                     onclick="return confirm('Yakin barang ini hilang?')">Hilang</button>
                             </form>
                             @elseif ($item->ajuan[0]->status == 'pending')
-                                <button class="btn btn-primary px-2 py-1">Edit</button>
-                                <button class="btn btn-danger px-2 py-1">Batal</button>
+                                <button type="button" class="btn btn-primary px-2 py-1" data-bs-toggle="modal" data-bs-target="#editPeminjaman{{ $item->id }}">
+                                    Edit
+                                </button>
+                                @include('peminjaman.popup.edit_peminjaman')
+                                <form action="{{ route('peminjaman.destroy', $item->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger px-2 py-1">Batal</button>
+                                </form>
                             @endif
-                            {{-- <button>Dikembalikan</button> --}}
                         </div>
                     </td>
                 </tr>

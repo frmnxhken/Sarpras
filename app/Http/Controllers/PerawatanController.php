@@ -53,4 +53,30 @@ class PerawatanController extends Controller
         $dataPerawatan = Perawatan::with('barang.ruangan','ajuan')->get();
         return view('laporan.perawatan.app', compact('dataPerawatan'));
     }
+
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'tanggal_perawatan' => 'required|date',
+            'barang_id' => 'required|exists:barangs,id',
+            'jenis_perawatan' => 'required|string',
+            'biaya_perawatan' => 'nullable|integer',
+            'jumlah' => 'nullable|integer',
+            'keterangan' => 'nullable|string',
+            'status' => 'required|in:selesai,belum',
+        ]);
+
+        $perawatan = Perawatan::findOrFail($id);
+        $perawatan->update($validated);
+
+        return redirect()->back()->with('success', 'Data perawatan berhasil diperbarui.');
+    }
+
+    public function destroy($id)
+    {
+        $perawatan = Perawatan::findOrFail($id);
+        $perawatan->delete();
+
+        return redirect()->back()->with('success', 'Data perawatan berhasil dihapus.');
+    }
 }

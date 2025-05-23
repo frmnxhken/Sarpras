@@ -1,13 +1,16 @@
 <x-layout>
-    <h4 class="mb-4">
-        Kelola pengguna
-    </h4>
+    <h4 class="mb-4">Kelola Pengguna</h4>
 
-    <!-- Pencarian Global -->
-    <div class="row align-items-center mb-4">
-        <!-- Kolom pencarian -->
-        <div class="col-md-3">
-            <input type="text" id="globalSearch" class="form-control" placeholder="cari pengguna...">
+    <div class="mb-3">
+        <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#tambahUser">
+            <i class="bi bi-plus-circle me-2"></i>Tambah User
+        </button>
+    </div>
+    @include('pengaturan.popup.tambah_user')
+
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <input type="text" id="globalSearch" class="form-control" placeholder="Cari pengguna...">
         </div>
     </div>
     <div class="table-responsive">
@@ -41,8 +44,10 @@
                             @endif
                         </td>
                         <td>
+                            <button class="btn btn-primary px-2 py-1" data-bs-toggle="modal" data-bs-target="#editUser{{ $user->id }}">Edit</button>
                             {{-- <a href="{{ route('pengaturan.edit', $user->id) }}" class="btn btn-primary px-2 py-1">Edit</a> --}}
-                            <form action="{{ route('pengaturan.destroy', $user->id) }}" method="POST" class="d-inline">
+                            @include('pengaturan.popup.edit_user')
+                            <form action="{{ route('user.destroy', $user->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger px-2 py-1">Hapus</button>

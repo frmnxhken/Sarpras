@@ -361,38 +361,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </li> <!-- end Menu Item -->
-
-                    {{-- <li class="nav-item">
-                        <a class="nav-link menu-arrow" href="#sidebarMultiLevelDemo" data-bs-toggle="collapse"
-                            role="button" aria-expanded="false" aria-controls="sidebarMultiLevelDemo">
-                            <span class="nav-icon">
-                                <i class="ri-share-line"></i>
-                            </span>
-                            <span class="nav-text"> Menu Items </span>
-                        </a>
-                        <div class="collapse" id="sidebarMultiLevelDemo">
-                            <ul class="nav sub-navbar-nav">
-                                <li class="sub-nav-item">
-                                    <a class="sub-nav-link" href="javascript:void(0);">Menu Item 1</a>
-                                </li>
-                                <li class="sub-nav-item">
-                                    <a class="sub-nav-link  menu-arrow" href="#sidebarItemDemoSubItem"
-                                        data-bs-toggle="collapse" role="button" aria-expanded="false"
-                                        aria-controls="sidebarItemDemoSubItem">
-                                        <span> Menu Item 2 </span>
-                                    </a>
-                                    <div class="collapse" id="sidebarItemDemoSubItem">
-                                        <ul class="nav sub-navbar-nav">
-                                            <li class="sub-nav-item">
-                                                <a class="sub-nav-link" href="javascript:void(0);">Menu Sub item</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </li> <!-- end Menu Item --> --}}
+                    </li> 
                 </ul>
             </div>
         </div>

@@ -61,13 +61,17 @@
                                     </form>
                                 @elseif ($item->ajuan[0]->status == 'pending')
                                     <button type="submit" class="btn btn-primary px-2 py-1">Edit</button>
-                                    <button type="submit" class="btn btn-danger px-2 py-1">Batal</button>
+                                    <form action="{{ route('perawatan.destroy', $item->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger px-2 py-1">Batal</button>
+                                    </form>
                                 @endif
                             </div>
                         </td>
                     </tr>
                 @empty
-                    <td colspan="9" class="text-center">Belum ada barang yang dirawat</td>\
+                    <td colspan="9" class="text-center">Belum ada barang yang dirawat</td>
                 @endforelse
             </tbody>
         </table>

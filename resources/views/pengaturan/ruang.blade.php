@@ -5,7 +5,7 @@
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#tambahRuang">
         <i class="bi bi-plus-circle me-2"></i>Tambah Ruang
     </button>
-    @include('ruang.popup.tambah_ruang')
+    @include('pengaturan.popup.tambah_ruang')
     <div class="table-responsive">
         <table class="table table-bordered table-striped align-middle" id="">
             <thead class="table-light">

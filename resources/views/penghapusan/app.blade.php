@@ -39,10 +39,10 @@
                                         @method('PUT')
                                         <button type="submit" class="btn btn-primary px-2 py-1">Edit</button>
                                     </form>
-                                    <form action="">
+                                    <form action="{{ route('penghapusan.destroy', $item->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger px-2 py-1">Batal</button>
+                                        <button class="btn btn-danger px-2 py-1">Batal</button>
                                     </form>
                                 @endif
                             </div>

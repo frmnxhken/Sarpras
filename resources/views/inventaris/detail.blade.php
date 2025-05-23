@@ -1,110 +1,65 @@
 <x-layout>
-    <h1>Detail Barang</h1>
-    <div class="row">
+    <h1 class="mb-4 fw-bold">Detail Barang</h1>
+    <div class="row g-4">
+        <!-- Kolom Kiri -->
         <div class="col-md-6">
-            <div class="card">
+            <div class="card shadow-sm rounded-3">
                 <div class="card-body">
                     <table class="table table-bordered">
                         <tbody>
-                            <tr>
-                                <th>Kode Barang</th>
-                                <td>{{ $item->kode_barang }}</td>
-                            </tr>
-                            <tr>
-                                <th>Nama Barang</th>
-                                <td>{{ $item->nama_barang }}</td>
-                            </tr>
-                            <tr>
-                                <th>Jenis Barang</th>
-                                <td>{{ $item->jenis_barang }}</td>
-                            </tr>
-                            <tr>
-                                <th>Merk / Spesifikasi</th>
-                                <td>{{ $item->merk_barang }}</td>
-                            </tr>
-                            <tr>
-                                <th>Tahun Perolehan</th>
-                                <td>{{ $item->tahun_perolehan }}</td>
-                            </tr>
-                            <tr>
-                                <th>Sumber Dana</th>
-                                <td>{{ $item->sumber_dana }}</td>
-                            </tr>
+                            <tr><th>Kode Barang</th><td>{{ $item->kode_barang }}</td></tr>
+                            <tr><th>Nama Barang</th><td>{{ $item->nama_barang }}</td></tr>
+                            <tr><th>Jenis Barang</th><td>{{ $item->jenis_barang }}</td></tr>
+                            <tr><th>Merk / Spesifikasi</th><td>{{ $item->merk_barang }}</td></tr>
+                            <tr><th>Tahun Perolehan</th><td>{{ $item->tahun_perolehan }}</td></tr>
+                            <tr><th>Sumber Dana</th><td>{{ $item->sumber_dana }}</td></tr>
                             <tr>
                                 <th>Harga Perolehan</th>
                                 <td>{{ $item->harga_perolehan == 0 ? '-' : 'Rp. ' . number_format($item->harga_perolehan, 0, ',', '.') }}</td>
                             </tr>
-                            <tr>
-                                <th>CV Pengadaan</th>
-                                <td>{{ $item->cv_pengadaan }}</td>
-                            </tr>
-                            <tr>
-                                <th>Jumlah Barang</th>
-                                <td>{{ $item->jumlah_barang }}</td>
-                            </tr>
-                            <tr>
-                                <th>Lokasi</th>
-                                <td>{{ $item->ruangan->nama_ruangan }}</td>
-                            </tr>
-                            <tr>
-                                <th>Kondisi</th>
-                                <td>{{ $item->kondisi_barang }}</td>
-                            </tr>
-                            <tr>
-                                <th>Kepemilikan</th>
-                                <td>{{ $item->kepemilikan_barang }}</td>
-                            </tr>
-                            <tr>
-                                <th>Penanggung Jawab</th>
-                                <td>{{ $item->penanggung_jawab }}</td>
-                            </tr>
+                            <tr><th>CV Pengadaan</th><td>{{ $item->cv_pengadaan }}</td></tr>
+                            <tr><th>Jumlah Barang</th><td>{{ $item->jumlah_barang }}</td></tr>
+                            <tr><th>Lokasi</th><td>{{ $item->ruangan->nama_ruangan }}</td></tr>
+                            <tr><th>Kondisi</th><td>{{ $item->kondisi_barang }}</td></tr>
+                            <tr><th>Kepemilikan</th><td>{{ $item->kepemilikan_barang }}</td></tr>
+                            <tr><th>Penanggung Jawab</th><td>{{ $item->penanggung_jawab }}</td></tr>
                         </tbody>
                     </table>
-                    <div class="gap-2 d-flex justify-content-end">
-                        <!-- <button class="btn btn-primary px-2 py-1" href="/detail">
-                            Cetak
-                        </button> -->
-                        <button class="btn btn-warning px-2 py-1" data-bs-toggle="modal" data-bs-target="#editData">
-                            Edit
-                        </button>
+                    <div class="d-flex justify-content-end gap-2 mt-3">
+                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editData">Edit</button>
                         @include('inventaris.popup.edit_data')
-                        <button class="btn btn-danger px-2 py-1" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                            Hapus
-                        </button>
-                        @include('inventaris.popup.confirmation_delete', [
-                        'modalId' => '',
-                        'item' => $item
-                        ])
+
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Hapus</button>
+                        @include('inventaris.popup.confirmation_delete', ['modalId' => '', 'item' => $item])
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Kolom Kanan -->
         <div class="col-md-6">
-            <div class="card">
+            <div class="card shadow-sm rounded-3 mb-3">
                 <div class="card-body text-center">
-                    <img src="{{ asset($item->gambar_barang) }}" class="d-block w-100"
-                        alt="img-3">
+                    <img src="{{ asset($item->gambar_barang) }}" class="img-fluid rounded" alt="Gambar Barang">
                 </div>
             </div>
-            <div class="card mb-3">
+
+            <div class="card shadow-sm rounded-3">
                 <div class="card-body text-center" style="min-height: 300px;">
-                    <h5>Qr Code</h5>
-                    <!-- {{ QrCode::size(242 )->generate($item->kode_barang) }} -->
+                    <h5 class="mb-3 fw-semibold">QR Code</h5>
                     <div id="print-area">
                         {!! QrCode::size(216)->generate($item->kode_barang) !!}
-                        <p style="margin-top: 10px;">{{ $item->kode_barang }}</p>
+                        <p class="mt-2">{{ $item->kode_barang }}</p>
                     </div>
                 </div>
-                <button class="btn btn-primary px-2 py-1"  onclick="printQRCode()">
-                    Cetak
-                </button>
-                <!-- <div class="text-center mb-3">
-                    <button class="btn btn-primary px-2 py-1" onclick="printQRCode()">Cetak</button>
-                </div> -->
+                <div class="card-footer text-center bg-white">
+                    <button class="btn btn-primary" onclick="printQRCode()">Cetak QR Code</button>
+                </div>
             </div>
         </div>
     </div>
 </x-layout>
+
 <script>
     function printQRCode() {
         const printContents = document.getElementById('print-area').innerHTML;
@@ -122,9 +77,7 @@
                         }
                     </style>
                 </head>
-                <body>
-                    ${printContents}
-                </body>
+                <body>${printContents}</body>
             </html>
         `;
 
