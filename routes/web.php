@@ -12,9 +12,11 @@ use App\Http\Controllers\PenghapusanController;
 // use Dflydev\DotAccessData\Data;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/login',function () {
+    return view('login');
+});
+
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-
-
 
 Route::get('/inventaris',[BarangController::class, 'index']);
 Route::post('/inventaris/tambah', [BarangController::class, 'store'])->name('inventaris.store');
