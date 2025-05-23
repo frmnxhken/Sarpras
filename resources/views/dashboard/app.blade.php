@@ -43,7 +43,7 @@
                     <div class="row g-0">
                         <div class="col-lg-12 border-start border-5">
                             <div class="p-3">
-                                <div class="d-flex justify-content-between align-items-center">
+                                <!-- <div class="d-flex justify-content-between align-items-center">
                                     <h4 class="card-title">Performance</h4>
                                     <div>
                                         <button type="button" class="btn btn-sm btn-outline-light">ALL</button>
@@ -51,16 +51,57 @@
                                         <button type="button" class="btn btn-sm btn-outline-light">6M</button>
                                         <button type="button" class="btn btn-sm btn-outline-light active">1Y</button>
                                     </div>
-                                </div> <!-- end card-title-->
+                                </div> 
 
                                 <div class="alert alert-info mt-3 text text-truncate mb-0" role="alert">
                                     We regret to inform you that our server is currently
                                     experiencing technical difficulties.
-                                </div>
+                                </div> -->
 
-                                <div dir="ltr">
+                                <div class="container mt-4">
                                     <div id="dash-performance-chart" class="apex-charts"></div>
                                 </div>
+                                <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+                                <script>
+                                    document.addEventListener("DOMContentLoaded", function() {
+                                        const chartDiv = document.querySelector("#dash-performance-chart");
+
+                                        // Bersihkan isi div agar chart lama hilang
+                                        chartDiv.innerHTML = '';
+
+                                        if (window.myApexChart) {
+                                            window.myApexChart.destroy();
+                                        }
+
+                                        var options = {
+                                            chart: {
+                                                type: 'bar',
+                                                height: 350
+                                            },
+                                            series: [{
+                                                    name: 'Barang Baru',
+                                                    data: @json($dataBarangBaru)
+                                                },
+                                                {
+                                                    name: 'Barang Rusak',
+                                                    data: @json($dataBarangRusak)
+                                                }
+                                            ],
+                                            xaxis: {
+                                                categories: @json($tahunLabels)
+                                            },
+                                            colors: ['#007bff', '#dc3545'],
+                                            title: {
+                                                text: 'Jumlah Barang Baru dan Rusak per Tahun',
+                                                align: 'center'
+                                            }
+                                        };
+
+                                        window.myApexChart = new ApexCharts(chartDiv, options);
+                                        window.myApexChart.render();
+                                    });
+                                </script>
+
                             </div>
                         </div> <!-- end right chart card -->
                     </div> <!-- end chart card -->
