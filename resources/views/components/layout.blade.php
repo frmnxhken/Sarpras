@@ -231,11 +231,11 @@
         <div class="main-nav">
             <!-- Sidebar Logo -->
             <div class="logo-box">
-                <a href="index.html" class="logo-light">
+                <a href="/" class="logo-light">
                     <img src="https://imersa.co.id/img/logo-web.png" class="logo-sm" alt="logo sm">
                     <img src="https://imersa.co.id/img/logo-web.png" class="logo-lg" alt="logo light">
                 </a>
-                <a href="index.html" class="logo-dark">
+                <a href="/" class="logo-dark">
                     <img src="https://imersa.co.id/img/logo-web.png" class="logo-sm" alt="logo sm">
                     <img src="https://imersa.co.id/img/logo-web.png" class="logo-lg" alt="logo light">
                 </a>
@@ -340,23 +340,24 @@
                     </li> <!-- end Menu Item -->
 
                     <li class="nav-item">
-                        <a class="nav-link menu-arrow" href="#sidebarMenejemenData" data-bs-toggle="collapse"
+                        <a class="nav-link menu-arrow" href="#sidebarPengaturan" data-bs-toggle="collapse"
                             role="button" aria-expanded="false" aria-controls="sidebarMultiLevelDemo">
                             <span class="nav-icon">
                                 <i class="ri-settings-4-line fs-18"></i>
                             </span>
                             <span class="nav-text">Pengaturan</span>
                         </a>
-                        <div class="collapse" id="sidebarMenejemenData">
+                        <div class="collapse" id="sidebarPengaturan">
                             <ul class="nav sub-navbar-nav">
-                                <li class="sub-nav-item">
+                                {{-- <li class="sub-nav-item">
                                     <a class="sub-nav-link" href="/kategoriBarang">Kategori Barang</a>
+                                </li> --}}
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="/kelola/ruangan">Kelola Ruangan</a>
                                 </li>
                                 <li class="sub-nav-item">
-                                    <a class="sub-nav-link" href="/dataRuang">Data Ruangan</a>
+                                    <a class="sub-nav-link" href="/kelola/user">Kelola User</a>
                                 </li>
-                                <li class="sub-nav-item">
-                                    <a class="sub-nav-link" href="kelolaBarang">Kelola Pengguna</a>
                                 </li>
                             </ul>
                         </div>

@@ -7,6 +7,7 @@ use App\Http\Controllers\MutasiController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PerawatanController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KelolaUser;
 use App\Http\Controllers\PenghapusanController;
 // use Dflydev\DotAccessData\Data;
 use Illuminate\Support\Facades\Route;
@@ -63,10 +64,5 @@ Route::get('/laporan/penghapusan', [PenghapusanController::class, 'laporan']);
 
 Route::get('/dataRuang', [DataRuanganController::class, 'index'])->name('mutasi.exportExcel');
 
-Route::get('/dataRuang', [DataRuanganController::class, 'index']);
-Route::get('/kategoriBarang', function () {
-    return view('pengaturan.kategori.app');
-});
-Route::get('/kelolaBarang', function () {
-    return view('pengaturan.kelola.app');
-});
+Route::get('/kelola/ruangan', [DataRuanganController::class, 'index']);
+Route::get('/kelola/user', [KelolaUser::class, 'index']);
