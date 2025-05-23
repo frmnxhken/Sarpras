@@ -106,6 +106,19 @@
                 </tr>
             </thead>
             <tbody>
+                @forelse ($mutasi as $item)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $item->tanggal_mutasi }}</td>
+                        <td>{{ $item->barang->nama_barang }}</td>
+                        <td>{{ $item->jumlah }}</td>
+                        <td>{{ $item->dari_unit }}</td>
+                        <td>{{ $item->ke_unit }}</td>
+                        <td>{{ $item->keterangan }}</td>
+                    </tr>
+                @empty
+                    
+                @endforelse
                 <tr>
                     <td>1</td>
                     <td>2024-05-10</td>
@@ -115,16 +128,6 @@
                     <td>Keuangan</td>
                     <td>Pindah ruangan baru</td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>2024-05-11</td>
-                    <td>PC</td>
-                    <td>2</td>
-                    <td>Laboratorium</td>
-                    <td>Ruang Kepsek</td>
-                    <td>Pindah ruangan baru</td>
-                </tr>
-                <!-- Tambahkan data lain sesuai kebutuhan -->
             </tbody>
         </table>
     </div>

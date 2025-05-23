@@ -330,7 +330,7 @@
                                     <a class="sub-nav-link" href="/laporan/peminjaman">Peminjaman</a>
                                 </li>
                                 <li class="sub-nav-item">
-                                    <a class="sub-nav-link" href="/laporan/Penghapusan">Mutasi</a>
+                                    <a class="sub-nav-link" href="/laporan/mutasi">Mutasi</a>
                                 </li>
                                 <li class="sub-nav-item">
                                     <a class="sub-nav-link" href="/laporan/penghapusan">Penghapusan</a>

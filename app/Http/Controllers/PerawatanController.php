@@ -48,4 +48,9 @@ class PerawatanController extends Controller
 
         return redirect()->back()->with('success', 'Data perawatan berhasil disimpan.');
     }
+
+    public function laporan(){
+        $dataPerawatan = Perawatan::with('barang.ruangan','ajuan')->get();
+        return view('laporan.perawatan.app', compact('dataPerawatan'));
+    }
 }

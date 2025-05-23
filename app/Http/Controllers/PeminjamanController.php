@@ -81,6 +81,11 @@ class PeminjamanController extends Controller
         return back()->with('success', 'Status peminjaman berhasil diperbarui.');
     }
 
+    public function laporan(){
+        $items = Peminjaman::with(['barang.ruangan','ajuan'])->get();
+        return view('laporan.peminjaman.app', compact('items'));
+    }
+
     // public function cetakPDF()
     // {
     //     $items = Peminjaman::with(['barang.ruangan'])

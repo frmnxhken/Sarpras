@@ -1,5 +1,4 @@
 <x-layout>
-    @include('laporan.peminjaman.popup.tambah_peminjaman')
     <div class="row align-items-center mb-4">
         <div class="col-md-3">
             <select class="form-select">
@@ -17,7 +16,8 @@
         </div>
         <div class="col-md-4 text-end">
             <div class="btn-group me-2">
-                <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown"
+                    aria-expanded="false">
                     <i class="bi bi-file-earmark-pdf"></i> Cetak PDF
                 </button>
                 <ul class="dropdown-menu bg-danger" style=" min-width: 100%;">
@@ -28,14 +28,15 @@
                 </ul>
             </div>
             <div class="btn-group">
-                <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown"
+                    aria-expanded="false">
                     <i class="bi bi-file-earmark-excel"></i> Ekspor Excel
                 </button>
                 <ul class="dropdown-menu bg-success" style="min-width: 100%;">
-                    <li><a class="dropdown-item text-white" >1 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" >3 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" >6 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" >1 Tahun</a></li>
+                    <li><a class="dropdown-item text-white">1 Bulan</a></li>
+                    <li><a class="dropdown-item text-white">3 Bulan</a></li>
+                    <li><a class="dropdown-item text-white">6 Bulan</a></li>
+                    <li><a class="dropdown-item text-white">1 Tahun</a></li>
                 </ul>
             </div>
             <!-- <a href="{{ route('peminjaman.cetakPDF') }}" class="btn btn-danger me-2" target="_blank">
@@ -60,58 +61,34 @@
                     <th>Barang</th>
                     <th>Jumlah</th>
                     <th>Status</th>
-                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($items as $item)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $item->tanggal_peminjaman }}</td>
-                    <td>{{ $item->tanggal_pengembalian }}</td>
-                    <td>{{ $item->nama_peminjam }}</td>
-                    <td>{{ $item->barang->ruangan->nama_ruangan }}</td>
-                    <td>{{ $item->barang->nama_barang }}</td>
-                    <td>{{ $item->jumlah_barang }}</td>
-                    <td>
-                        <span
-                            class="badge @if ($item->status_peminjaman == 'Dipinjam') bg-warning  @elseif ($item->status_peminjaman == 'Dikembalikan') bg-success @else bg-danger @endif text-white">{{ $item->status_peminjaman }}</span>
-                    </td>
-                    <td>
-                        @if ($item->status_peminjaman == 'Dipinjam')
-                        <form
-                            action="{{ route('peminjaman.updateStatus', [
-                                        'id' => $item->id, 
-                                        'status' => 'Dikembalikan', 
-                                        'jumlah_barang' => $item->jumlah_barang, 
-                                        'barang_id' => $item->barang_id
-                                        ]) }}"
-                            method="POST" class="d-inline">
-                            @csrf
-                            @method('PUT')
-                            <button class="btn btn-success px-2 py-1"
-                                onclick="return confirm('Yakin ingin mengembalikan?')">Kembalikan</button>
-                        </form>
-
-                        <form
-                            action="{{ route('peminjaman.updateStatus', [
-                                        'id' => $item->id, 
-                                        'status' => 'Hilang',
-                                        'jumlah_barang' => $item->jumlah_barang, 
-                                        'barang_id' => $item->barang_id
-                                        ]) }}"
-                            method="POST" class="d-inline">
-                            @csrf
-                            @method('PUT')
-                            <button class="btn btn-danger px-2 py-1"
-                                onclick="return confirm('Yakin barang ini hilang?')">Hilang</button>
-                        </form>
-                        @endif
-                        {{-- <button>Dikembalikan</button> --}}
-                    </td>
-                </tr>
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $item->tanggal_peminjaman }}</td>
+                        <td>{{ $item->tanggal_pengembalian }}</td>
+                        <td>{{ $item->nama_peminjam }}</td>
+                        <td>{{ $item->barang->ruangan->nama_ruangan }}</td>
+                        <td>{{ $item->barang->nama_barang }}</td>
+                        <td>{{ $item->jumlah_barang }}</td>
+                        <td>
+                            @if ($item->ajuan[0]->status == 'pending')
+                                <span class="badge bg-warning">Belum disetujui</span>
+                            @elseif ($item->ajuan[0]->status == 'disetujui')
+                                @if ($item->status_peminjaman == 'Dipinjam')
+                                    <span class="badge bg-warning">Dipinjam</span>
+                                @else
+                                    <span class="badge bg-success">Dikembalikan</span>
+                                @endif
+                            @else
+                                <span class="badge bg-danger">Ditolak</span>
+                            @endif
+                        </td>
+                    </tr>
                 @empty
-                Tidak ada data peminjaman
+                    <td colspan="8" class="text-center">Tidak ada data laporan</td>
                 @endforelse
             </tbody>
         </table>

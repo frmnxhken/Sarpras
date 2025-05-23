@@ -59,7 +59,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="8" class="text-center">Data mutasi kosong</td>
+                        <td colspan="9" class="text-center">Data mutasi kosong</td>
                     </tr>
                 @endforelse
             </tbody>

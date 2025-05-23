@@ -41,9 +41,7 @@ Route::get('/laporan/peminjaman/pdf', [PeminjamanController::class, 'cetakPDF'])
 Route::get('/laporan/peminjaman/excel', [PeminjamanController::class, 'exportExcel'])->name('peminjaman.exportExcel');
 
 Route::get('/verivikasiAjuan', [AjuanController::class, 'index']);
-// Route::put('/verivikasiAjuan{id}/{status}', [AjuanController::class, 'UpdateStatus'])->name('ajuan.updateStatus');
 Route::put('/ajuan/update/{type}/{id}/{status}', [AjuanController::class, 'UpdateStatus'])->name('ajuan.updateStatus');
-
 
 Route::get('/perawatan', [PerawatanController::class, 'index']);
 Route::put('/perawatan/{id}/{status}', [PerawatanController::class, 'UpdateStatus'])->name('perawatan.updateStatus');
@@ -59,15 +57,10 @@ Route::get('/penghapusan', function () {
 });
 
 // laopran
-Route::get('/laporan/mutasi', function () {
-    return view('laporan.mutasi.app');
-});
-Route::get('/laporan/peminjaman', function () {
-    return view('laporan.peminjaman.app');
-});
-Route::get('/laporan/perawatan', function () {
-    return view('laporan.perawatan.app');
-});
+Route::get('/laporan/perawatan', [PerawatanController::class, 'laporan']);
+Route::get('/laporan/peminjaman', [PeminjamanController::class, 'laporan']);
+Route::get('/laporan/mutasi', [MutasiController::class, 'laporan']);
+
 Route::get('/laporan/penghapusan', function () {
     return view('laporan.penghapusan.app');
 });

@@ -103,36 +103,36 @@
                     <th>Biaya (Rp)</th>
                     <th>Keterangan</th>
                     <th>Status</th>
-                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>2024-06-01</td>
-                    <td>Komputer</td>
-                    <td>Lab Komputer</td>
-                    <td>Pembersihan</td>
-                    <td>50000</td>
-                    <td>Membersihkan kipas dan casing</td>
-                    <td><span class="badge bg-warning">Diperbaiki</span></td>
-                    <td>
-                        <button class="btn btn-success px-2 py-1" onclick="return confirm('Yakin sudah selesai?')">Selesai</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>2024-06-10</td>
-                    <td>Printer</td>
-                    <td>Administrasi</td>
-                    <td>Ganti Tinta</td>
-                    <td>75000</td>
-                    <td>Mengganti tinta printer warna</td>
-                    <td><span class="badge bg-warning">Diperbaiki</span></td>
-                    <td>
-                        <button class="btn btn-success px-2 py-1" onclick="return confirm('Yakin sudah selesai?')">Selesai</button>
-                    </td>
-                </tr>
+                @forelse ($dataPerawatan as $data)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $data->tanggal_perawatan }}</td>
+                        <td>{{ $data->barang->nama_barang }}</td>
+                        <td>{{ $data->barang->ruangan->nama_ruangan }}</td>
+                        <td>{{ $data->jenis_perawatan }}</td>
+                        <td>{{ number_format($data->biaya, 0, ',', '.') }}</td>
+                        <td>{{ $data->keterangan ?? '-'}}</td>
+                        <td>
+                            @if ($data->ajuan[0]->status == 'pending')
+                                <span class="badge bg-warning">belum disetujui</span>
+                            @elseif ($data->ajuan[0]->status == 'disetujui')
+                                @if ($data->status == 'belum')
+                                    <span class="badge bg-warning">Diperbaiki</span>
+                                @else
+                                    <span class="badge bg-success">Selesai</span>
+                                @endif
+                            @else
+                                <span class="badge bg-danger">Ditolak</span>
+                            @endif
+                        </td>
+                    </tr>
+                    
+                @empty
+                    <td colspan="9" class="text-center">Tidak ada data laporan</td>
+                @endforelse
             </tbody>
         </table>
     </div>
