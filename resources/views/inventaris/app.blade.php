@@ -21,6 +21,7 @@
                     <th scope="col">Nama Barang</th>
                     <th scope="col">Lokasi</th>
                     <th scope="col">Kondisi</th>
+                    <th scope="col">Jumlah</th>
                     <th scope="col">Gambar</th>
                     <th scope="col">Aksi</th>
                 </tr>
@@ -33,6 +34,7 @@
                         <td>{{ $item->nama_barang }}</td>
                         <td>{{ $item->ruangan->nama_ruangan ?? '-' }}</td>
                         <td>{{ $item->kondisi_barang }}</td>
+                        <td>{{ $item->jumlah_barang }}</td>
                         <td>
                             <a type="button" data-bs-toggle="modal" data-bs-target="#ImageModal{{ $loop->iteration }}">
                                 <img src="{{ asset($item->gambar_barang) }}" alt="image"

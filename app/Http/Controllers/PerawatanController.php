@@ -11,7 +11,7 @@ class PerawatanController extends Controller
 {
     public function index()
     {
-        $barang = Barang::all();
+        $barang = Barang::with('ruangan')->get();
         $dataPerawatan = Perawatan::with('barang.ruangan','ajuan')->where('status', 'belum')->get();
         return view('perawatan.app', compact('dataPerawatan', 'barang'));
     }

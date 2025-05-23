@@ -84,24 +84,31 @@
                     <th>Nama Barang</th>
                     <th>Jumlah</th>
                     <th>Alasan Penghapusan</th>
+                    <th>Status Pengajuan</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>2024-06-15</td>
-                    <td>Kursi Kantor</td>
-                    <td>5</td>
-                    <td>Rusak parah dan tidak bisa diperbaiki</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>2024-06-20</td>
-                    <td>Printer</td>
-                    <td>1</td>
-                    <td>Sudah tidak berfungsi</td>
-                </tr>
-                <!-- Tambahkan baris sesuai data -->
+                @forelse ($data as $item )
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $item->created_at->format('Y-m-d') }}</td>
+                        <td>{{ $item->barang->nama_barang }}</td>
+                        <td>{{ $item->jumlah }}</td>
+                        <td>{{ $item->keterangan }}</td>
+                        <td>
+                            @if ($item->ajuan[0]->status == 'pending')
+                                <span class="badge bg-warning">Belum disetujui</span>
+                            @elseif ($item->ajuan[0]->status == 'disetujui')
+                                <span class="badge bg-success">Disetujui</span>
+                            @else
+                                <span class="badge bg-danger">Ditolak</span>
+                            @endif
+                        </td>
+                    </tr>
+                    
+                @empty
+                    <td colspan="8" class="text-center">Tidak ada data laporan</td>
+                @endforelse
             </tbody>
         </table>
     </div>

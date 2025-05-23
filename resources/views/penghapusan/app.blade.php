@@ -42,7 +42,7 @@
                                     <form action="">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger px-2 py-1">Hapus</button>
+                                        <button type="submit" class="btn btn-danger px-2 py-1">Batal</button>
                                     </form>
                                 @endif
                             </div>

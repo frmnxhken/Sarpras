@@ -31,6 +31,7 @@
                     <th>Nama Barang</th>
                     <th>Unit</th>
                     <th>Jenis Perawatan</th>
+                    <th>Jumlah</th>
                     <th>Biaya (Rp)</th>
                     <th>Keterangan</th>
                     <th>Status pengajuan</th>
@@ -45,7 +46,8 @@
                         <td>{{ $item->barang->nama_barang }}</td>
                         <td>{{ $item->barang->ruangan->nama_ruangan }}</td>
                         <td>{{ $item->jenis_perawatan }}</td>
-                        <td>{{ $item->biaya_perawatan }}</td>
+                        <td>{{ $item->jumlah ?? '-' }}</td>
+                        <td>{{ $item->biaya_perawatan == 0 ? '-' : 'Rp. ' . number_format($item->biaya_perawatan, 0, ',', '.') }}</td>
                         <td>{{ $item->keterangan ?? '-' }}</td>
                         <td><span class="badge @if ($item->ajuan[0]->status == 'pending') bg-warning @elseif ($item->ajuan[0]->status == 'disetujui') bg-success
                         @endif">{{ $item->ajuan[0]->status }}</span></td>
@@ -58,8 +60,8 @@
                                         <button type="submit" class="btn btn-primary px-2 py-1" onclick="return confirm('Yakin sudah selesai?')">Selesai</button>
                                     </form>
                                 @elseif ($item->ajuan[0]->status == 'pending')
-                                    <button>Edit</button>
-                                    <button>Hapus</button>
+                                    <button type="submit" class="btn btn-primary px-2 py-1">Edit</button>
+                                    <button type="submit" class="btn btn-danger px-2 py-1">Batal</button>
                                 @endif
                             </div>
                         </td>

@@ -32,7 +32,7 @@
                             </tr>
                             <tr>
                                 <th>Harga Perolehan</th>
-                                <td>{{ $item->harga_perolehan }}</td>
+                                <td>{{ $item->harga_perolehan == 0 ? '-' : 'Rp. ' . number_format($item->harga_perolehan, 0, ',', '.') }}</td>
                             </tr>
                             <tr>
                                 <th>CV Pengadaan</th>
@@ -44,7 +44,7 @@
                             </tr>
                             <tr>
                                 <th>Lokasi</th>
-                                <td>{{ $item->ruangan_id }}</td>
+                                <td>{{ $item->ruangan->nama_ruangan }}</td>
                             </tr>
                             <tr>
                                 <th>Kondisi</th>

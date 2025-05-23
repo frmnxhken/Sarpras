@@ -100,6 +100,7 @@
                     <th>Nama Barang</th>
                     <th>Unit</th>
                     <th>Jenis Perawatan</th>
+                    <th>Jumlah</th>
                     <th>Biaya (Rp)</th>
                     <th>Keterangan</th>
                     <th>Status</th>
@@ -113,6 +114,7 @@
                         <td>{{ $data->barang->nama_barang }}</td>
                         <td>{{ $data->barang->ruangan->nama_ruangan }}</td>
                         <td>{{ $data->jenis_perawatan }}</td>
+                        <td>{{ $data->jumlah ?? '-' }}</td>
                         <td>{{ number_format($data->biaya, 0, ',', '.') }}</td>
                         <td>{{ $data->keterangan ?? '-'}}</td>
                         <td>

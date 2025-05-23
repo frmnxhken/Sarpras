@@ -82,8 +82,8 @@
                                     onclick="return confirm('Yakin barang ini hilang?')">Hilang</button>
                             </form>
                             @elseif ($item->ajuan[0]->status == 'pending')
-                                <button>Edit</button>
-                                <button>Batal</button>
+                                <button class="btn btn-primary px-2 py-1">Edit</button>
+                                <button class="btn btn-danger px-2 py-1">Batal</button>
                             @endif
                             {{-- <button>Dikembalikan</button> --}}
                         </div>

@@ -59,7 +59,7 @@ Route::get('/penghapusan', [PenghapusanController::class, 'index']);
 Route::get('/laporan/perawatan', [PerawatanController::class, 'laporan']);
 Route::get('/laporan/peminjaman', [PeminjamanController::class, 'laporan']);
 Route::get('/laporan/mutasi', [MutasiController::class, 'laporan']);
-Route::get('/laporan/penghapusan', [PenghapusanController::class, 'index']);
+Route::get('/laporan/penghapusan', [PenghapusanController::class, 'laporan']);
 
 Route::get('/dataRuang', [DataRuanganController::class, 'index'])->name('mutasi.exportExcel');
 
