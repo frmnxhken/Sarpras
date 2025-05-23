@@ -70,7 +70,7 @@
                                     data-bs-target="#deleteModal{{ $loop->iteration }}">
                                     Hapus
                                 </button>
-                                @include('inventaris.popup.confirmation_delete', [
+                                @include('inventaris.popup.ajuan_penghapusan', [
                                     'modalId' => $loop->iteration,
                                     'item' => $item,
                                 ])

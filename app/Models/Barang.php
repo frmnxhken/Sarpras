@@ -30,4 +30,8 @@ class Barang extends Model
     {
         return $this->hasMany(Mutasi::class, 'barang_id');
     }
+    public function penghapusan()
+    {
+        return $this->hasMany(Penghapusan::class, 'barang_id');
+    }
 }

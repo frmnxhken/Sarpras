@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\AjuanPengadaan;
+use App\Models\AjuanPenghapusan;
 use App\Models\Barang;
+use App\Models\Penghapusan;
 use Illuminate\Http\Request;
 use App\Models\Ruangans;
 use Illuminate\Support\Str;
@@ -132,4 +134,25 @@ class BarangController extends Controller
         return redirect('/inventaris')->with('success', 'Data inventaris berhasil dihapus.');
     }
 
+    public function destroyApp(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'jumlah' => 'required|integer|min:1',
+            'keterangan' => 'nullable|string',
+        ]);
+        $validated['barang_id'] = $id;
+
+        $barang = Barang::findOrFail($id);
+        if ($validated['jumlah'] > $barang->jumlah_barang) {
+            return redirect()->back()->with('error', 'Jumlah barang yang diminta melebihi stok tersedia.');
+        }
+        $penghapusan = Penghapusan::create($validated);
+
+        AjuanPenghapusan::create([
+            // 'user_id' => auth()->user()->id,
+            'user_id' => 1,
+            'penghapusan_id' => $penghapusan->id,
+        ]);
+        return redirect('/inventaris')->with('success', 'Ajuan penghapusan berhasil diajukan.');
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AjuanMutasi;
 use App\Models\AjuanPeminjaman;
 use App\Models\AjuanPengadaan;
+use App\Models\AjuanPenghapusan;
 use App\Models\AjuanPerawatan;
 use App\Models\Barang;
 use App\Models\Mutasi;
@@ -19,6 +20,7 @@ class AjuanController extends Controller
         $pengadaan = AjuanPengadaan::with((['user', 'barang.ruangan']))->whereIn('status', ['pending', 'ditolak'])->get();
         $perawatan = AjuanPerawatan::with((['user', 'perawatan.barang.ruangan']))->whereIn('status', ['pending', 'ditolak'])->get();
         $mutasi = AjuanMutasi::with((['user', 'mutasi.barang.ruangan']))->whereIn('status', ['pending', 'ditolak'])->get();
+        $penghapusan = AjuanPenghapusan::with((['user', 'penghapusan.barang.ruangan']))->whereIn('status', ['pending', 'ditolak'])->get();
 
         $dataAjuan = collect();
 
@@ -64,6 +66,21 @@ class AjuanController extends Controller
                 'status' => $item->status,
                 'ruangan' => $item->perawatan->barang->ruangan->nama_ruangan ?? '-',
                 'keterangan' => $item->perawatan->keterangan ?? '-',
+            ]);
+        }
+
+        foreach ($penghapusan as $item) {
+            $dataAjuan->push([
+                'id' => $item->id,
+                'model_type' => 'penghapusan',
+                'created_at' => $item->created_at->format('Y-m-d'),
+                'pengaju' => $item->user->name ?? '-',
+                'jenis' => 'Penghapusan',
+                'barang' => $item->penghapusan->barang->nama_barang ?? '-',
+                'jumlah' => $item->penghapusan->jumlah ?? '-',
+                'status' => $item->status,
+                'ruangan' => $item->penghapusan->barang->ruangan->nama_ruangan ?? '-',
+                'keterangan' => $item->penghapusan->keterangan ?? '-',
             ]);
         }
 
@@ -113,7 +130,6 @@ class AjuanController extends Controller
                 ->where('merk_barang', $barangAsal->merk_barang)
                 ->where('kondisi_barang', $barangAsal->kondisi_barang)
                 ->first();
-            // dd($barangTujuan);
             if ($barangTujuan) {
                 $barangTujuan->jumlah_barang += $mutasi->jumlah_barang;
                 $barangTujuan->save();
@@ -137,7 +153,10 @@ class AjuanController extends Controller
                 ]);
             }
         } elseif ($type === 'penghapusan') {
-            // $ajuan = AjuanPenghapusan::find($id);
+            $ajuan = AjuanPenghapusan::find($id);
+            $barang = Barang::findOrFail($ajuan->penghapusan->barang_id);
+            $barang->jumlah_barang -= $ajuan->penghapusan->jumlah;
+            $barang->save();
         } else {
             return redirect()->back()->with('error', 'Jenis ajuan tidak valid.');
         }

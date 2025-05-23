@@ -18,7 +18,9 @@ Route::get('/inventaris',[BarangController::class, 'index']);
 Route::post('/inventaris/tambah', [BarangController::class, 'store'])->name('inventaris.store');
 Route::get('/inventaris/detail/{id}', [BarangController::class, 'show'])->name('inventaris.detail');
 Route::put('/inventaris/detail/{id}', [BarangController::class, 'update'])->name('inventaris.update');
-Route::delete('/inventaris/detail/{id}', [BarangController::class, 'destroy'])->name('inventaris.destroy');
+Route::delete('/inventaris/hapus/{id}', [BarangController::class, 'destroy'])->name('inventaris.destroy');
+Route::delete('/inventaris/ajukanHapus/{id}', [BarangController::class, 'destroyApp'])->name('inventaris.destroy.app');
+
 
 Route::get('/barang/scan/result/{kode}', [BarangController::class, 'scanResult']);
 Route::get('/scan',function () {
