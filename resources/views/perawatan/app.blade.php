@@ -54,13 +54,20 @@
                         <td>
                             <div class="d-flex gap-1">
                                 @if ($item->ajuan[0]->status == 'disetujui')
-                                    <form action="{{ route('perawatan.updateStatus', ['id' => $item->id, 'status' => 'Selesai']) }}" method="post">
+                                    {{-- <form action="{{ route('perawatan.updateStatus', ['id' => $item->id, 'status' => 'Selesai']) }}" method="post">
                                         @csrf
                                         @method('PUT')
                                         <button type="submit" class="btn btn-primary px-2 py-1" onclick="return confirm('Yakin sudah selesai?')">Selesai</button>
-                                    </form>
+                                    </form> --}}
+                                    <button type="button" class="btn btn-primary px-2 py-1" data-bs-toggle="modal" data-bs-target="#modalSelesai{{ $item->id }}">
+                                        Selesai
+                                    </button>
+                                    @include('perawatan.popup.selesai')
                                 @elseif ($item->ajuan[0]->status == 'pending')
-                                    <button type="submit" class="btn btn-primary px-2 py-1">Edit</button>
+                                    <button type="button" class="btn btn-primary px-2 py-1" data-bs-toggle="modal" data-bs-target="#editPerawatan{{ $item->id }}">
+                                        Edit
+                                    </button>
+                                    @include('perawatan.popup.edit')
                                     <form action="{{ route('perawatan.destroy', $item->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')

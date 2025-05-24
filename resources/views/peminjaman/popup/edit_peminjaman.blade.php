@@ -1,12 +1,12 @@
-{{-- @if ($errors->any())
+@if ($errors->any())
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var myModal = new bootstrap.Modal(document.getElementById('editPeminjaman{{ $item->id }}'));
+            var modalId = 'editPeminjaman{{ $item->id }}';
+            var myModal = new bootstrap.Modal(document.getElementById(modalId));
             myModal.show();
         });
     </script>
-@endif --}}
-
+@endif
 <div class="modal fade" id="editPeminjaman{{ $item->id }}" tabindex="-1" aria-labelledby="editPeminjamanLabel{{ $item->id }}" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <form class="modal-content" action="{{ route('peminjaman.update', $item->id) }}" method="POST">
@@ -41,7 +41,7 @@
                     <select name="barang_id" class="form-select">
                         @foreach ($barangs as $barang)
                             <option value="{{ $barang->id }}" {{ $item->barang_id == $barang->id ? 'selected' : '' }}>
-                                {{ $barang->nama_barang }}
+                                {{ $barang->nama_barang }} - {{ $barang->ruangan->nama_ruangan }} - Total: {{ $barang->jumlah_barang }}
                             </option>
                         @endforeach
                     </select>
@@ -52,6 +52,8 @@
                     <input type="number" name="jumlah_barang" class="form-control"
                         value="{{ old('jumlah_barang', $item->jumlah_barang) }}">
                 </div>
+
+                <input type="hidden" name="status_peminjaman" value="{{ $item->status_peminjaman }}">
 
                 <div class="mb-3">
                     <label for="keterangan" class="form-label">Keterangan</label>

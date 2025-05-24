@@ -51,11 +51,12 @@ Route::put('/ajuan/update/{type}/{id}/{status}', [AjuanController::class, 'Updat
 
 //perawatan
 Route::get('/perawatan', [PerawatanController::class, 'index']);
-Route::put('/perawatan/{id}/{status}', [PerawatanController::class, 'UpdateStatus'])->name('perawatan.updateStatus');
+// Route::put('/perawatan/{id}/{status}', [PerawatanController::class, 'UpdateStatus'])->name('perawatan.updateStatus');
 Route::post('/perawatan', [PerawatanController::class, 'store'])->name('perawatan.store');
 
 Route::put('/perawatan/{id}', [PerawatanController::class, 'update'])->name('perawatan.update');
 Route::delete('/perawatan/{id}', [PerawatanController::class, 'destroy'])->name('perawatan.destroy');
+Route::put('/perawatan/updateStatus/{id}', [PerawatanController::class, 'updateStatus'])->name('perawatan.updateStatus');
 
 
 //mutasi

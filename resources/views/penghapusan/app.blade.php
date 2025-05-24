@@ -32,13 +32,10 @@
                         <td>
                             <div class="d-flex gap-1">
                                 @if ($item->ajuan[0]->status == 'pending')
-                                    <form 
-                                    {{-- action="{{ route('penghapusan.updateStatus', ['id' => $item->id, 'status' => 'Selesai']) }}"  --}}
-                                    method="POST">
-                                        @csrf
-                                        @method('PUT')
-                                        <button type="submit" class="btn btn-primary px-2 py-1">Edit</button>
-                                    </form>
+                                    <button type="button" class="btn btn-primary px-2 py-1" data-bs-toggle="modal" data-bs-target="#editPenghapusan{{ $item->id }}">
+                                        Edit
+                                    </button>
+                                    @include('penghapusan.popup.edit')
                                     <form action="{{ route('penghapusan.destroy', $item->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')

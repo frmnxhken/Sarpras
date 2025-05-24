@@ -72,7 +72,6 @@ class MutasiController extends Controller
             'jumlah_barang' => 'required|integer|min:1',
             'tujuan' => 'required|integer',
             'keterangan' => 'nullable|string',
-            'status_mutasi' => 'required|in:Batal,pending,Dikirim',
         ]);
 
         $mutasi = Mutasi::findOrFail($id);

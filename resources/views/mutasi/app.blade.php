@@ -50,11 +50,11 @@
                         <td>
                             <div class="d-flex gap-1">
                                 @if ($item->ajuan[0]->status == 'pending')
-                                    <form action="{{ route('mutasi.updateStatus', ['id' => $item->id, 'status' => 'Selesai']) }}" method="POST">
-                                        @csrf
-                                        @method('PUT')
-                                        <button type="submit" class="btn btn-primary px-2 py-1">Edit</button>
-                                    </form>
+                                    
+                                    <button type="button" class="btn btn-primary px-2 py-1" data-bs-toggle="modal" data-bs-target="#editMutasi{{ $item->id }}">
+                                        Edit
+                                    </button>
+                                    @include('mutasi.popup.edit')
                                     <form action="{{ route('mutasi.destroy', $item->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')

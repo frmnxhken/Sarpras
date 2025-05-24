@@ -52,7 +52,7 @@
                             <option selected disabled>-- Pilih Barang --</option>
                             @foreach ($barangs as $barang)
                                 <option value="{{ $barang->id }}"
-                                    {{ old('barang_id') == $barang->id ? 'selected' : '' }}>{{ $barang->nama_barang }}
+                                    {{ old('barang_id') == $barang->id ? 'selected' : '' }}>{{ $barang->nama_barang }} - {{ $barang->ruangan->nama_ruangan }} - Total: {{ $barang->jumlah_barang }}
                                 </option>
                             @endforeach
                         </select>

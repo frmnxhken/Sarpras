@@ -15,7 +15,7 @@ class PeminjamanController extends Controller
 {
     public function index()
     {
-        $barangs = Barang::all();
+        $barangs = Barang::with('ruangan')->get();
         $items = Peminjaman::with(['barang.ruangan', 'ajuan'])->where('status_peminjaman', 'Dipinjam')->get();
         return view('peminjaman.app', compact('items', 'barangs'));
     }
@@ -90,13 +90,13 @@ class PeminjamanController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'tanggal_peminjaman' => 'required|date',
-            'tanggal_pengembalian' => 'required|date|after_or_equal:tanggal_peminjaman',
-            'nama_peminjam' => 'required|string|max:255',
-            'barang_id' => 'required|exists:barangs,id',
-            'jumlah_barang' => 'required|integer|min:1',
-            'status_peminjaman' => 'required|in:Dipinjam,Dikembalikan,Diperpanjang,Hilang',
-            'keterangan' => 'nullable|string|max:255',
+            'tanggal_peminjamanEdit' => 'required|date',
+            'tanggal_pengembalianEdit' => 'required|date|after_or_equal:tanggal_peminjamanEdit',
+            'nama_peminjamEdit' => 'required|string|max:255',
+            'barang_idEdit' => 'required|exists:barangs,id',
+            'jumlah_barangEdit' => 'required|integer|min:1',
+            'status_peminjamanEdit' => 'required|in:Dipinjam,Dikembalikan,Diperpanjang,Hilang',
+            'keteranganEdit' => 'nullable|string|max:255',
         ]);
 
         $peminjaman = Peminjaman::findOrFail($id);

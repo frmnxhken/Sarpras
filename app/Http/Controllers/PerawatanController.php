@@ -15,15 +15,25 @@ class PerawatanController extends Controller
         $dataPerawatan = Perawatan::with('barang.ruangan','ajuan')->where('status', 'belum')->get();
         return view('perawatan.app', compact('dataPerawatan', 'barang'));
     }
-    public function UpdateStatus($id, $status)
+    public function UpdateStatus(Request $request,$id)
     {
         $perawatan = Perawatan::find($id);
-        if ($perawatan) {
-            $perawatan->status = $status;
-            $perawatan->save();
+        // $validated = $request->validate([
+        //     'kondisi_barang' => 'required|string|max:255',
+        //     'status' => 'nullable|in:selesai,belum',
+        // ]);
+        dd($id);
+        // $perawatan = Perawatan::findOrFail($id);
+        // $barang = Barang::findOrFail(Perawatan::findOrFail($id)->barang_id);
+        // $barang->update($validated);
+
+        // if ($perawatan) {
+            
+        //     $perawatan->status = $status;
+        //     $perawatan->save();
             // return response()->json(['success' => true]);
-            return redirect()->back();
-        }
+            // return redirect()->back();
+        // }
         // return response()->json(['success' => false]);
         redirect()->back();
     }
@@ -71,6 +81,18 @@ class PerawatanController extends Controller
 
         return redirect()->back()->with('success', 'Data perawatan berhasil diperbarui.');
     }
+
+    // public function updateKondisi(Request $request, $id)
+    // {
+    //     $validated = $request->validate([
+    //         'kondisi' => 'required|enum:baik,rusak,berat',
+    //     ]);
+    //     $perawatan = Perawatan::findOrFail($id);
+    //     $barang = Barang::findOrFail(Perawatan::findOrFail($id)->barang_id);
+    //     $barang->update($validated);
+
+    //     return redirect()->back()->with('success', 'Kondisi perawatan berhasil diperbarui.');
+    // }
 
     public function destroy($id)
     {
