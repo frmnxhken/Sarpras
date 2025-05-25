@@ -78,23 +78,23 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
                                     <!-- item-->
-                                    <h6 class="dropdown-header">Welcome Admin!</h6>
+                                    <h6 class="dropdown-header">Welcome {{ Auth::user()->name }}!</h6>
 
-                                    <a class="dropdown-item" href="/auth/edit-password">
+                                    {{-- <a class="dropdown-item" href="/auth/edit-password">
                                         <iconify-icon icon="solar:lock-keyhole-broken"
                                             class="align-middle me-2 fs-18"></iconify-icon><span
                                             class="align-middle">Change Password</span>
-                                    </a>
+                                    </a> --}}
 
                                     <div class="dropdown-divider my-1"></div>
-                                    <form action="/auth/logout" method="post">
-                                        @csrf
-                                        <button type="submit" class="dropdown-item text-danger" href="auth-signin.html">
+                                    {{-- <form action="/auth/logout" method="post"> --}}
+                                        {{-- @csrf --}}
+                                        <button type="submit" class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#logoutModal">
                                             <iconify-icon icon="solar:logout-3-broken"
                                                 class="align-middle me-2 fs-18"></iconify-icon><span
                                                 class="align-middle">Logout</span>
                                         </button>
-                                    </form>
+                                    {{-- </form> --}}
                                 </div>
                             </div>
                         </div>
@@ -102,7 +102,7 @@
                 </div>
             </div>
         </header>
-
+        @include('components.confirm_logout')
         <!-- Right Sidebar (Theme Settings) -->
         <div>
             <div class="offcanvas offcanvas-end border-0 rounded-start-4 overflow-hidden" tabindex="-1"
@@ -251,7 +251,7 @@
                 <ul class="navbar-nav" id="navbar-nav">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/">
+                        <a class="nav-link" href="/dashboard">
                             <span class="nav-icon">
                                 <i class="ri-dashboard-line"></i>
                             </span>
