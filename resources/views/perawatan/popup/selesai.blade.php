@@ -1,3 +1,7 @@
+{{-- @if ($errors->any())
+    @dd($errors->all())
+    
+@endif --}}
 <div class="modal fade" id="modalSelesai{{ $item->id }}" tabindex="-1"
     aria-labelledby="modalSelesaiLabel{{ $item->id }}" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">

@@ -114,6 +114,14 @@ class AjuanController extends Controller
             $ajuan = AjuanPengadaan::find($id);
         } elseif ($type === 'perawatan') {
             $ajuan = AjuanPerawatan::find($id);
+
+            $barang = Barang::findOrFail($ajuan->perawatan->barang_id);
+            if ($barang->jumlah_barang < $ajuan->perawatan->jumlah) {
+                return redirect()->back()->with('error', 'Jumlah barang tidak mencukupi untuk perawatan.');
+            } else {
+                $barang->jumlah_barang -= $ajuan->perawatan->jumlah;
+                $barang->save();
+            }
         } elseif ($type === 'mutasi') {
             $ajuan = AjuanMutasi::find($id);
 

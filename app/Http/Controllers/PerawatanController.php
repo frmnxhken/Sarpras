@@ -6,35 +6,60 @@ use App\Models\AjuanPerawatan;
 use App\Models\Barang;
 use App\Models\Perawatan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PerawatanController extends Controller
 {
     public function index()
     {
         $barang = Barang::with('ruangan')->get();
-        $dataPerawatan = Perawatan::with('barang.ruangan','ajuan')->where('status', 'belum')->get();
+        $dataPerawatan = Perawatan::with('barang.ruangan', 'ajuan')->where('status', 'belum')->get();
         return view('perawatan.app', compact('dataPerawatan', 'barang'));
     }
-    public function UpdateStatus(Request $request,$id)
+    public function UpdateStatus(Request $request, $id)
     {
-        $perawatan = Perawatan::find($id);
-        // $validated = $request->validate([
-        //     'kondisi_barang' => 'required|string|max:255',
-        //     'status' => 'nullable|in:selesai,belum',
-        // ]);
-        dd($id);
-        // $perawatan = Perawatan::findOrFail($id);
-        // $barang = Barang::findOrFail(Perawatan::findOrFail($id)->barang_id);
-        // $barang->update($validated);
+        $perawatan = Perawatan::with('barang')->find($id);
+        $validated = $request->validate([
+            'kondisi_barang' => 'required|in:baik,rusak,berat',
+            'status' => 'nullable|string',
+        ]);
+        $barang = Barang::findOrFail($perawatan->barang_id);
 
-        // if ($perawatan) {
-            
-        //     $perawatan->status = $status;
-        //     $perawatan->save();
-            // return response()->json(['success' => true]);
-            // return redirect()->back();
-        // }
-        // return response()->json(['success' => false]);
+        $barangTujuan = Barang::where('id', $barang->id)
+            ->where('kondisi_barang', $validated['kondisi_barang'])
+            ->first();
+
+        if ($barangTujuan) {
+            $barangTujuan->jumlah_barang += $perawatan->jumlah;
+            $barang->update($validated);
+            $barangTujuan->save();
+        } else {
+            // dd($perawatan->id);
+            Barang::create([
+                'kode_barang' => 'BRG-' . strtoupper(Str::random(6)),
+                'kode_asal' => $barang->kode_barang,
+                'nama_barang' => $barang->nama_barang,
+                'jenis_barang' => $barang->jenis_barang,
+                'merk_barang' => $barang->merk_barang,
+                'tahun_perolehan' => $barang->tahun_perolehan,
+                'sumber_dana' => $barang->sumber_dana,
+                'harga_perolehan' => $barang->harga_perolehan,
+                'cv_pengadaan' => $barang->cv_pengadaan,
+                'jumlah_barang' => $perawatan->jumlah,
+                'ruangan_id' => $barang->ruangan_id,
+                'kondisi_barang' => $validated['kondisi_barang'],
+                'kepemilikan_barang' => $barang->kepemilikan_barang,
+                'penanggung_jawab' => $barang->penanggung_jawab,
+                'gambar_barang' => $barang->gambar_barang,
+            ]);
+        }
+
+        if ($perawatan) {
+            $perawatan->status = $validated['status'];
+            $perawatan->save();
+            return redirect()->back();
+        }
+        return response()->json(['success' => false]);
         redirect()->back();
     }
 
@@ -59,8 +84,9 @@ class PerawatanController extends Controller
         return redirect()->back()->with('success', 'Data perawatan berhasil disimpan.');
     }
 
-    public function laporan(){
-        $dataPerawatan = Perawatan::with('barang.ruangan','ajuan')->get();
+    public function laporan()
+    {
+        $dataPerawatan = Perawatan::with('barang.ruangan', 'ajuan')->get();
         return view('laporan.perawatan.app', compact('dataPerawatan'));
     }
 
