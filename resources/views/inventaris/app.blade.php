@@ -33,7 +33,15 @@
                         <td>{{ $item->kode_barang }}</td>
                         <td>{{ $item->nama_barang }}</td>
                         <td>{{ $item->ruangan->nama_ruangan ?? '-' }}</td>
-                        <td>{{ $item->kondisi_barang }}</td>
+                        <td>
+                            @if ($item->kondisi_barang == 'baik')
+                                Baik
+                            @elseif ($item->kondisi_barang == 'rusak')
+                                Rusak Ringan
+                            @elseif ($item->kondisi_barang == 'berat')
+                                Rusak Berat
+                            @endif
+                        </td>
                         <td>{{ $item->jumlah_barang }}</td>
                         <td>
                             <a type="button" data-bs-toggle="modal" data-bs-target="#ImageModal{{ $loop->iteration }}">

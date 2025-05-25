@@ -54,11 +54,6 @@
                         <td>
                             <div class="d-flex gap-1">
                                 @if ($item->ajuan[0]->status == 'disetujui')
-                                    {{-- <form action="{{ route('perawatan.updateStatus', ['id' => $item->id, 'status' => 'Selesai']) }}" method="post">
-                                        @csrf
-                                        @method('PUT')
-                                        <button type="submit" class="btn btn-primary px-2 py-1" onclick="return confirm('Yakin sudah selesai?')">Selesai</button>
-                                    </form> --}}
                                     <button type="button" class="btn btn-primary px-2 py-1" data-bs-toggle="modal" data-bs-target="#modalSelesai{{ $item->id }}">
                                         Selesai
                                     </button>
@@ -78,7 +73,7 @@
                         </td>
                     </tr>
                 @empty
-                    <td colspan="9" class="text-center">Belum ada barang yang dirawat</td>
+                    <td colspan="10" class="text-center">Belum ada barang yang dirawat</td>
                 @endforelse
             </tbody>
         </table>

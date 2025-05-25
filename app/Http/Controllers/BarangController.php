@@ -23,10 +23,15 @@ class BarangController extends Controller
     public function show($id)
     {
         $item = Barang::findOrFail($id);
+        $barang = Barang::with(['perawatan' => function ($query) {
+            $query->where('status', 'belum');
+        }])->findOrFail($id);
+
+        $perawatan = $barang->perawatan->sum('jumlah');
         $qr = $item->kode_barang;
 
         $qrCode = QrCode::size(200)->generate($qr);
-        return view('inventaris.detail', compact('item', 'qrCode'));
+        return view('inventaris.detail', compact('item', 'qrCode', 'perawatan'));
     }
     public function scanResult($kode)
     {

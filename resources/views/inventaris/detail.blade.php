@@ -18,7 +18,14 @@
                                 <td>{{ $item->harga_perolehan == 0 ? '-' : 'Rp. ' . number_format($item->harga_perolehan, 0, ',', '.') }}</td>
                             </tr>
                             <tr><th>CV Pengadaan</th><td>{{ $item->cv_pengadaan }}</td></tr>
-                            <tr><th>Jumlah Barang</th><td>{{ $item->jumlah_barang }}</td></tr>
+                            <tr><th>Jumlah Barang</th>
+                                <td>
+                                    {{ $item->jumlah_barang }}
+                                    @if ($perawatan > 0)
+                                        <span class="text-warning"> - ({{ $perawatan }} dalam perawatan)</span>
+                                    @endif
+                                </td>
+                            </tr>
                             <tr><th>Lokasi</th><td>{{ $item->ruangan->nama_ruangan }}</td></tr>
                             <tr><th>Kondisi</th><td>{{ $item->kondisi_barang }}</td></tr>
                             <tr><th>Kepemilikan</th><td>{{ $item->kepemilikan_barang }}</td></tr>

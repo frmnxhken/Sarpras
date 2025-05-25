@@ -24,17 +24,16 @@ class PerawatanController extends Controller
             'status' => 'nullable|string',
         ]);
         $barang = Barang::findOrFail($perawatan->barang_id);
+        $barangTujuan = Barang::where('nama_barang', $barang->nama_barang)
+        ->where('ruangan_id', $barang->ruangan_id)
+        ->where('merk_barang', $barang->merk_barang)
+        ->first();
 
-        $barangTujuan = Barang::where('id', $barang->id)
-            ->where('kondisi_barang', $validated['kondisi_barang'])
-            ->first();
-
-        if ($barangTujuan) {
+        if ($barangTujuan->kondisi_barang === $validated['kondisi_barang'] || $barangTujuan->jumlah_barang == 0) {
             $barangTujuan->jumlah_barang += $perawatan->jumlah;
             $barang->update($validated);
             $barangTujuan->save();
         } else {
-            // dd($perawatan->id);
             Barang::create([
                 'kode_barang' => 'BRG-' . strtoupper(Str::random(6)),
                 'kode_asal' => $barang->kode_barang,
