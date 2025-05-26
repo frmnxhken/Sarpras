@@ -23,7 +23,9 @@
                                     {{ $item->jumlah_barang }}
                                     @if ($perawatan > 0)
                                         - <span class="text-warning">  ({{ $perawatan }} dalam perawatan)</span>
-                                        - <span class="text-warning">  ({{ $peminjaman }} dalam peminjaman)</span>
+                                        @endif
+                                    @if ($peminjaman > 0)
+                                        - <span class="text-warning">  ({{ $peminjaman }} dalam peminjaman)</span>    
                                     @endif
                                 </td>
                             </tr>

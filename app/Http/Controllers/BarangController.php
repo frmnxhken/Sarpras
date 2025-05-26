@@ -23,21 +23,29 @@ class BarangController extends Controller
 
     public function show($id)
     {
-        $item = Barang::findOrFail($id);
+        $item = Barang::with(['ruangan', 'perawatan'])->findOrFail($id);
         $barang = Barang::with(['perawatan' => function ($query) {
             $query->where('status', 'belum');
         }])->findOrFail($id);
 
-        $barang2 = Barang::with(['peminjaman' => function ($query) {
-            $query->where('status_peminjaman', 'Dipinjam');
-        }])->findOrFail($id);
+        // peminjaman
+        $barang2 = Barang::with([
+            'peminjaman' => function ($query) {
+                $query->where('status_peminjaman', 'Dipinjam');
+            },
+            'peminjaman.ajuan' => function ($query) {
+                $query->where('status', 'disetujui');
+            }
+        ])->findOrFail($id);
 
         $perawatan = $barang->perawatan->sum('jumlah');
-        $peminjaman = $barang->peminjaman->sum('jumlah_barang');
-        $qr = $item->kode_barang;
+        $peminjaman = $barang2->peminjaman->sum('jumlah_barang');
+        // dd('perawatan = '.$perawatan, 'peminjaman = '.$peminjaman);
 
+        $qr = $item->kode_barang;
         $qrCode = QrCode::size(200)->generate($qr);
-        return view('inventaris.detail', compact('item', 'qrCode', 'perawatan', 'peminjaman', 'barang2'));
+
+        return view('inventaris.detail', compact('item', 'qrCode', 'perawatan', 'peminjaman'));
     }
     public function scanResult($kode)
     {

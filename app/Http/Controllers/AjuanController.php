@@ -110,6 +110,14 @@ class AjuanController extends Controller
     {
         if ($type === 'peminjaman') {
             $ajuan = AjuanPeminjaman::find($id);
+            $peminjaman = $ajuan->peminjaman;
+            $barang = Barang::findOrFail($peminjaman->barang_id);
+            if ($peminjaman->jumlah_barang > $barang->jumlah_barang) {
+                return back()->withErrors(['jumlah_barang' => 'Jumlah barang yang diminta melebihi stok tersedia.'])->withInput();
+            }
+            $barang->jumlah_barang -= $peminjaman->jumlah_barang;
+            $barang->save();
+            
         } elseif ($type === 'pengadaan') {
             $ajuan = AjuanPengadaan::find($id);
         } elseif ($type === 'perawatan') {
