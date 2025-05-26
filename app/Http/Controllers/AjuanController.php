@@ -120,6 +120,7 @@ class AjuanController extends Controller
             
         } elseif ($type === 'pengadaan') {
             $ajuan = AjuanPengadaan::find($id);
+            
         } elseif ($type === 'perawatan') {
             $ajuan = AjuanPerawatan::find($id);
 

@@ -1,15 +1,11 @@
 @if (session('modal_error'))
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Tutup semua modal aktif (jika ada)
             document.querySelectorAll('.modal.show').forEach(modalEl => {
                 bootstrap.Modal.getInstance(modalEl)?.hide();
             });
-
-            // Hapus backdrop sebelumnya agar tidak numpuk
             document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
 
-            // Tampilkan modal target
             var modalId = @json(session('modal_error'));
             var modalElement = document.getElementById(modalId);
             if (modalElement) {

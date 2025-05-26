@@ -80,11 +80,11 @@
                                 </a>
                                 @if (in_array(auth()->user()->role, [1, 3]))
                                     <button class="btn btn-danger px-2 py-1 m-0" data-bs-toggle="modal"
-                                        data-bs-target="#deleteModal{{ $loop->iteration }}">
+                                            data-bs-target="#deleteModal{{ $item->id }}">
                                         Hapus
                                     </button>
                                     @include('inventaris.popup.ajuan_penghapusan', [
-                                        'modalId' => $loop->iteration,
+                                        'modalId' => $item->id,
                                         'item' => $item,
                                     ])
                                 @endif

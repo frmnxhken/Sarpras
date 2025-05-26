@@ -13,6 +13,7 @@ use App\Models\Ruangans;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Illuminate\Validation\ValidationException;
 
 class BarangController extends Controller
 {
@@ -68,7 +69,7 @@ class BarangController extends Controller
                 'penanggung_jawab'  => 'nullable|string',
                 'upload'            => 'nullable|image|mimes:jpeg,png,jpg,svg+xml,webp,gif,heic|max:2048',
             ]);
-        } catch (\Illuminate\Validation\ValidationException $e) {
+        } catch (ValidationException $e) {
             // Menyimpan ID modal yang harus dibuka kembali (contoh: 'TambahData')
             return redirect()->back()
                 ->withErrors($e->validator)
@@ -154,7 +155,7 @@ class BarangController extends Controller
                 'jumlah'     => 'required|integer|min:1',
                 'keterangan' => 'nullable|string',
             ]);
-        } catch (\Illuminate\Validation\ValidationException $e) {
+        } catch (ValidationException $e) {
             return redirect()->back()
                 ->withErrors($e->validator)
                 ->withInput()
