@@ -161,4 +161,14 @@ class BarangController extends Controller
         ]);
         return redirect('/inventaris')->with('success', 'Ajuan penghapusan berhasil diajukan.');
     }
+
+    public function barangBaru()
+    {
+        $latestYear = Barang::max('tahun_perolehan');
+        
+        $dataInventaris = Barang::where('tahun_perolehan', $latestYear)
+            ->paginate(10);
+
+        return view('dashboard.barangBaru', compact('dataInventaris', 'latestYear'));
+    }
 }

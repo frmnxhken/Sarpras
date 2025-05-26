@@ -6,7 +6,7 @@
                     <iconify-icon icon="solar:asteroid-bold-duotone" class="fs-36 text-info"></iconify-icon>
                     <h3 class="mb-0 fw-bold mt-3 mb-1">{{ $totalBarang }}</h3>
                     <p class="text-muted">Total Barang</p>
-                    <a href="#!" class="text-reset fw-semibold fs-12">View More</a>
+                    <a class="text-reset fw-semibold fs-12" href="/inventaris">View More</a>
                     <i class='ri-global-line widget-icon'></i>
                 </div> <!-- end card-body -->
             </div> <!-- end card -->
@@ -18,7 +18,7 @@
                     <iconify-icon icon="solar:black-hole-line-duotone" class="fs-36 text-success"></iconify-icon>
                     <h3 class="mb-0 fw-bold mt-3 mb-1">{{ $barangRusak }}</h3>
                     <p class="text-muted"> Barang Rusak</p>
-                    <a href="#!" class="text-reset fw-semibold fs-12">View More</a>
+                    <a href="/barangRusak" class="text-reset fw-semibold fs-12">View More</a>
                     <i class='ri-file-chart-line widget-icon'></i>
                 </div> <!-- end card-body -->
             </div> <!-- end card -->
@@ -29,8 +29,8 @@
                 <div class="card-body overflow-hidden position-relative">
                     <iconify-icon icon="solar:leaf-bold-duotone" class="fs-36 text-primary"></iconify-icon>
                     <h3 class="mb-0 fw-bold mt-3 mb-1">{{ $barangBaru2025 }}</h3>
-                    <p class="text-muted">Barang Baru (Thn {{ \Carbon\Carbon::now()->year }})</p>
-                    <a href="#!" class="text-reset fw-semibold fs-12">View More</a>
+                    <p class="text-muted">Barang Masuk (Thn {{ \Carbon\Carbon::now()->year }})</p>
+                    <a href="/barangBaru" class="text-reset fw-semibold fs-12">View More</a>
                     <i class='ri-drag-move-line widget-icon'></i>
                 </div> <!-- end card-body -->
             </div> <!-- end card -->

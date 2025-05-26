@@ -10,19 +10,26 @@ use App\Http\Controllers\PerawatanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PenghapusanController;
+use App\Http\Controllers\BarangRusakController;
 // use Dflydev\DotAccessData\Data;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return auth()->check() ? redirect('/dashboard') : redirect('/login');
 });
-Route::get('/login',[AuthController::class, 'index'])->name('login');
-Route::post('/login',[AuthController::class, 'Authenticate']);
-Route::post('/logout',[AuthController::class, 'logout'])->name('logout');
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('/login', [AuthController::class, 'Authenticate']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('/barangRusak', [BarangRusakController::class, 'index'])->name('barangRusak.index');
+    Route::get('/barangBaru', [BarangController::class, 'barangBaru'])->name('barang.baru');
+
+
+
 
     // Kelola Barang
     Route::get('/inventaris', [BarangController::class, 'index'])->middleware('role:1,2,3,4');
