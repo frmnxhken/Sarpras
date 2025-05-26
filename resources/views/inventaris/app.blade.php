@@ -31,7 +31,7 @@
             <tbody>
                 @forelse ($dataInventaris as $item)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $loop->iteration + ($dataInventaris->currentPage() - 1) * $dataInventaris->perPage() }}</td>
                         <td>{{ $item->kode_barang }}</td>
                         <td>{{ $item->nama_barang }}</td>
                         <td>{{ $item->ruangan->nama_ruangan ?? '-' }}</td>
