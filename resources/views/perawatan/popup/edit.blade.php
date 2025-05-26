@@ -24,7 +24,7 @@
                     <select id="barang_idEdit{{ $item->id }}" name="barang_id" class="form-select">
                         @foreach ($barang as $barang)
                             <option value="{{ $barang->id }}" {{ $item->barang_id == $barang->id ? 'selected' : '' }}>
-                                {{ $barang->nama_barang }} - {{ $barang->ruangan->nama_ruangan }} - Kondisi {{ $barang->kondisi_barang }}
+                                {{ $barang->nama_barang }} - {{ $barang->ruangan->nama_ruangan }} - Kondisi {{ $barang->kondisi_barang }} - Jumlah {{ $barang->jumlah_barang }}
                             </option>
                         @endforeach
                     </select>

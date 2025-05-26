@@ -73,11 +73,12 @@ class PerawatanController extends Controller
             'jumlah' => 'nullable|integer|min:0',
             'keterangan' => 'nullable|string',
         ]);
-
+        if ($validated['jumlah'] > Barang::findOrFail($validated['barang_id'])->jumlah_barang) {
+            return redirect()->back()->withErrors(['jumlah' => 'Jumlah barang yang diminta melebihi stok tersedia.'])->withInput();
+        }
         $perawatan = Perawatan::create($validated);
         AjuanPerawatan::create([
             'user_id' => Auth::user()->id,
-            // 'user_id' => 1,
             'perawatan_id' => $perawatan->id,
         ]);
 

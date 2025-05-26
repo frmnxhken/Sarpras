@@ -26,21 +26,15 @@ class BarangController extends Controller
     public function show($id)
     {
         $item = Barang::with(['ruangan', 'perawatan'])->findOrFail($id);
-        $barang = Barang::with(['perawatan' => function ($query) {
-            $query->where('status', 'belum');
-        }])->findOrFail($id);
 
-        // peminjaman
         $peminjaman = Peminjaman::where('status_peminjaman', 'Dipinjam')
             ->whereHas('ajuan', function ($query) { $query->where('status', 'disetujui');})
             ->sum('jumlah_barang');
         
         $perawatan = Perawatan::where('status', 'belum')
             ->whereHas('ajuan', function ($query) {
-                $query->where('status', 'disetujui');
-            })
+                $query->where('status', 'disetujui'); })
             ->sum('jumlah');
-        // $perawatan = $barang->perawatan->sum('jumlah');
 
         $qr = $item->kode_barang;
         $qrCode = QrCode::size(200)->generate($qr);
@@ -158,13 +152,13 @@ class BarangController extends Controller
 
         $barang = Barang::findOrFail($id);
         if ($validated['jumlah'] > $barang->jumlah_barang) {
-            return redirect()->back()->with('error', 'Jumlah barang yang diminta melebihi stok tersedia.');
+            return redirect()->back()->withErrors(['jumlah' => 'Jumlah penghapusan tidak boleh melebihi jumlah barang yang ada.'])->withInput();
         }
         $penghapusan = Penghapusan::create($validated);
 
         AjuanPenghapusan::create([
-            // 'user_id' => auth()->user()->id,
-            'user_id' => 1,
+            'user_id' => Auth::user()->id,
+            // 'user_id' => 1,
             'penghapusan_id' => $penghapusan->id,
         ]);
         return redirect('/inventaris')->with('success', 'Ajuan penghapusan berhasil diajukan.');
