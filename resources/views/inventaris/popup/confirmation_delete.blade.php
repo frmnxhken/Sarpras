@@ -9,11 +9,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Apakah Anda yakin ingin menghapus data ini?
+                    Apakah Anda yakin ingin menghapus data ini secara permanen?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
-                    <button type="submit" class="btn btn-primary">Hapus</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Kembali</button>
+                    <button type="submit" class="btn btn-danger">Hapus</button>
                 </div>
             </div>
         </form>

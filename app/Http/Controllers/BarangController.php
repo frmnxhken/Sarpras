@@ -28,11 +28,16 @@ class BarangController extends Controller
             $query->where('status', 'belum');
         }])->findOrFail($id);
 
+        $barang2 = Barang::with(['peminjaman' => function ($query) {
+            $query->where('status_peminjaman', 'Dipinjam');
+        }])->findOrFail($id);
+
         $perawatan = $barang->perawatan->sum('jumlah');
+        $peminjaman = $barang->peminjaman->sum('jumlah_barang');
         $qr = $item->kode_barang;
 
         $qrCode = QrCode::size(200)->generate($qr);
-        return view('inventaris.detail', compact('item', 'qrCode', 'perawatan'));
+        return view('inventaris.detail', compact('item', 'qrCode', 'perawatan', 'peminjaman', 'barang2'));
     }
     public function scanResult($kode)
     {

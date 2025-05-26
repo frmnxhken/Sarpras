@@ -1,9 +1,12 @@
 <x-layout>
     <div class="row mb-3">
         <div class="col-md-6">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#TambahData">
-                <i class="bi bi-plus-circle me-2"></i>Tambah Data
-            </button>
+            @if (in_array(auth()->user()->role, [1, 3]))
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#TambahData">
+                    <i class="bi bi-plus-circle me-2"></i>Tambah Data
+                </button>
+                @include('inventaris.popup.tambah_data')
+            @endif
         </div>
         <div class="col-md-6 text-end">
             <a href="/scan" class="btn btn-outline-primary d-inline-flex align-items-center">
@@ -11,7 +14,6 @@
             </a>
         </div>
     </div>
-    @include('inventaris.popup.tambah_data')
     <div class="table-responsive">
         <table id="dataTable" class="table table-bordered table-striped align-middle">
             <thead class="table-light">
@@ -76,14 +78,16 @@
                                     href="{{ route('inventaris.detail', $item->id) }}">
                                     Detail
                                 </a>
-                                <button class="btn btn-danger px-2 py-1 m-0" data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal{{ $loop->iteration }}">
-                                    Hapus
-                                </button>
-                                @include('inventaris.popup.ajuan_penghapusan', [
-                                    'modalId' => $loop->iteration,
-                                    'item' => $item,
-                                ])
+                                @if (in_array(auth()->user()->role, [1, 3]))
+                                    <button class="btn btn-danger px-2 py-1 m-0" data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal{{ $loop->iteration }}">
+                                        Hapus
+                                    </button>
+                                    @include('inventaris.popup.ajuan_penghapusan', [
+                                        'modalId' => $loop->iteration,
+                                        'item' => $item,
+                                    ])
+                                @endif
                             </div>
                         </td>
                     </tr>

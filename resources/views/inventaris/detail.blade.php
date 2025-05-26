@@ -22,7 +22,8 @@
                                 <td>
                                     {{ $item->jumlah_barang }}
                                     @if ($perawatan > 0)
-                                        <span class="text-warning"> - ({{ $perawatan }} dalam perawatan)</span>
+                                        - <span class="text-warning">  ({{ $perawatan }} dalam perawatan)</span>
+                                        - <span class="text-warning">  ({{ $peminjaman }} dalam peminjaman)</span>
                                     @endif
                                 </td>
                             </tr>
@@ -32,13 +33,15 @@
                             <tr><th>Penanggung Jawab</th><td>{{ $item->penanggung_jawab }}</td></tr>
                         </tbody>
                     </table>
-                    <div class="d-flex justify-content-end gap-2 mt-3">
-                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editData">Edit</button>
-                        @include('inventaris.popup.edit_data')
+                    @if (in_array(auth()->user()->role, [1]))
+                        <div class="d-flex justify-content-end gap-2 mt-3">
+                            <button class="btn btn-warning px-2 py-1" data-bs-toggle="modal" data-bs-target="#editData">Edit</button>
+                            @include('inventaris.popup.edit_data')
 
-                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Hapus</button>
-                        @include('inventaris.popup.confirmation_delete', ['modalId' => '', 'item' => $item])
-                    </div>
+                            <button class="btn btn-danger px-2 py-1" data-bs-toggle="modal" data-bs-target="#deleteModal">Drop</button>
+                            @include('inventaris.popup.confirmation_delete', ['modalId' => '', 'item' => $item])
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
