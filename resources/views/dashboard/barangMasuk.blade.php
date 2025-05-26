@@ -1,4 +1,5 @@
 <x-layout>
+    <h4>Barang Masuk (Tahun {{ $latestYear }})</h4>
     <table id="dataTable" class="table table-bordered table-striped align-middle">
             <thead class="table-light">
                 <tr>
