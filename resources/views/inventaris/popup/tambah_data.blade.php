@@ -1,8 +1,11 @@
-@if ($errors->any())
+@if (session('modal_error'))
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var myModal = new bootstrap.Modal(document.getElementById('TambahData'));
-            myModal.show();
+        document.addEventListener('DOMContentLoaded', function () {
+            var modalId = @json(session('modal_error'));
+            var errorModal = new bootstrap.Modal(document.getElementById(modalId), {
+                keyboard: false
+            });
+            errorModal.show();
         });
     </script>
 @endif

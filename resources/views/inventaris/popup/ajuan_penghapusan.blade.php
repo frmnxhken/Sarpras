@@ -1,13 +1,25 @@
-@if ($errors->any())
+@if (session('modal_error'))
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var myModal = new bootstrap.Modal(document.getElementById('deleteModal{{ $modalId }}'), {
-                keyboard: false
+        document.addEventListener('DOMContentLoaded', function () {
+            // Tutup semua modal aktif (jika ada)
+            document.querySelectorAll('.modal.show').forEach(modalEl => {
+                bootstrap.Modal.getInstance(modalEl)?.hide();
             });
-            myModal.show();
+
+            // Hapus backdrop sebelumnya agar tidak numpuk
+            document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+
+            // Tampilkan modal target
+            var modalId = @json(session('modal_error'));
+            var modalElement = document.getElementById(modalId);
+            if (modalElement) {
+                var myModal = new bootstrap.Modal(modalElement, { keyboard: false });
+                myModal.show();
+            }
         });
     </script>
 @endif
+
 <div class="modal fade" id="deleteModal{{ $modalId }}" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true">
     <div class="modal-dialog">
         <form action="{{ route('inventaris.destroy.app', $item->id) }}" method="POST">
