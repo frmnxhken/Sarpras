@@ -26,7 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/barangRusak', [BarangRusakController::class, 'index'])->name('barangRusak.index');
-    Route::get('/barangBaru', [BarangController::class, 'barangBaru'])->name('barang.baru');
+    Route::get('/barangMasuk', [BarangController::class, 'barangMasuk'])->name('barang.masuk');
 
 
 

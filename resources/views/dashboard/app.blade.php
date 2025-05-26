@@ -30,7 +30,7 @@
                     <iconify-icon icon="solar:leaf-bold-duotone" class="fs-36 text-primary"></iconify-icon>
                     <h3 class="mb-0 fw-bold mt-3 mb-1">{{ $barangBaru2025 }}</h3>
                     <p class="text-muted">Barang Masuk (Thn {{ \Carbon\Carbon::now()->year }})</p>
-                    <a href="/barangBaru" class="text-reset fw-semibold fs-12">View More</a>
+                    <a href="/barangMasuk" class="text-reset fw-semibold fs-12">View More</a>
                     <i class='ri-drag-move-line widget-icon'></i>
                 </div> <!-- end card-body -->
             </div> <!-- end card -->
