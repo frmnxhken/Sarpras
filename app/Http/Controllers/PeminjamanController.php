@@ -43,10 +43,6 @@ class PeminjamanController extends Controller
         // Simpan peminjaman
         $peminjaman = Peminjaman::create($validated);
 
-        // Kurangi stok barang
-        // $barang->jumlah_barang -= $validated['jumlah_barang'];
-        // $barang->save();
-
         AjuanPeminjaman::create([
             'user_id' => Auth::user()->id,
             // 'user_id' => 1,

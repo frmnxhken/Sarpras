@@ -79,8 +79,10 @@
                             @elseif ($item->ajuan[0]->status == 'disetujui')
                                 @if ($item->status_peminjaman == 'Dipinjam')
                                     <span class="badge bg-warning">Dipinjam</span>
-                                @else
+                                @elseif ($item->status_peminjaman == 'Dikembalikan')
                                     <span class="badge bg-success">Dikembalikan</span>
+                                @else
+                                    <span class="badge bg-danger">Hilang</span>
                                 @endif
                             @else
                                 <span class="badge bg-danger">Ditolak</span>

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\AjuanPengadaan;
 use App\Models\AjuanPenghapusan;
 use App\Models\Barang;
+use App\Models\Peminjaman;
 use App\Models\Penghapusan;
+use App\Models\Perawatan;
 use Illuminate\Http\Request;
 use App\Models\Ruangans;
 use Illuminate\Support\Facades\Auth;
@@ -29,18 +31,16 @@ class BarangController extends Controller
         }])->findOrFail($id);
 
         // peminjaman
-        $barang2 = Barang::with([
-            'peminjaman' => function ($query) {
-                $query->where('status_peminjaman', 'Dipinjam');
-            },
-            'peminjaman.ajuan' => function ($query) {
+        $peminjaman = Peminjaman::where('status_peminjaman', 'Dipinjam')
+            ->whereHas('ajuan', function ($query) { $query->where('status', 'disetujui');})
+            ->sum('jumlah_barang');
+        
+        $perawatan = Perawatan::where('status', 'belum')
+            ->whereHas('ajuan', function ($query) {
                 $query->where('status', 'disetujui');
-            }
-        ])->findOrFail($id);
-
-        $perawatan = $barang->perawatan->sum('jumlah');
-        $peminjaman = $barang2->peminjaman->sum('jumlah_barang');
-        // dd('perawatan = '.$perawatan, 'peminjaman = '.$peminjaman);
+            })
+            ->sum('jumlah');
+        // $perawatan = $barang->perawatan->sum('jumlah');
 
         $qr = $item->kode_barang;
         $qrCode = QrCode::size(200)->generate($qr);
