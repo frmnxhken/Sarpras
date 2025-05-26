@@ -8,6 +8,7 @@ use App\Models\Barang;
 use App\Models\Penghapusan;
 use Illuminate\Http\Request;
 use App\Models\Ruangans;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -89,8 +90,8 @@ class BarangController extends Controller
         $barang = Barang::create($validated);
 
         AjuanPengadaan::create([
-            // 'user_id' => auth()->user()->id,
-            'user_id' => 1,
+            'user_id' => Auth::user()->id,
+            // 'user_id' => 1,
             'barang_id' => $barang->id,
         ]);
 

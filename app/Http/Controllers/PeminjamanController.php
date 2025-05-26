@@ -10,6 +10,7 @@ use App\Models\AjuanPeminjaman;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class PeminjamanController extends Controller
 {
@@ -47,8 +48,8 @@ class PeminjamanController extends Controller
         $barang->save();
 
         AjuanPeminjaman::create([
-            // 'user_id' => auth()->user()->id,
-            'user_id' => 1,
+            'user_id' => Auth::user()->id,
+            // 'user_id' => 1,
             'peminjaman_id' => $peminjaman->id,
         ]);
         return redirect('/peminjaman');

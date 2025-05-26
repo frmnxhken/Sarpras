@@ -7,6 +7,7 @@ use App\Models\Barang;
 use App\Models\Mutasi;
 use App\Models\Ruangans;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class MutasiController extends Controller
@@ -48,8 +49,8 @@ class MutasiController extends Controller
         // Simpan data mutasi
         $mutasi2 = Mutasi::create($validated);
         AjuanMutasi::create([
-            // 'user_id' => auth()->user()->id,
-            'user_id' => 1,
+            'user_id' => Auth::user()->id,
+            // 'user_id' => 1,
             'mutasi_id' => $mutasi2->id,
         ]);
 

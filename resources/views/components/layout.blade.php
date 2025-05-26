@@ -249,76 +249,69 @@
             <div class="scrollbar" data-simplebar>
 
                 <ul class="navbar-nav" id="navbar-nav">
-
+                    <!-- Dashboard -->
                     <li class="nav-item">
                         <a class="nav-link" href="/dashboard">
-                            <span class="nav-icon">
-                                <i class="ri-dashboard-line"></i>
-                            </span>
+                            <span class="nav-icon"><i class="ri-dashboard-line"></i></span>
                             <span class="nav-text">Dashboard</span>
                         </a>
                     </li>
 
+                    <!-- Data Barang (Semua Role) -->
                     <li class="nav-item">
                         <a class="nav-link" href="/inventaris">
-                            <span class="nav-icon">
-                                <i class="ri-box-3-line"></i>
-                            </span>
+                            <span class="nav-icon"><i class="ri-box-3-line"></i></span>
                             <span class="nav-text">Data Barang</span>
                         </a>
                     </li>
 
+                    <!-- Role 1 dan 2: Ajuan -->
+                    @if (Auth::user()->role == 1 || Auth::user()->role == 2)
                     <li class="nav-item">
                         <a class="nav-link" href="/verivikasiAjuan">
-                            <span class="nav-icon">
-                                <i class="ri-mail-line"></i>
-                            </span>
+                            <span class="nav-icon"><i class="ri-mail-line"></i></span>
                             <span class="nav-text">Verivikasi Ajuan</span>
                         </a>
                     </li>
+                    @endif
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/peminjaman">
-                            <span class="nav-icon">
-                                <i class="ri-hand-coin-line"></i>
-                            </span>
-                            <span class="nav-text">Peminjaman</span>
-                        </a>
-                    </li>
+                    <!-- Role 1 dan 3: Peminjaman, Perawatan, Mutasi, Penghapusan -->
+                    @if (in_array(Auth::user()->role, [1, 3]))
+                        <li class="nav-item">
+                            <a class="nav-link" href="/peminjaman">
+                                <span class="nav-icon"><i class="ri-hand-coin-line"></i></span>
+                                <span class="nav-text">Peminjaman</span>
+                            </a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/perawatan">
-                            <span class="nav-icon">
-                                <i class="ri-tools-line"></i>
-                            </span>
-                            <span class="nav-text">Perawatan</span>
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/perawatan">
+                                <span class="nav-icon"><i class="ri-tools-line"></i></span>
+                                <span class="nav-text">Perawatan</span>
+                            </a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/mutasi">
-                            <span class="nav-icon">
-                                <i class="ri-shuffle-line"></i>
-                            </span>
-                            <span class="nav-text">Pemindahan</span>
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/mutasi">
+                                <span class="nav-icon"><i class="ri-shuffle-line"></i></span>
+                                <span class="nav-text">Pemindahan</span>
+                            </a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/penghapusan">
-                            <span class="nav-icon">
-                                <i class="ri-delete-bin-6-line"></i>
-                            </span>
-                            <span class="nav-text">Penghapusan</span>
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/penghapusan">
+                                <span class="nav-icon"><i class="ri-delete-bin-6-line"></i></span>
+                                <span class="nav-text">Penghapusan</span>
+                            </a>
+                        </li>
+                    @endif
 
+                    <!-- Role 1, 2, dan 4: Laporan -->
+                    @if (in_array(Auth::user()->role, [1, 2, 4]))
                     <li class="nav-item">
                         <a class="nav-link menu-arrow" href="#sidebarLaporan" data-bs-toggle="collapse"
-                            role="button" aria-expanded="false" aria-controls="sidebarMultiLevelDemo">
-                            <span class="nav-icon">
-                                <i class="ri-file-text-line"></i>
-                            </span>
+                            role="button" aria-expanded="false" aria-controls="sidebarLaporan">
+                            <span class="nav-icon"><i class="ri-file-text-line"></i></span>
                             <span class="nav-text">Laporan</span>
                         </a>
                         <div class="collapse" id="sidebarLaporan">
@@ -337,31 +330,29 @@
                                 </li>
                             </ul>
                         </div>
-                    </li> <!-- end Menu Item -->
+                    </li>
+                    @endif
 
+                    <!-- Hanya Role 1 (Admin): Pengaturan -->
+                    @if (Auth::user()->role == 1)
                     <li class="nav-item">
                         <a class="nav-link menu-arrow" href="#sidebarPengaturan" data-bs-toggle="collapse"
-                            role="button" aria-expanded="false" aria-controls="sidebarMultiLevelDemo">
-                            <span class="nav-icon">
-                                <i class="ri-settings-4-line fs-18"></i>
-                            </span>
+                            role="button" aria-expanded="false" aria-controls="sidebarPengaturan">
+                            <span class="nav-icon"><i class="ri-settings-4-line fs-18"></i></span>
                             <span class="nav-text">Pengaturan</span>
                         </a>
                         <div class="collapse" id="sidebarPengaturan">
                             <ul class="nav sub-navbar-nav">
-                                {{-- <li class="sub-nav-item">
-                                    <a class="sub-nav-link" href="/kategoriBarang">Kategori Barang</a>
-                                </li> --}}
                                 <li class="sub-nav-item">
                                     <a class="sub-nav-link" href="/pengaturan/ruangan">Kelola Ruangan</a>
                                 </li>
                                 <li class="sub-nav-item">
                                     <a class="sub-nav-link" href="/pengaturan/user">Kelola User</a>
                                 </li>
-                                </li>
                             </ul>
                         </div>
-                    </li> 
+                    </li>
+                    @endif
                 </ul>
             </div>
         </div>

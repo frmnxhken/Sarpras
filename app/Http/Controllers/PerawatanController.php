@@ -6,6 +6,7 @@ use App\Models\AjuanPerawatan;
 use App\Models\Barang;
 use App\Models\Perawatan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class PerawatanController extends Controller
@@ -75,8 +76,8 @@ class PerawatanController extends Controller
 
         $perawatan = Perawatan::create($validated);
         AjuanPerawatan::create([
-            // 'user_id' => auth()->user()->id,
-            'user_id' => 1,
+            'user_id' => Auth::user()->id,
+            // 'user_id' => 1,
             'perawatan_id' => $perawatan->id,
         ]);
 
