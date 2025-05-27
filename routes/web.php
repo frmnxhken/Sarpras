@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/ruang/ubah/{id}', [DataRuanganController::class, 'edit']);
 
     // Peminjaman
-    Route::get('/peminjaman', [PeminjamanController::class, 'index'])->middleware('role:1,3')->name('peminjaman.index');
+    Route::get('/peminjaman', [PeminjamanController::class, 'index'])->middleware('role:1,3');
     Route::post('/peminjaman/tambah', [PeminjamanController::class, 'store'])->name('peminjaman.store');
     Route::put('/peminjaman/{id}', [PeminjamanController::class, 'update'])->name('peminjaman.update');
     Route::delete('/peminjaman/{id}', [PeminjamanController::class, 'destroy'])->name('peminjaman.destroy');
@@ -59,7 +59,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/ajuan/update/{type}/{id}/{status}', [AjuanController::class, 'UpdateStatus'])->name('ajuan.updateStatus');
 
     // Perawatan
-    Route::get('/perawatan', [PerawatanController::class, 'index'])->middleware('role:1,3')->name('perawatan.index');
+    Route::get('/perawatan', [PerawatanController::class, 'index'])->middleware('role:1,3');
     Route::post('/perawatan', [PerawatanController::class, 'store'])->name('perawatan.store');
     Route::put('/perawatan/{id}', [PerawatanController::class, 'update'])->name('perawatan.update');
     Route::delete('/perawatan/{id}', [PerawatanController::class, 'destroy'])->name('perawatan.destroy');
@@ -77,15 +77,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/mutasi/{id}', [MutasiController::class, 'destroy'])->name('mutasi.destroy');
 
     // Penghapusan
-    Route::get('/penghapusan', [PenghapusanController::class, 'index'])->middleware('role:1,3')->name('penghapusan.index');
+    Route::get('/penghapusan', [PenghapusanController::class, 'index'])->middleware('role:1,3');
     Route::post('/penghapusan/{id}/update', [PenghapusanController::class, 'update'])->name('penghapusan.update');
     Route::delete('/penghapusan/{id}', [PenghapusanController::class, 'destroy'])->name('penghapusan.destroy');
 
     // Laporan
-    Route::get('/laporan/perawatan', [PerawatanController::class, 'laporan'])->middleware('role:1,2,4');
-    Route::get('/laporan/peminjaman', [PeminjamanController::class, 'laporan']);
-    Route::get('/laporan/mutasi', [MutasiController::class, 'laporan']);
-    Route::get('/laporan/penghapusan', [PenghapusanController::class, 'laporan']);
+    Route::get('/laporan/perawatan', [PerawatanController::class, 'laporan'])->middleware('role:1,2,4')->name('perawatan.index');
+    Route::get('/laporan/peminjaman', [PeminjamanController::class, 'laporan'])->name('peminjaman.index');
+    Route::get('/laporan/mutasi', [MutasiController::class, 'laporan'])->name('mutasi.index');
+    Route::get('/laporan/penghapusan', [PenghapusanController::class, 'laporan'])->name('penghapusan.index');
 
     // Pengaturan
     Route::get('/pengaturan/ruangan', [DataRuanganController::class, 'index'])->middleware('role:1');
