@@ -11,28 +11,29 @@
             </div>
 
             {{-- Tombol Ekspor --}}
-            <div class="col-md-6 text-end">
+            <div class="col-md-4 text-end">
                 <div class="btn-group me-2">
-                    <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown"
+                        aria-expanded="false">
                         <i class="bi bi-file-earmark-pdf"></i> Cetak PDF
                     </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item text-danger" href="#" target="_blank">1 Bulan</a></li>
-                        <li><a class="dropdown-item text-danger" href="#" target="_blank">3 Bulan</a></li>
-                        <li><a class="dropdown-item text-danger" href="#" target="_blank">6 Bulan</a></li>
-                        <li><a class="dropdown-item text-danger" href="#" target="_blank">1 Tahun</a></li>
+                    <ul class="dropdown-menu bg-danger" style=" min-width: 100%;">
+                        <li><a class="dropdown-item text-white" target="_blank">1 Bulan</a></li>
+                        <li><a class="dropdown-item text-white" target="_blank">3 Bulan</a></li>
+                        <li><a class="dropdown-item text-white" target="_blank">6 Bulan</a></li>
+                        <li><a class="dropdown-item text-white" target="_blank">1 Tahun</a></li>
                     </ul>
                 </div>
-
                 <div class="btn-group">
-                    <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown"
+                        aria-expanded="false">
                         <i class="bi bi-file-earmark-excel"></i> Ekspor Excel
                     </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item text-success" href="#">1 Bulan</a></li>
-                        <li><a class="dropdown-item text-success" href="#">3 Bulan</a></li>
-                        <li><a class="dropdown-item text-success" href="#">6 Bulan</a></li>
-                        <li><a class="dropdown-item text-success" href="#">1 Tahun</a></li>
+                    <ul class="dropdown-menu bg-success" style="min-width: 100%;">
+                        <li><a class="dropdown-item text-white">1 Bulan</a></li>
+                        <li><a class="dropdown-item text-white">3 Bulan</a></li>
+                        <li><a class="dropdown-item text-white">6 Bulan</a></li>
+                        <li><a class="dropdown-item text-white">1 Tahun</a></li>
                     </ul>
                 </div>
             </div>

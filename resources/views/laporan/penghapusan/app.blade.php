@@ -1,36 +1,43 @@
 <x-layout>
-    <div class="row align-items-center mb-4">
-        <div class="col-md-3">
-            <input type="text" id="globalSearch" class="form-control" placeholder="Cari data penghapusan...">
-        </div>
-        <div class="col-md-2">
-            <button class="btn btn-primary"><i class="ri-search-line me-1"></i>Filter</button>
-        </div>
-        <div class="col-md-7 text-end">
-            <div class="btn-group me-2">
-                <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-file-earmark-pdf"></i> Cetak PDF
+    <form method="GET" action="{{ route('penghapusan.index') }}">
+        <div class="row mb-3 align-items-center justify-content-between">
+            {{-- Kolom Pencarian --}}
+            <div class="col-md-4 d-flex">
+                <input type="text" name="search" id="searchMutasi" class="form-control me-2" placeholder="Cari barang..." value="{{ request('search') }}">
+                <button type="submit" class="btn btn-primary">
+                    <i class="ri-search-line me-1"></i>Filter
                 </button>
-                <ul class="dropdown-menu bg-danger" style=" min-width: 100%;">
-                    <li><a class="dropdown-item text-white" target="_blank">1 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" target="_blank">3 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" target="_blank">6 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" target="_blank">1 Tahun</a></li>
-                </ul>
             </div>
-            <div class="btn-group">
-                <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-file-earmark-excel"></i> Ekspor Excel
-                </button>
-                <ul class="dropdown-menu bg-success" style="min-width: 100%;">
-                    <li><a class="dropdown-item text-white" >1 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" >3 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" >6 Bulan</a></li>
-                    <li><a class="dropdown-item text-white" >1 Tahun</a></li>
-                </ul>
+
+            {{-- Tombol Ekspor --}}
+            <div class="col-md-4 text-end">
+                <div class="btn-group me-2">
+                    <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="bi bi-file-earmark-pdf"></i> Cetak PDF
+                    </button>
+                    <ul class="dropdown-menu bg-danger" style=" min-width: 100%;">
+                        <li><a class="dropdown-item text-white" target="_blank">1 Bulan</a></li>
+                        <li><a class="dropdown-item text-white" target="_blank">3 Bulan</a></li>
+                        <li><a class="dropdown-item text-white" target="_blank">6 Bulan</a></li>
+                        <li><a class="dropdown-item text-white" target="_blank">1 Tahun</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="bi bi-file-earmark-excel"></i> Ekspor Excel
+                    </button>
+                    <ul class="dropdown-menu bg-success" style="min-width: 100%;">
+                        <li><a class="dropdown-item text-white">1 Bulan</a></li>
+                        <li><a class="dropdown-item text-white">3 Bulan</a></li>
+                        <li><a class="dropdown-item text-white">6 Bulan</a></li>
+                        <li><a class="dropdown-item text-white">1 Tahun</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
     <div class="table-responsive">
         <table id="tabelPenghapusan" class="table table-bordered table-striped align-middle">
             <thead class="table-light">

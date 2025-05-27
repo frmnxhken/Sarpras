@@ -8,14 +8,57 @@ use Illuminate\Http\Request;
 
 class PenghapusanController extends Controller
 {
-    public function index()
+    // public function index()
+    // {
+    //     $barangs = Barang::with('ruangan')->get();
+    //     $data = Penghapusan::with(['barang.ruangan', 'ajuan'])->whereHas('ajuan', function ($query) {
+    //         $query->where('status', 'pending');
+    //     })->get();
+    //     return view('penghapusan.app', compact('data', 'barangs'));
+    // }
+
+    public function index(Request $request)
     {
+        $search = $request->input('search');
+        // $range = $request->input('range');
+
         $barangs = Barang::with('ruangan')->get();
-        $data = Penghapusan::with(['barang.ruangan', 'ajuan'])->whereHas('ajuan', function ($query) {
-            $query->where('status', 'pending');
-        })->get();
+
+        $query = Penghapusan::with(['barang.ruangan', 'ajuan'])->whereHas('ajuan', function ($q) {
+            $q->where('status', 'pending');
+        });
+
+        // Filter berdasarkan pencarian barang
+        if ($search) {
+            $query->whereHas('barang', function ($q) use ($search) {
+                $q->where('nama_barang', 'like', '%' . $search . '%');
+            });
+        }
+
+        // Filter berdasarkan range waktu
+        // if ($range) {
+        //     $now = now();
+        //     switch ($range) {
+        //         case '1bulan':
+        //             $query->where('created_at', '>=', $now->copy()->subMonth());
+        //             break;
+        //         case '3bulan':
+        //             $query->where('created_at', '>=', $now->copy()->subMonths(3));
+        //             break;
+        //         case '6bulan':
+        //             $query->where('created_at', '>=', $now->copy()->subMonths(6));
+        //             break;
+        //         case '1tahun':
+        //             $query->where('created_at', '>=', $now->copy()->subYear());
+        //             break;
+        //     }
+        // }
+
+        $data = $query->get();
+
         return view('penghapusan.app', compact('data', 'barangs'));
     }
+
     public function laporan()
     {
         $data = Penghapusan::with(['barang.ruangan', 'ajuan'])->get();

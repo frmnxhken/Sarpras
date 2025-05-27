@@ -77,7 +77,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/mutasi/{id}', [MutasiController::class, 'destroy'])->name('mutasi.destroy');
 
     // Penghapusan
-    Route::get('/penghapusan', [PenghapusanController::class, 'index'])->middleware('role:1,3');
+    Route::get('/penghapusan', [PenghapusanController::class, 'index'])->middleware('role:1,3')->name('penghapusan.index');
     Route::post('/penghapusan/{id}/update', [PenghapusanController::class, 'update'])->name('penghapusan.update');
     Route::delete('/penghapusan/{id}', [PenghapusanController::class, 'destroy'])->name('penghapusan.destroy');
 
