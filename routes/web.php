@@ -70,7 +70,7 @@ Route::middleware('auth')->group(function () {
 
 
     // Mutasi
-    Route::get('/mutasi', [MutasiController::class, 'index'])->middleware('role:1,3');
+    Route::get('/mutasi', [MutasiController::class, 'index'])->middleware('role:1,3')->name('mutasi.index');
     Route::post('/mutasi', [MutasiController::class, 'store'])->name('mutasi.store');
     Route::put('/mutasi', [MutasiController::class, 'updateStatus'])->name('mutasi.updateStatus');
     Route::put('/mutasi/{id}', [MutasiController::class, 'update'])->name('mutasi.update');

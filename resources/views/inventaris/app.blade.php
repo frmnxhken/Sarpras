@@ -28,7 +28,7 @@
                 <input type="text" id="globalSearch" name="search" class="form-control" placeholder="Cari data barang....">
             </div>
             <div class="col-md-2">
-                <button type="submit" class="btn btn-primary w-100">
+                <button type="submit" class="btn btn-primary">
                     <i class="ri-search-line me-1"></i>Filter
                 </button>
             </div>

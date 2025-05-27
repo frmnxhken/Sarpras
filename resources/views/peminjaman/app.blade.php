@@ -17,7 +17,7 @@
             <input type="text" id="globalSearch" class="form-control" placeholder="Cari data peminjaman...">
         </div>
         <div class="col-md-2">
-            <button class="btn btn-primary w-100"><i class="ri-search-line me-1"></i>Filter</button>
+            <button class="btn btn-primary"><i class="ri-search-line me-1"></i>Filter</button>
         </div>
     </div>
     <!-- Notifikasi -->

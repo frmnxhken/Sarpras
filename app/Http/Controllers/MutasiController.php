@@ -13,14 +13,41 @@ use Illuminate\Support\Str;
 
 class MutasiController extends Controller
 {
-    public function index()
+    // public function index()
+    // {
+    //     $barangs = Barang::with(['ruangan'])->where('jumlah_barang', '>', 0)->get();
+    //     $mutasi = Mutasi::with(['barang.ruangan', 'ajuan'])->whereHas('ajuan', function ($query) {
+    //         $query->where('status', 'pending');
+    //     })->get();
+    //     $ruangan = Ruangans::all();
+    //     $ruangans = Ruangans::pluck('nama_ruangan', 'id')->toArray();
+
+    //     return view('mutasi.app', compact('mutasi', 'ruangans', 'ruangan', 'barangs'));
+    // }
+
+    public function index(Request $request)
     {
+        $search = $request->input('search');
+
         $barangs = Barang::with(['ruangan'])->where('jumlah_barang', '>', 0)->get();
-        $mutasi = Mutasi::with(['barang.ruangan', 'ajuan'])->whereHas('ajuan', function ($query) {
-            $query->where('status', 'pending');
-        })->get();
         $ruangan = Ruangans::all();
         $ruangans = Ruangans::pluck('nama_ruangan', 'id')->toArray();
+
+        $mutasi = Mutasi::with(['barang.ruangan', 'ajuan'])
+            ->whereHas('ajuan', function ($query) {
+                $query->where('status', 'pending');
+            });
+
+        if ($search) {
+            $mutasi->where(function ($q) use ($search) {
+                $q->whereHas('barang', function ($q2) use ($search) {
+                    $q2->where('nama_barang', 'like', "%{$search}%")
+                        ->orWhere('kode_barang', 'like', "%{$search}%");
+                })->orWhere('keterangan', 'like', "%{$search}%");
+            });
+        }
+
+        $mutasi = $mutasi->get();
 
         return view('mutasi.app', compact('mutasi', 'ruangans', 'ruangan', 'barangs'));
     }
