@@ -1,10 +1,19 @@
-@if ($errors->any())
+@if (session('modal_error') === 'modalMutasiBarang')
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var myModal = new bootstrap.Modal(document.getElementById('modalMutasiBarang'), {
-                keyboard: false
+        document.addEventListener('DOMContentLoaded', function () {
+            // Tutup modal terbuka lainnya
+            document.querySelectorAll('.modal.show').forEach(modal => {
+                bootstrap.Modal.getInstance(modal)?.hide();
             });
-            myModal.show();
+            // Hapus backdrop sisa
+            document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+
+            // Tampilkan modal tambah mutasi
+            var modalElement = document.getElementById('modalMutasiBarang');
+            if (modalElement) {
+                var myModal = new bootstrap.Modal(modalElement, { keyboard: false });
+                myModal.show();
+            }
         });
     </script>
 @endif

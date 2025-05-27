@@ -8,6 +8,7 @@ use App\Models\Mutasi;
 use App\Models\Ruangans;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Str;
 
 class MutasiController extends Controller
@@ -26,32 +27,45 @@ class MutasiController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'tanggal_mutasi' => 'required|date',
-            'nama_mutasi' => 'required|string|max:255',
-            'barang_id' => 'required|exists:barangs,id',
-            'jumlah_barang' => 'required|integer|min:1',
-            'tujuan' => 'required|integer|exists:ruangans,id',
-            'keterangan' => 'nullable|string',
-        ]);
+        try {
+            $validated = $request->validate([
+                'tanggal_mutasi'  => 'required|date',
+                'nama_mutasi'     => 'required|string|max:255',
+                'barang_id'       => 'required|exists:barangs,id',
+                'jumlah_barang'   => 'required|integer|min:1',
+                'tujuan'          => 'required|integer|exists:ruangans,id',
+                'keterangan'      => 'nullable|string',
+            ]);
+        } catch (ValidationException $e) {
+            return redirect()->back()
+                ->withErrors($e->validator)
+                ->withInput()
+                ->with('modal_error', 'modalMutasiBarang');
+        }
 
-        // Ambil data barang asal
         $barangAsal = Barang::findOrFail($validated['barang_id']);
 
+        // Cek jika ruangan tujuan sama dengan asal
         if ($validated['tujuan'] == $barangAsal->ruangan_id) {
-            return back()->withErrors(['tujuan' => 'Ruangan tujuan tidak boleh sama dengan ruangan asal.']);
+            return redirect()->back()
+                ->withErrors(['tujuan' => 'Ruangan tujuan tidak boleh sama dengan ruangan asal.'])
+                ->withInput()
+                ->with('modal_error', 'modalMutasiBarang');
         }
 
-        // Validasi stok tersedia
+        // Validasi stok
         if ($validated['jumlah_barang'] > $barangAsal->jumlah_barang) {
-            return back()->withErrors(['jumlah_barang' => 'Jumlah melebihi stok yang tersedia.'])->withInput();
+            return redirect()->back()
+                ->withErrors(['jumlah_barang' => 'Jumlah melebihi stok yang tersedia.'])
+                ->withInput()
+                ->with('modal_error', 'modalMutasiBarang');
         }
-        // Simpan data mutasi
-        $mutasi2 = Mutasi::create($validated);
+
+        $mutasi = Mutasi::create($validated);
+
         AjuanMutasi::create([
-            'user_id' => Auth::user()->id,
-            // 'user_id' => 1,
-            'mutasi_id' => $mutasi2->id,
+            'user_id' => Auth::id(),
+            'mutasi_id' => $mutasi->id,
         ]);
 
         return redirect()->back()->with('success', 'Data mutasi berhasil disimpan.');
@@ -66,14 +80,22 @@ class MutasiController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validated = $request->validate([
-            'tanggal_mutasi' => 'required|date',
-            'nama_mutasi' => 'required|string|max:255',
-            'barang_id' => 'required|exists:barangs,id',
-            'jumlah_barang' => 'required|integer|min:1',
-            'tujuan' => 'required|integer',
-            'keterangan' => 'nullable|string',
-        ]);
+        try {
+            $validated = $request->validate([
+                'tanggal_mutasi'  => 'required|date',
+                'nama_mutasi'     => 'required|string|max:255',
+                'barang_id'       => 'required|exists:barangs,id',
+                'jumlah_barang'   => 'required|integer|min:1',
+                'tujuan'          => 'required|integer',
+                'keterangan'      => 'nullable|string',
+            ]);
+        } catch (ValidationException $e) {
+            // Kirim modal id yang error ke session agar modal tersebut dibuka
+            return redirect()->back()
+                ->withErrors($e->validator)
+                ->withInput()
+                ->with('modal_error', 'editMutasi' . $id);
+        }
 
         $mutasi = Mutasi::findOrFail($id);
         $mutasi->update($validated);

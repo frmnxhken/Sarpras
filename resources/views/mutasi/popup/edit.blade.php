@@ -1,4 +1,23 @@
+@if (session('modal_error') === 'editMutasi' . $item->id)
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Tutup modal aktif lainnya
+            document.querySelectorAll('.modal.show').forEach(modal => {
+                bootstrap.Modal.getInstance(modal)?.hide();
+            });
 
+            // Hapus backdrop lama
+            document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+
+            // Tampilkan modal edit yang sesuai
+            var modalElement = document.getElementById('editMutasi{{ $item->id }}');
+            if (modalElement) {
+                var myModal = new bootstrap.Modal(modalElement, { keyboard: false });
+                myModal.show();
+            }
+        });
+    </script>
+@endif
 <div class="modal fade" id="editMutasi{{ $item->id }}" tabindex="-1" aria-labelledby="editMutasiLabel{{ $item->id }}" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <form action="{{ route('mutasi.update', $item->id) }}" method="POST" class="modal-content">
