@@ -3,23 +3,6 @@
         <i class="bi bi-plus-circle me-2"></i>Tambah Peminjaman
     </button>
     @include('peminjaman.popup.tambah_peminjaman')
-    <div class="row align-items-center mb-4">
-        <!-- Kolom pencarian -->
-        <div class="col-md-3">
-            <select class="form-select">
-                <option selected>Semua Status</option>
-                <option>Dipinjam</option>
-                <option>Dikembalikan</option>
-                <option>Hilang</option>
-            </select>
-        </div>
-        <div class="col-md-3">
-            <input type="text" id="globalSearch" class="form-control" placeholder="Cari data peminjaman...">
-        </div>
-        <div class="col-md-2">
-            <button class="btn btn-primary"><i class="ri-search-line me-1"></i>Filter</button>
-        </div>
-    </div>
     <!-- Notifikasi -->
     @if (session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">

@@ -12,32 +12,12 @@ use Carbon\Carbon;
 
 class PenghapusanController extends Controller
 {
-    // public function index()
-    // {
-    //     $barangs = Barang::with('ruangan')->get();
-    //     $data = Penghapusan::with(['barang.ruangan', 'ajuan'])->whereHas('ajuan', function ($query) {
-    //         $query->where('status', 'pending');
-    //     })->get();
-    //     return view('penghapusan.app', compact('data', 'barangs'));
-    // }
-
-    public function index(Request $request)
+    public function index()
     {
-        $search = $request->input('search');
         $barangs = Barang::with('ruangan')->get();
-        $query = Penghapusan::with(['barang.ruangan', 'ajuan'])->whereHas('ajuan', function ($q) {
-            $q->where('status', 'pending');
-        });
-
-        // Filter berdasarkan pencarian barang
-        if ($search) {
-            $query->whereHas('barang', function ($q) use ($search) {
-                $q->where('nama_barang', 'like', '%' . $search . '%');
-            });
-        }
-
-        $data = $query->get();
-
+        $data = Penghapusan::with(['barang.ruangan', 'ajuan'])->whereHas('ajuan', function ($query) {
+            $query->where('status', 'pending');
+        })->get();
         return view('penghapusan.app', compact('data', 'barangs'));
     }
 

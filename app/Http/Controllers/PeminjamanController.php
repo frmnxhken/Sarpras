@@ -15,42 +15,13 @@ use Illuminate\Validation\ValidationException;
 
 class PeminjamanController extends Controller
 {
-    // public function index()
-    // {
-    //     $barangs = Barang::with('ruangan')->get();
-    //     $items = Peminjaman::with(['barang.ruangan', 'ajuan'])->where('status_peminjaman', 'Dipinjam')->get();
-    //     return view('peminjaman.app', compact('items', 'barangs'));
-    // }
-
-    public function index(Request $request)
+    public function index()
     {
         $barangs = Barang::with('ruangan')->get();
-
-        // Ambil input filter dari query string
-        $status = $request->input('status');
-        $search = $request->input('search');
-
-        // Query awal dengan relasi
-        $query = Peminjaman::with(['barang.ruangan', 'ajuan'])->where('status_peminjaman', 'Dipinjam');
-
-        // Filter status jika dipilih
-        if ($status) {
-            $query->where('status_peminjaman', $status);
-        }
-
-        // Filter pencarian jika diisi
-        if ($search) {
-            $query->where(function ($q) use ($search) {
-                $q->where('nama_peminjam', 'like', "%{$search}%")
-                    ->orWhereHas('barang', function ($q2) use ($search) {
-                        $q2->where('nama_barang', 'like', "%{$search}%");
-                    });
-            });
-        }
-        $items = $query->get();
-
+        $items = Peminjaman::with(['barang.ruangan', 'ajuan'])->where('status_peminjaman', 'Dipinjam')->get();
         return view('peminjaman.app', compact('items', 'barangs'));
     }
+
 
     public function store(Request $request)
     {

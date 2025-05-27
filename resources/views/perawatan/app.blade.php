@@ -4,16 +4,6 @@
         <i class="bi bi-plus-circle me-2"></i>Tambah Perawatan
     </button>
     @include('perawatan.popup.tambah')
-    <!-- Search and Export Buttons -->
-    <div class="row mb-3 align-items-center">
-        <div class="col-md-3">
-            <input type="text" id="globalSearch" class="form-control" placeholder="Cari data perawatan...">
-        </div>
-        <div class="col-md-2">
-            <button class="btn btn-primary"><i class="ri-search-line me-1"></i>Filter</button>
-        </div>
-    </div>
-
     <!-- Table -->
     <div class="table-responsive">
         <table id="tabelPerawatan" class="table table-bordered table-striped align-middle">

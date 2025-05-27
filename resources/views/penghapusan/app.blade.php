@@ -1,12 +1,4 @@
 <x-layout>
-    <div class="row align-items-center mb-4">
-        <div class="col-md-3">
-            <input type="text" id="globalSearch" class="form-control" placeholder="Cari data penghapusan...">
-        </div>
-        <div class="col-md-2">
-            <button class="btn btn-primary"><i class="ri-search-line me-1"></i>Filter</button>
-        </div>
-    </div>
     <div class="table-responsive">
         <table id="tabelPenghapusan" class="table table-bordered table-striped align-middle">
             <thead class="table-light">

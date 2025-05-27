@@ -16,30 +16,10 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class PerawatanController extends Controller
 {
-    // public function index()
-    // {
-    //     $barang = Barang::with('ruangan')->get();
-    //     $dataPerawatan = Perawatan::with('barang.ruangan', 'ajuan')->where('status', 'belum')->get();
-    //     return view('perawatan.app', compact('dataPerawatan', 'barang'));
-    // }
-
-    public function index(Request $request)
+    public function index()
     {
-        $search = $request->input('search');
         $barang = Barang::with('ruangan')->get();
-
-        $query = Perawatan::with('barang.ruangan', 'ajuan')->where('status', 'belum');
-
-        // Fitur pencarian berdasarkan nama barang
-        if ($request->has('search') && $request->search != '') {
-            $search = $request->search;
-            $query->whereHas('barang', function ($q) use ($search) {
-                $q->where('nama_barang', 'like', '%' . $search . '%');
-            });
-        }
-
-        $dataPerawatan = $query->get();
-
+        $dataPerawatan = Perawatan::with('barang.ruangan', 'ajuan')->where('status', 'belum')->get();
         return view('perawatan.app', compact('dataPerawatan', 'barang'));
     }
 

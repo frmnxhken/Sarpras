@@ -6,16 +6,6 @@
     </button>
     @include('mutasi.popup.tambah')
 
-    <!-- Fitur Pencarian & Ekspor -->
-    <div class="row mb-3 align-items-center">
-        <div class="col-md-3">
-            <input type="text" id="searchMutasi" class="form-control" placeholder="Cari mutasi...">
-        </div>
-        <div class="col-md-2">
-            <button class="btn btn-primary"><i class="ri-search-line me-1"></i>Filter</button>
-        </div>
-    </div>
-
     <!-- Tabel Data Mutasi -->
     <div class="table-responsive">
         <table id="tabelMutasi" class="table table-bordered table-striped align-middle">
