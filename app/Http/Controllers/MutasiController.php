@@ -9,7 +9,10 @@ use App\Models\Ruangans;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
-use Illuminate\Support\Str;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Exports\MutasiExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
 
 class MutasiController extends Controller
 {
@@ -159,5 +162,24 @@ class MutasiController extends Controller
         $mutasi->delete();
 
         return redirect()->back()->with('success', 'Data mutasi berhasil dihapus.');
+    }
+
+    public function exportPDF($bulan)
+    {
+        $tanggalMulai = Carbon::now()->subMonths($bulan);
+
+        $mutasi = Mutasi::with(['barang.ruangan', 'ajuan'])
+            ->whereDate('tanggal_mutasi', '>=', $tanggalMulai)
+            ->get();
+
+        $ruangans = Ruangans::pluck('nama_ruangan', 'id')->toArray();
+
+        $pdf = Pdf::loadView('laporan.mutasi.pdf', compact('mutasi', 'ruangans'));
+        return $pdf->download("laporan-mutasi-{$bulan}-bulan.pdf");
+    }
+
+    public function exportExcel($bulan)
+    {
+        return Excel::download(new MutasiExport($bulan), "laporan-mutasi-{$bulan}-bulan.xlsx");
     }
 }

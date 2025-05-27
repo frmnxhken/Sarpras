@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PeminjamanExport;
 use App\Models\Peminjaman;
 use App\Models\Barang;
 use Illuminate\Http\Request;
-use App\Exports\PeminjamanExportFiltered;
 use App\Models\AjuanPeminjaman;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
@@ -185,39 +185,20 @@ class PeminjamanController extends Controller
         return redirect()->back()->with('success', 'Data peminjaman berhasil dihapus.');
     }
 
-    // public function cetakPDF()
-    // {
-    //     $items = Peminjaman::with(['barang.ruangan'])
-    //         ->whereNull('laporan')
-    //         ->get();
-
-    //     $pdf = Pdf::loadView('laporan.peminjaman.pdf', compact('items'));
-    //     return $pdf->stream('laporan_peminjaman.pdf');
-    // }
-
-    public function cetakPDF(Request $request)
+    public function exportPDF($bulan)
     {
-        $periode = $request->input('periode', 1); // default 1 bulan
-        $startDate = Carbon::now()->subMonths($periode);
+        $tanggalMulai = Carbon::now()->subMonths($bulan);
 
-        $items = Peminjaman::with(['barang.ruangan'])
-            ->whereNull('laporan')
-            ->where('tanggal_pinjam', '>=', $startDate)
+        $items = Peminjaman::with(['barang.ruangan', 'ajuan'])
+            ->whereDate('tanggal_peminjaman', '>=', $tanggalMulai)
             ->get();
 
-        $pdf = Pdf::loadView('laporan.peminjaman.pdf', compact('items', 'periode'));
-        return $pdf->stream('laporan_peminjaman.pdf');
+        $pdf = Pdf::loadView('laporan.peminjaman.pdf', compact('items'));
+        return $pdf->download("laporan-peminjaman-{$bulan}-bulan.pdf");
     }
 
-
-    // public function exportExcel()
-    // {
-    //     return Excel::download(new PeminjamanExportFiltered, 'laporan_peminjaman.xlsx');
-    // }
-
-    public function exportExcel(Request $request)
+    public function exportExcel($bulan)
     {
-        $periode = $request->input('periode', 1); // default 1 bulan
-        return Excel::download(new PeminjamanExportFiltered($periode), 'laporan_peminjaman.xlsx');
+        return Excel::download(new PeminjamanExport($bulan), "laporan-peminjaman-{$bulan}-bulan.xlsx");
     }
 }

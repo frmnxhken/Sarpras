@@ -17,10 +17,10 @@
                         <i class="bi bi-file-earmark-pdf"></i> Cetak PDF
                     </button>
                     <ul class="dropdown-menu bg-danger" style=" min-width: 100%;">
-                        <li><a class="dropdown-item text-white" target="_blank">1 Bulan</a></li>
-                        <li><a class="dropdown-item text-white" target="_blank">3 Bulan</a></li>
-                        <li><a class="dropdown-item text-white" target="_blank">6 Bulan</a></li>
-                        <li><a class="dropdown-item text-white" target="_blank">1 Tahun</a></li>
+                        <li><a class="dropdown-item text-white" target="_blank" href="{{ route('penghapusan.pdf', 1) }}">1 Bulan</a></li>
+                        <li><a class="dropdown-item text-white" target="_blank" href="{{ route('penghapusan.pdf', 3) }}">3 Bulan</a></li>
+                        <li><a class="dropdown-item text-white" target="_blank" href="{{ route('penghapusan.pdf', 6) }}">6 Bulan</a></li>
+                        <li><a class="dropdown-item text-white" target="_blank" href="{{ route('penghapusan.pdf', 12) }}">1 Tahun</a></li>
                     </ul>
                 </div>
                 <div class="btn-group">
@@ -29,10 +29,10 @@
                         <i class="bi bi-file-earmark-excel"></i> Ekspor Excel
                     </button>
                     <ul class="dropdown-menu bg-success" style="min-width: 100%;">
-                        <li><a class="dropdown-item text-white">1 Bulan</a></li>
-                        <li><a class="dropdown-item text-white">3 Bulan</a></li>
-                        <li><a class="dropdown-item text-white">6 Bulan</a></li>
-                        <li><a class="dropdown-item text-white">1 Tahun</a></li>
+                        <li><a class="dropdown-item text-white" target="_blank" href="{{ route('penghapusan.excel', 1) }}">1 Bulan</a></li>
+                        <li><a class="dropdown-item text-white" target="_blank" href="{{ route('penghapusan.excel', 3) }}">3 Bulan</a></li>
+                        <li><a class="dropdown-item text-white" target="_blank" href="{{ route('penghapusan.excel', 6) }}">6 Bulan</a></li>
+                        <li><a class="dropdown-item text-white" target="_blank" href="{{ route('penghapusan.excel', 12) }}">1 Tahun</a></li>
                     </ul>
                 </div>
             </div>
@@ -57,7 +57,7 @@
                         <td>{{ $item->created_at->format('Y-m-d') }}</td>
                         <td>{{ $item->barang->nama_barang }}</td>
                         <td>{{ $item->jumlah }}</td>
-                        <td>{{ $item->keterangan }}</td>
+                        <td>{{ $item->keterangan ?? '-' }}</td>
                         <td>
                             @if ($item->ajuan[0]->status == 'pending')
                                 <span class="badge bg-warning">Belum disetujui</span>

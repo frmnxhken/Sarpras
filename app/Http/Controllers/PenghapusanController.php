@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Barang;
 use App\Models\Penghapusan;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Exports\PenghapusanExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
 
 class PenghapusanController extends Controller
 {
@@ -81,5 +85,24 @@ class PenghapusanController extends Controller
         $penghapusan->delete();
 
         return redirect()->back()->with('success', 'Penghapusan berhasil dibatalkan.');
+    }
+
+    public function exportPDF($bulan)
+    {
+        $tanggalMulai = Carbon::now()->subMonths($bulan);
+
+        $data = Penghapusan::with(['barang.ruangan', 'ajuan'])
+            ->whereDate('created_at', '>=', $tanggalMulai)
+            ->whereHas('ajuan', function ($q) {
+                $q->where('status', 'pending');
+            })->get();
+
+        $pdf = Pdf::loadView('laporan.penghapusan.pdf', compact('data'));
+        return $pdf->download("laporan-penghapusan-{$bulan}-bulan.pdf");
+    }
+
+    public function exportExcel($bulan)
+    {
+        return Excel::download(new PenghapusanExport($bulan), "laporan-penghapusan-{$bulan}-bulan.xlsx");
     }
 }

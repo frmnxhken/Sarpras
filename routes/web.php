@@ -65,9 +65,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/perawatan/{id}', [PerawatanController::class, 'destroy'])->name('perawatan.destroy');
     Route::put('/perawatan/updateStatus/{id}', [PerawatanController::class, 'updateStatus'])->name('perawatan.updateStatus');
 
-    Route::get('/laporan/perawatan/pdf/{bulan}', [PerawatanController::class, 'exportPDF']);
-    Route::get('/laporan/perawatan/excel/{bulan}', [PerawatanController::class, 'exportExcel']);
-
 
     // Mutasi
     Route::get('/mutasi', [MutasiController::class, 'index'])->middleware('role:1,3')->name('mutasi.index');
@@ -86,6 +83,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/laporan/peminjaman', [PeminjamanController::class, 'laporan'])->name('peminjaman.laporan');
     Route::get('/laporan/mutasi', [MutasiController::class, 'laporan'])->name('mutasi.laporan');
     Route::get('/laporan/penghapusan', [PenghapusanController::class, 'laporan'])->name('penghapusan.laporan');
+
+    Route::get('/laporan/perawatan/pdf/{bulan}', [PerawatanController::class, 'exportPDF']);
+    Route::get('/laporan/perawatan/excel/{bulan}', [PerawatanController::class, 'exportExcel']);
+
+    Route::get('/laporan/peminjaman/pdf/{bulan}', [PeminjamanController::class, 'exportPDF'])->name('peminjaman.pdf');
+    Route::get('/laporan/peminjaman/excel/{bulan}', [PeminjamanController::class, 'exportExcel'])->name('peminjaman.excel');
+
+    Route::get('/laporan/mutasi/pdf/{bulan}', [MutasiController::class, 'exportPDF'])->name('mutasi.pdf');
+    Route::get('/laporan/mutasi/excel/{bulan}', [MutasiController::class, 'exportExcel'])->name('mutasi.excel');
+
+    Route::get('/laporan/penghapusan/pdf/{bulan}', [PenghapusanController::class, 'exportPDF'])->name('penghapusan.pdf');
+    Route::get('/laporan/penghapusan/excel/{bulan}', [PenghapusanController::class, 'exportExcel'])->name('penghapusan.excel');
 
     // Pengaturan
     Route::get('/pengaturan/ruangan', [DataRuanganController::class, 'index'])->middleware('role:1');

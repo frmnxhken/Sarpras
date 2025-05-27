@@ -1,5 +1,4 @@
 <x-layout>
-
     <form method="GET" action="{{ route('mutasi.laporan') }}">
         <div class="row mb-3 align-items-center justify-content-between">
             {{-- Kolom Pencarian --}}
@@ -18,10 +17,10 @@
                         <i class="bi bi-file-earmark-pdf"></i> Cetak PDF
                     </button>
                     <ul class="dropdown-menu bg-danger" style=" min-width: 100%;">
-                        <li><a class="dropdown-item text-white" target="_blank">1 Bulan</a></li>
-                        <li><a class="dropdown-item text-white" target="_blank">3 Bulan</a></li>
-                        <li><a class="dropdown-item text-white" target="_blank">6 Bulan</a></li>
-                        <li><a class="dropdown-item text-white" target="_blank">1 Tahun</a></li>
+                        <li><a class="dropdown-item text-white" target="_blank" href="{{ route('mutasi.pdf', 1) }}">1 Bulan</a></li>
+                        <li><a class="dropdown-item text-white" target="_blank" href="{{ route('mutasi.pdf', 3) }}">3 Bulan</a></li>
+                        <li><a class="dropdown-item text-white" target="_blank" href="{{ route('mutasi.pdf', 6) }}">6 Bulan</a></li>
+                        <li><a class="dropdown-item text-white" target="_blank" href="{{ route('mutasi.pdf', 12) }}">1 Tahun</a></li>
                     </ul>
                 </div>
                 <div class="btn-group">
@@ -30,10 +29,10 @@
                         <i class="bi bi-file-earmark-excel"></i> Ekspor Excel
                     </button>
                     <ul class="dropdown-menu bg-success" style="min-width: 100%;">
-                        <li><a class="dropdown-item text-white">1 Bulan</a></li>
-                        <li><a class="dropdown-item text-white">3 Bulan</a></li>
-                        <li><a class="dropdown-item text-white">6 Bulan</a></li>
-                        <li><a class="dropdown-item text-white">1 Tahun</a></li>
+                        <li><a class="dropdown-item text-white" target="_blank" href="{{ route('mutasi.excel', 1) }}">1 Bulan</a></li>
+                        <li><a class="dropdown-item text-white" target="_blank" href="{{ route('mutasi.excel', 3) }}">3 Bulan</a></li>
+                        <li><a class="dropdown-item text-white" target="_blank" href="{{ route('mutasi.excel', 6) }}">6 Bulan</a></li>
+                        <li><a class="dropdown-item text-white" target="_blank" href="{{ route('mutasi.excel', 12) }}">1 Tahun</a></li>
                     </ul>
                 </div>
             </div>

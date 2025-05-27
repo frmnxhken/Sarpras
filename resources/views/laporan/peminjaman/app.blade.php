@@ -22,10 +22,10 @@
                         <i class="bi bi-file-earmark-pdf"></i> Cetak PDF
                     </button>
                     <ul class="dropdown-menu bg-danger" style=" min-width: 100%;">
-                        <li><a class="dropdown-item text-white" target="_blank">1 Bulan</a></li>
-                        <li><a class="dropdown-item text-white" target="_blank">3 Bulan</a></li>
-                        <li><a class="dropdown-item text-white" target="_blank">6 Bulan</a></li>
-                        <li><a class="dropdown-item text-white" target="_blank">1 Tahun</a></li>
+                        <li><a class="dropdown-item text-white" target="_blank" href="{{ route('peminjaman.pdf', 1) }}">1 Bulan</a></li>
+                        <li><a class="dropdown-item text-white" target="_blank" href="{{ route('peminjaman.pdf', 3) }}">3 Bulan</a></li>
+                        <li><a class="dropdown-item text-white" target="_blank" href="{{ route('peminjaman.pdf', 6) }}">6 Bulan</a></li>
+                        <li><a class="dropdown-item text-white" target="_blank" href="{{ route('peminjaman.pdf', 12) }}">1 Tahun</a></li>
                     </ul>
                 </div>
                 <div class="btn-group">
@@ -34,10 +34,10 @@
                         <i class="bi bi-file-earmark-excel"></i> Ekspor Excel
                     </button>
                     <ul class="dropdown-menu bg-success" style="min-width: 100%;">
-                        <li><a class="dropdown-item text-white">1 Bulan</a></li>
-                        <li><a class="dropdown-item text-white">3 Bulan</a></li>
-                        <li><a class="dropdown-item text-white">6 Bulan</a></li>
-                        <li><a class="dropdown-item text-white">1 Tahun</a></li>
+                        <li><a class="dropdown-item text-white" href="{{ route('peminjaman.excel', 1) }}">1 Bulan</a></li>
+                        <li><a class="dropdown-item text-white" href="{{ route('peminjaman.excel', 3) }}">3 Bulan</a></li>
+                        <li><a class="dropdown-item text-white" href="{{ route('peminjaman.excel', 6) }}">6 Bulan</a></li>
+                        <li><a class="dropdown-item text-white" href="{{ route('peminjaman.excel', 12) }}">1 Tahun</a></li>
                     </ul>
                 </div>
             </div>
