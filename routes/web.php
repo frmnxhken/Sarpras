@@ -28,11 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/barangRusak', [BarangRusakController::class, 'index'])->name('barangRusak.index');
     Route::get('/barangMasuk', [BarangController::class, 'barangMasuk'])->name('barang.masuk');
 
-
-
-
     // Kelola Barang
-    Route::get('/inventaris', [BarangController::class, 'index'])->middleware('role:1,2,3,4');
+    Route::get('/inventaris', [BarangController::class, 'index'])->middleware('role:1,2,3,4')->name('inventaris.index');
     Route::post('/inventaris/tambah', [BarangController::class, 'store'])->name('inventaris.store');
     Route::get('/inventaris/detail/{id}', [BarangController::class, 'show'])->name('inventaris.detail');
     Route::put('/inventaris/detail/{id}', [BarangController::class, 'update'])->name('inventaris.update');

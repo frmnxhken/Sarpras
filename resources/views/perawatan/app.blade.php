@@ -7,13 +7,6 @@
     <!-- Search and Export Buttons -->
     <div class="row mb-3 align-items-center">
         <div class="col-md-3">
-            <select class="form-select">
-                <option selected>Semua Status</option>
-                <option>Diperbaiki</option>
-                <option>Selesai</option>
-            </select>
-        </div>
-        <div class="col-md-3">
             <input type="text" id="globalSearch" class="form-control" placeholder="Cari data perawatan...">
         </div>
         <div class="col-md-2">

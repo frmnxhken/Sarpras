@@ -3,7 +3,7 @@
     <div class="row mb-3 align-items-center">
         <div class="col-md-3">
             <select class="form-select">
-                <option selected>Semua Status</option>
+                <option selected>Pilih Status</option>
                 <option>Diperbaiki</option>
                 <option>Selesai</option>
             </select>

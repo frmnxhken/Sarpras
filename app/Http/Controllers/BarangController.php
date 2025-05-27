@@ -17,9 +17,33 @@ use Illuminate\Validation\ValidationException;
 
 class BarangController extends Controller
 {
-    public function index()
+    // public function index()
+    // {
+    //     $dataInventaris = Barang::with('ruangan')->where('jumlah_barang', '>', 0)->paginate(8);
+    //     $ruangan = Ruangans::all();
+    //     return view('inventaris.app', compact('dataInventaris', 'ruangan'));
+    // }
+
+    public function index(Request $request)
     {
-        $dataInventaris = Barang::with('ruangan')->where('jumlah_barang', '>', 0)->paginate(8);
+        $query = Barang::with('ruangan')->where('jumlah_barang', '>', 0);
+
+        // Filter berdasarkan ruangan_id
+        if ($request->filled('ruangan_id')) {
+            $query->where('ruangan_id', $request->ruangan_id);
+        }
+
+        // Filter berdasarkan keyword pencarian
+        if ($request->filled('search')) {
+            $query->where(function ($q) use ($request) {
+                $q->where('kode_barang', 'like', '%' . $request->search . '%')
+                    ->orWhere('nama_barang', 'like', '%' . $request->search . '%');
+            });
+        }
+
+        // Ambil hasil dengan pagination
+        $dataInventaris = $query->paginate(8)->appends($request->query());
+
         $ruangan = Ruangans::all();
         return view('inventaris.app', compact('dataInventaris', 'ruangan'));
     }
@@ -29,12 +53,15 @@ class BarangController extends Controller
         $item = Barang::with(['ruangan', 'perawatan'])->findOrFail($id);
 
         $peminjaman = Peminjaman::where('status_peminjaman', 'Dipinjam')
-            ->whereHas('ajuan', function ($query) { $query->where('status', 'disetujui');})
+            ->whereHas('ajuan', function ($query) {
+                $query->where('status', 'disetujui');
+            })
             ->sum('jumlah_barang');
-        
+
         $perawatan = Perawatan::where('status', 'belum')
             ->whereHas('ajuan', function ($query) {
-                $query->where('status', 'disetujui'); })
+                $query->where('status', 'disetujui');
+            })
             ->sum('jumlah');
 
         $qr = $item->kode_barang;
