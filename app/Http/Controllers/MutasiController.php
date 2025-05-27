@@ -96,6 +96,13 @@ class MutasiController extends Controller
                 ->withInput()
                 ->with('modal_error', 'editMutasi' . $id);
         }
+        $barangAsal = Barang::findOrFail($validated['barang_id']);
+        if ($validated['jumlah_barang'] > $barangAsal->jumlah_barang) {
+            return redirect()->back()
+                ->withErrors(['jumlah_barang' => 'Jumlah melebihi stok yang tersedia.'])
+                ->withInput()
+                ->with('modal_error', 'editMutasi' . $id);
+        }
 
         $mutasi = Mutasi::findOrFail($id);
         $mutasi->update($validated);
