@@ -14,6 +14,22 @@
             </a>
         </div>
     </div>
+    <div class="row mb-3 align-items-center">
+        <div class="col-md-3">
+            <select class="form-select">
+                <option selected>Semua Status</option>
+                <option>Baik</option>
+                <option>Rusak Ringan</option>
+                <option>Rusak Berat</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <input type="text" id="globalSearch" class="form-control" placeholder="Cari data barang....">
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary w-100"><i class="ri-search-line me-1"></i>Filter</button>
+        </div>
+    </div>
     <div class="table-responsive">
         <table id="dataTable" class="table table-bordered table-striped align-middle">
             <thead class="table-light">
