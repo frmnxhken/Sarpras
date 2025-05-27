@@ -11,6 +11,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class PeminjamanController extends Controller
 {
@@ -23,32 +24,40 @@ class PeminjamanController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'tanggal_peminjaman' => 'required|date',
-            'tanggal_pengembalian' => 'required|date|after_or_equal:tanggal_peminjaman',
-            'nama_peminjam' => 'required|string|max:255',
-            'barang_id' => 'required|exists:barangs,id',
-            'jumlah_barang' => 'required|integer|min:1',
-            'status_peminjaman' => 'nullable|in:Dipinjam,Dikembalikan,Diperpanjang,Hilang',
-            'keterangan' => 'nullable|string',
-        ]);
+        try {
+            $validated = $request->validate([
+                'tanggal_peminjaman' => 'required|date',
+                'tanggal_pengembalian' => 'required|date|after_or_equal:tanggal_peminjaman',
+                'nama_peminjam' => 'required|string|max:255',
+                'barang_id' => 'required|exists:barangs,id',
+                'jumlah_barang' => 'required|integer|min:1',
+                'status_peminjaman' => 'nullable|in:Dipinjam,Dikembalikan,Diperpanjang,Hilang',
+                'keterangan' => 'nullable|string',
+            ]);
+        } catch (ValidationException $e) {
+            return redirect()->back()
+                ->withErrors($e->validator)
+                ->withInput()
+                ->with('modal_error', 'TambahPeminjaman'); // tanda modal mana yang error
+        }
 
         $barang = Barang::findOrFail($validated['barang_id']);
 
-        // Cek stok barang
         if ($validated['jumlah_barang'] > $barang->jumlah_barang) {
-            return back()->withErrors(['jumlah_barang' => 'Jumlah barang yang diminta melebihi stok tersedia.'])->withInput();
+            return redirect()->back()
+                ->withErrors(['jumlah_barang' => 'Jumlah barang yang diminta melebihi stok tersedia.'])
+                ->withInput()
+                ->with('modal_error', 'TambahPeminjaman');
         }
 
-        // Simpan peminjaman
         $peminjaman = Peminjaman::create($validated);
 
         AjuanPeminjaman::create([
-            'user_id' => Auth::user()->id,
-            // 'user_id' => 1,
+            'user_id' => Auth::id(),
             'peminjaman_id' => $peminjaman->id,
         ]);
-        return redirect('/peminjaman');
+
+        return redirect('/peminjaman')->with('success', 'Peminjaman berhasil diajukan.');
     }
 
     public function updateStatus(
@@ -86,18 +95,35 @@ class PeminjamanController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'tanggal_peminjamanEdit' => 'required|date',
-            'tanggal_pengembalianEdit' => 'required|date|after_or_equal:tanggal_peminjamanEdit',
-            'nama_peminjamEdit' => 'required|string|max:255',
-            'barang_idEdit' => 'required|exists:barangs,id',
-            'jumlah_barangEdit' => 'required|integer|min:1',
-            'status_peminjamanEdit' => 'required|in:Dipinjam,Dikembalikan,Diperpanjang,Hilang',
-            'keteranganEdit' => 'nullable|string|max:255',
-        ]);
+        try {
+            $validated = $request->validate([
+                'tanggal_peminjamanEdit' => 'required|date',
+                'tanggal_pengembalianEdit' => 'required|date|after_or_equal:tanggal_peminjamanEdit',
+                'nama_peminjamEdit' => 'required|string|max:255',
+                'barang_idEdit' => 'required|exists:barangs,id',
+                'jumlah_barangEdit' => 'required|integer|min:1',
+                'status_peminjamanEdit' => 'required|in:Dipinjam,Dikembalikan,Diperpanjang,Hilang',
+                'keteranganEdit' => 'nullable|string|max:255',
+            ]);
+        } catch (ValidationException $e) {
+            return redirect()->back()
+                ->withErrors($e->validator)
+                ->withInput()
+                ->with('modal_error', 'editPeminjaman' . $id); // tandai modal edit yang error
+        }
+        
+        $barang = Barang::findOrFail($validated['barang_id']);
+
+        if ($validated['jumlah_barangEdit'] > $barang->jumlah_barang) {
+            return redirect()->back()
+                ->withErrors(['jumlah_barangEdit' => 'Jumlah barang yang diminta melebihi stok tersedia.'])
+                ->withInput()
+                ->with('modal_error', 'editPeminjaman' . $id);
+        }
 
         $peminjaman = Peminjaman::findOrFail($id);
         $peminjaman->update($request->all());
+
         return redirect()->back()->with('success', 'Data peminjaman berhasil diperbarui.');
     }
 

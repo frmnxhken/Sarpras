@@ -1,10 +1,18 @@
-@if ($errors->any())
+@if (session('modal_error') === 'TambahPeminjaman')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var myModal = new bootstrap.Modal(document.getElementById('TambahPeminjaman'), {
-                keyboard: false
+            // Tutup modal lain jika ada
+            document.querySelectorAll('.modal.show').forEach(modalEl => {
+                bootstrap.Modal.getInstance(modalEl)?.hide();
             });
-            myModal.show();
+            document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+
+            // Buka modal ini
+            var modalElement = document.getElementById('TambahPeminjaman');
+            if (modalElement) {
+                var myModal = new bootstrap.Modal(modalElement, { keyboard: false });
+                myModal.show();
+            }
         });
     </script>
 @endif

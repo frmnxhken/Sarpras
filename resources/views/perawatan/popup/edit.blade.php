@@ -1,3 +1,25 @@
+@if (session('modal_error') === 'editPerawatan' . $item->id)
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Tutup semua modal terbuka
+            document.querySelectorAll('.modal.show').forEach(modalEl => {
+                bootstrap.Modal.getInstance(modalEl)?.hide();
+            });
+
+            // Hapus backdrop sisa
+            document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+
+            // Tampilkan modal sesuai ID
+            var modalId = 'editPerawatan{{ $item->id }}';
+            var modalElement = document.getElementById(modalId);
+            if (modalElement) {
+                var myModal = new bootstrap.Modal(modalElement);
+                myModal.show();
+            }
+        });
+    </script>
+@endif
+
 <div class="modal fade" id="editPerawatan{{ $item->id }}" tabindex="-1" aria-labelledby="editPerawatanLabel{{ $item->id }}" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <form class="modal-content" action="{{ route('perawatan.update', $item->id) }}" method="POST">

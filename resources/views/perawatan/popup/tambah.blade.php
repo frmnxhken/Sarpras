@@ -1,13 +1,24 @@
-@if ($errors->any())
+@if (session('modal_error') === 'modalPerawatanBarang')
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var myModal = new bootstrap.Modal(document.getElementById('modalPerawatanBarang'), {
-                keyboard: false
+        document.addEventListener('DOMContentLoaded', function () {
+            // Tutup modal yang aktif (jika ada)
+            document.querySelectorAll('.modal.show').forEach(modalEl => {
+                bootstrap.Modal.getInstance(modalEl)?.hide();
             });
-            myModal.show();
+
+            // Hapus backdrop yang tersisa
+            document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+
+            // Tampilkan modal tambah perawatan
+            var modalElement = document.getElementById('modalPerawatanBarang');
+            if (modalElement) {
+                var myModal = new bootstrap.Modal(modalElement, { keyboard: false });
+                myModal.show();
+            }
         });
     </script>
 @endif
+
 <div class="modal fade" id="modalPerawatanBarang" tabindex="-1" aria-labelledby="modalPerawatanLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <form class="modal-content" action="{{ route('perawatan.store') }}" method="POST">
