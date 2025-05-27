@@ -168,7 +168,7 @@ class PerawatanController extends Controller
     public function laporan(Request $request)
     {
         $search = $request->input('search');
-        $query = Perawatan::with('barang.ruangan', 'ajuan')->where('status', 'belum');
+        $query = Perawatan::with('barang.ruangan', 'ajuan');
 
         // Fitur pencarian berdasarkan nama barang
         if ($request->has('search') && $request->search != '') {
