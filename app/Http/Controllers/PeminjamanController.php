@@ -31,7 +31,7 @@ class PeminjamanController extends Controller
         $search = $request->input('search');
 
         // Query awal dengan relasi
-        $query = Peminjaman::with(['barang.ruangan', 'ajuan']);
+        $query = Peminjaman::with(['barang.ruangan', 'ajuan'])->where('status_peminjaman', 'Dipinjam');
 
         // Filter status jika dipilih
         if ($status) {
@@ -47,7 +47,7 @@ class PeminjamanController extends Controller
                     });
             });
         }
-
+        // dd($query);
         $items = $query->get();
 
         return view('peminjaman.app', compact('items', 'barangs'));
@@ -98,13 +98,11 @@ class PeminjamanController extends Controller
         $barang_id
     ) {
         $peminjaman = Peminjaman::findOrFail($id);
-
         // Validasi status yang diperbolehkan
         $allowedStatus = ['Dikembalikan', 'Hilang'];
         if (!in_array($status, $allowedStatus)) {
             return back()->with('error', 'Status tidak valid.');
         }
-
         $peminjaman->status_peminjaman = $status;
         $peminjaman->tanggal_pengembalian = now(); // update tanggal pengembalian
         $peminjaman->save();
