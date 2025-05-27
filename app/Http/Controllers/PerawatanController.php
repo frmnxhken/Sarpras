@@ -16,12 +16,32 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class PerawatanController extends Controller
 {
-    public function index()
+    // public function index()
+    // {
+    //     $barang = Barang::with('ruangan')->get();
+    //     $dataPerawatan = Perawatan::with('barang.ruangan', 'ajuan')->where('status', 'belum')->get();
+    //     return view('perawatan.app', compact('dataPerawatan', 'barang'));
+    // }
+
+    public function index(Request $request)
     {
         $barang = Barang::with('ruangan')->get();
-        $dataPerawatan = Perawatan::with('barang.ruangan', 'ajuan')->where('status', 'belum')->get();
+
+        $query = Perawatan::with('barang.ruangan', 'ajuan')->where('status', 'belum');
+
+        // Fitur pencarian berdasarkan nama barang
+        if ($request->has('search') && $request->search != '') {
+            $search = $request->search;
+            $query->whereHas('barang', function ($q) use ($search) {
+                $q->where('nama_barang', 'like', '%' . $search . '%');
+            });
+        }
+
+        $dataPerawatan = $query->get();
+
         return view('perawatan.app', compact('dataPerawatan', 'barang'));
     }
+
     public function UpdateStatus(Request $request, $id)
     {
         $perawatan = Perawatan::with('barang')->find($id);
@@ -31,9 +51,9 @@ class PerawatanController extends Controller
         ]);
         $barang = Barang::findOrFail($perawatan->barang_id);
         $barangTujuan = Barang::where('nama_barang', $barang->nama_barang)
-        ->where('ruangan_id', $barang->ruangan_id)
-        ->where('merk_barang', $barang->merk_barang)
-        ->first();
+            ->where('ruangan_id', $barang->ruangan_id)
+            ->where('merk_barang', $barang->merk_barang)
+            ->first();
 
         if ($barangTujuan->kondisi_barang === $validated['kondisi_barang'] || $barangTujuan->jumlah_barang == 0) {
             $barangTujuan->jumlah_barang += $perawatan->jumlah;
@@ -121,7 +141,7 @@ class PerawatanController extends Controller
                 ->withInput()
                 ->with('modal_error', 'editPerawatan' . $id);
         }
-        
+
         $barang = Barang::findOrFail($validated['barang_id']);
         if (isset($validated['jumlah']) && $validated['jumlah'] > $barang->jumlah_barang) {
             return redirect()->back()
@@ -143,7 +163,7 @@ class PerawatanController extends Controller
 
         return redirect()->back()->with('success', 'Data perawatan berhasil dihapus.');
     }
-    
+
     public function laporan()
     {
         $dataPerawatan = Perawatan::with('barang.ruangan', 'ajuan')->get();

@@ -59,7 +59,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/ajuan/update/{type}/{id}/{status}', [AjuanController::class, 'UpdateStatus'])->name('ajuan.updateStatus');
 
     // Perawatan
-    Route::get('/perawatan', [PerawatanController::class, 'index'])->middleware('role:1,3');
+    Route::get('/perawatan', [PerawatanController::class, 'index'])->middleware('role:1,3')->name('perawatan.index');
     Route::post('/perawatan', [PerawatanController::class, 'store'])->name('perawatan.store');
     Route::put('/perawatan/{id}', [PerawatanController::class, 'update'])->name('perawatan.update');
     Route::delete('/perawatan/{id}', [PerawatanController::class, 'destroy'])->name('perawatan.destroy');
