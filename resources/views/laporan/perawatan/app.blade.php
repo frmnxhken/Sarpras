@@ -1,6 +1,6 @@
 <x-layout>
     
-    <form method="GET" action="{{ route('perawatan.index') }}">
+    <form method="GET" action="{{ route('perawatan.laporan') }}">
         <div class="row mb-3 align-items-center justify-content-between">
             {{-- Kolom Pencarian --}}
             <div class="col-md-4 d-flex">

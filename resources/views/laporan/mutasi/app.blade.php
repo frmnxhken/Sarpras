@@ -1,6 +1,6 @@
 <x-layout>
 
-    <form method="GET" action="{{ route('mutasi.index') }}">
+    <form method="GET" action="{{ route('mutasi.laporan') }}">
         <div class="row mb-3 align-items-center justify-content-between">
             {{-- Kolom Pencarian --}}
             <div class="col-md-4 d-flex">

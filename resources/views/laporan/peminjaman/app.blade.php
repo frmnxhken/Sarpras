@@ -1,5 +1,5 @@
 <x-layout>
-    <form method="GET" action="{{ route('peminjaman.index') }}">
+    <form method="GET" action="{{ route('peminjaman.laporan') }}">
         <div class="row align-items-center mb-4">
             <div class="col-md-3">
                 <select name="status" class="form-select">

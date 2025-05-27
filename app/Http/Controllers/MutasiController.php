@@ -98,10 +98,26 @@ class MutasiController extends Controller
         return redirect()->back()->with('success', 'Data mutasi berhasil disimpan.');
     }
 
-    public function laporan()
+    public function laporan(Request $request)
     {
+        $search = $request->input('search');
         $mutasi = Mutasi::with(['barang.ruangan', 'ajuan'])->get();
         $ruangans = Ruangans::pluck('nama_ruangan', 'id')->toArray();
+        $mutasi = Mutasi::with(['barang.ruangan', 'ajuan'])
+            ->whereHas('ajuan', function ($query) {
+                $query->where('status', 'pending');
+            });
+
+        if ($search) {
+            $mutasi->where(function ($q) use ($search) {
+                $q->whereHas('barang', function ($q2) use ($search) {
+                    $q2->where('nama_barang', 'like', "%{$search}%")
+                        ->orWhere('kode_barang', 'like', "%{$search}%");
+                })->orWhere('keterangan', 'like', "%{$search}%");
+            });
+        }
+
+        $mutasi = $mutasi->get();
         return view('laporan.mutasi.app', compact('mutasi', 'ruangans'));
     }
 

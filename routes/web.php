@@ -82,10 +82,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/penghapusan/{id}', [PenghapusanController::class, 'destroy'])->name('penghapusan.destroy');
 
     // Laporan
-    Route::get('/laporan/perawatan', [PerawatanController::class, 'laporan'])->middleware('role:1,2,4')->name('perawatan.index');
-    Route::get('/laporan/peminjaman', [PeminjamanController::class, 'laporan'])->name('peminjaman.index');
-    Route::get('/laporan/mutasi', [MutasiController::class, 'laporan'])->name('mutasi.index');
-    Route::get('/laporan/penghapusan', [PenghapusanController::class, 'laporan'])->name('penghapusan.index');
+    Route::get('/laporan/perawatan', [PerawatanController::class, 'laporan'])->middleware('role:1,2,4')->name('perawatan.laporan');
+    Route::get('/laporan/peminjaman', [PeminjamanController::class, 'laporan'])->name('peminjaman.laporan');
+    Route::get('/laporan/mutasi', [MutasiController::class, 'laporan'])->name('mutasi.laporan');
+    Route::get('/laporan/penghapusan', [PenghapusanController::class, 'laporan'])->name('penghapusan.laporan');
 
     // Pengaturan
     Route::get('/pengaturan/ruangan', [DataRuanganController::class, 'index'])->middleware('role:1');

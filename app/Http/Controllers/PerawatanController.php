@@ -25,6 +25,7 @@ class PerawatanController extends Controller
 
     public function index(Request $request)
     {
+        $search = $request->input('search');
         $barang = Barang::with('ruangan')->get();
 
         $query = Perawatan::with('barang.ruangan', 'ajuan')->where('status', 'belum');
@@ -164,9 +165,21 @@ class PerawatanController extends Controller
         return redirect()->back()->with('success', 'Data perawatan berhasil dihapus.');
     }
 
-    public function laporan()
+    public function laporan(Request $request)
     {
-        $dataPerawatan = Perawatan::with('barang.ruangan', 'ajuan')->get();
+        $search = $request->input('search');
+        $query = Perawatan::with('barang.ruangan', 'ajuan')->where('status', 'belum');
+
+        // Fitur pencarian berdasarkan nama barang
+        if ($request->has('search') && $request->search != '') {
+            $search = $request->search;
+            $query->whereHas('barang', function ($q) use ($search) {
+                $q->where('nama_barang', 'like', '%' . $search . '%');
+            });
+        }
+
+        $dataPerawatan = $query->get();
+        // $dataPerawatan = Perawatan::with('barang.ruangan', 'ajuan')->get();
         return view('laporan.perawatan.app', compact('dataPerawatan'));
     }
 
