@@ -68,13 +68,13 @@ class PeminjamanController extends Controller
         $barang_id
     ) {
         $peminjaman = Peminjaman::findOrFail($id);
-        // Validasi status yang diperbolehkan
+        
         $allowedStatus = ['Dikembalikan', 'Hilang'];
         if (!in_array($status, $allowedStatus)) {
             return back()->with('error', 'Status tidak valid.');
         }
         $peminjaman->status_peminjaman = $status;
-        $peminjaman->tanggal_pengembalian = now(); // update tanggal pengembalian
+        $peminjaman->tanggal_pengembalian = now();
         $peminjaman->save();
 
         $barang = Barang::findOrFail($barang_id);
@@ -120,7 +120,7 @@ class PeminjamanController extends Controller
         try {
             $validated = $request->validate([
                 'tanggal_peminjamanEdit' => 'required|date',
-                'tanggal_pengembalianEdit' => 'required|date|after_or_equal:tanggal_peminjamanEdit',
+                'tanggal_pengembalianEdit' => 'required|date',
                 'nama_peminjamEdit' => 'required|string|max:255',
                 'barang_idEdit' => 'required|exists:barangs,id',
                 'jumlah_barangEdit' => 'required|integer|min:1',
@@ -141,6 +141,13 @@ class PeminjamanController extends Controller
                 ->withErrors(['jumlah_barangEdit' => 'Jumlah barang yang diminta melebihi stok tersedia.'])
                 ->withInput()
                 ->with('modal_error', 'editPeminjaman' . $id);
+        }
+
+        if (strtotime($validated['tanggal_peminjamanEdit']) > strtotime($validated['tanggal_pengembalianEdit'])) {
+        return redirect()->back()
+            ->withErrors(['tanggal_peminjamanEdit' => 'Tanggal peminjaman tidak boleh lebih dari tanggal pengembalian.'])
+            ->withInput()
+            ->with('modal_error', 'editPeminjaman' . $id);
         }
 
         $peminjaman = Peminjaman::findOrFail($id);

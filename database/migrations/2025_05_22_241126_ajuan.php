@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('ajuan_pengadaan', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('barang_id')->constrained('barangs')->onDelete('cascade');
+            $table->foreignId('barang_id')->constrained('pengadaans')->onDelete('cascade');
             $table->enum('status',['pending','disetujui','ditolak'])->default('pending');
             $table->timestamps();
         });
