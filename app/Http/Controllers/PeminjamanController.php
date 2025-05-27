@@ -15,10 +15,41 @@ use Illuminate\Validation\ValidationException;
 
 class PeminjamanController extends Controller
 {
-    public function index()
+    // public function index()
+    // {
+    //     $barangs = Barang::with('ruangan')->get();
+    //     $items = Peminjaman::with(['barang.ruangan', 'ajuan'])->where('status_peminjaman', 'Dipinjam')->get();
+    //     return view('peminjaman.app', compact('items', 'barangs'));
+    // }
+
+    public function index(Request $request)
     {
         $barangs = Barang::with('ruangan')->get();
-        $items = Peminjaman::with(['barang.ruangan', 'ajuan'])->where('status_peminjaman', 'Dipinjam')->get();
+
+        // Ambil input filter dari query string
+        $status = $request->input('status');
+        $search = $request->input('search');
+
+        // Query awal dengan relasi
+        $query = Peminjaman::with(['barang.ruangan', 'ajuan']);
+
+        // Filter status jika dipilih
+        if ($status) {
+            $query->where('status_peminjaman', $status);
+        }
+
+        // Filter pencarian jika diisi
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('nama_peminjam', 'like', "%{$search}%")
+                    ->orWhereHas('barang', function ($q2) use ($search) {
+                        $q2->where('nama_barang', 'like', "%{$search}%");
+                    });
+            });
+        }
+
+        $items = $query->get();
+
         return view('peminjaman.app', compact('items', 'barangs'));
     }
 
@@ -111,7 +142,7 @@ class PeminjamanController extends Controller
                 ->withInput()
                 ->with('modal_error', 'editPeminjaman' . $id); // tandai modal edit yang error
         }
-        
+
         $barang = Barang::findOrFail($validated['barang_id']);
 
         if ($validated['jumlah_barangEdit'] > $barang->jumlah_barang) {

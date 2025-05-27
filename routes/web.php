@@ -45,7 +45,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/ruang/ubah/{id}', [DataRuanganController::class, 'edit']);
 
     // Peminjaman
-    Route::get('/peminjaman', [PeminjamanController::class, 'index'])->middleware('role:1,3');
+    Route::get('/peminjaman', [PeminjamanController::class, 'index'])->middleware('role:1,3')->name('peminjaman.index');
     Route::post('/peminjaman/tambah', [PeminjamanController::class, 'store'])->name('peminjaman.store');
     Route::put('/peminjaman/{id}', [PeminjamanController::class, 'update'])->name('peminjaman.update');
     Route::delete('/peminjaman/{id}', [PeminjamanController::class, 'destroy'])->name('peminjaman.destroy');
