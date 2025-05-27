@@ -110,70 +110,78 @@ class AjuanController extends Controller
     {
         if ($type === 'peminjaman') {
             $ajuan = AjuanPeminjaman::find($id);
-            $peminjaman = $ajuan->peminjaman;
-            $barang = Barang::findOrFail($peminjaman->barang_id);
-            if ($peminjaman->jumlah_barang > $barang->jumlah_barang) {
-                return back()->withErrors(['jumlah_barang' => 'Jumlah barang yang diminta melebihi stok tersedia.'])->withInput();
+            if ($status === 'Disetujui'){
+                $peminjaman = $ajuan->peminjaman;
+                $barang = Barang::findOrFail($peminjaman->barang_id);
+                if ($peminjaman->jumlah_barang > $barang->jumlah_barang) {
+                    return back()->withErrors(['jumlah_barang' => 'Jumlah barang yang diminta melebihi stok tersedia.'])->withInput();
+                }
+                $barang->jumlah_barang -= $peminjaman->jumlah_barang;
+                $barang->save();
             }
-            $barang->jumlah_barang -= $peminjaman->jumlah_barang;
-            $barang->save();
-            
         } elseif ($type === 'pengadaan') {
             $ajuan = AjuanPengadaan::find($id);
             
         } elseif ($type === 'perawatan') {
             $ajuan = AjuanPerawatan::find($id);
-
-            $barang = Barang::findOrFail($ajuan->perawatan->barang_id);
-            if ($barang->jumlah_barang < $ajuan->perawatan->jumlah) {
-                return redirect()->back()->with('error', 'Jumlah barang tidak mencukupi untuk perawatan.');
-            } else {
-                $barang->jumlah_barang -= $ajuan->perawatan->jumlah;
-                $barang->save();
+            if ($status === 'Disetujui'){
+                $barang = Barang::findOrFail($ajuan->perawatan->barang_id);
+                if ($barang->jumlah_barang < $ajuan->perawatan->jumlah) {
+                    return redirect()->back()->with('error', 'Jumlah barang tidak mencukupi untuk perawatan.');
+                }else {
+                    $barang->jumlah_barang -= $ajuan->perawatan->jumlah;
+                    $barang->save();
+                }
             }
+
         } elseif ($type === 'mutasi') {
             $ajuan = AjuanMutasi::find($id);
-
-            $mutasi_id = $ajuan->mutasi;
-            $mutasi = Mutasi::findOrFail($mutasi_id->id);
-
-            $barangAsal = Barang::findOrFail($mutasi->barang_id);
-            $barangAsal->jumlah_barang -= $mutasi->jumlah_barang;
-            $barangAsal->save();
-            // dd($barangAsal);
-
-            $barangTujuan = Barang::where('nama_barang', $barangAsal->nama_barang)
-                ->where('ruangan_id', $mutasi->tujuan)
-                ->where('merk_barang', $barangAsal->merk_barang)
-                ->where('kondisi_barang', $barangAsal->kondisi_barang)
-                ->first();
-            if ($barangTujuan) {
-                $barangTujuan->jumlah_barang += $mutasi->jumlah_barang;
-                $barangTujuan->save();
-            } else {
-                Barang::create([
-                    'kode_barang' => 'BRG-' . strtoupper(Str::random(6)),
-                    'kode_asal' => $barangAsal->kode_barang,
-                    'nama_barang' => $barangAsal->nama_barang,
-                    'jenis_barang' => $barangAsal->jenis_barang,
-                    'merk_barang' => $barangAsal->merk_barang,
-                    'tahun_perolehan' => $barangAsal->tahun_perolehan,
-                    'sumber_dana' => $barangAsal->sumber_dana,
-                    'harga_perolehan' => $barangAsal->harga_perolehan,
-                    'cv_pengadaan' => $barangAsal->cv_pengadaan,
-                    'jumlah_barang' => $mutasi->jumlah_barang,
-                    'ruangan_id' => $mutasi->tujuan,
-                    'kondisi_barang' => $barangAsal->kondisi_barang,
-                    'kepemilikan_barang' => $barangAsal->kepemilikan_barang,
-                    'penanggung_jawab' => $barangAsal->penanggung_jawab,
-                    'gambar_barang' => $barangAsal->gambar_barang,
-                ]);
+            if ($status === 'Disetujui'){
+                $mutasi_id = $ajuan->mutasi;
+                $mutasi = Mutasi::findOrFail($mutasi_id->id);
+    
+                $barangAsal = Barang::findOrFail($mutasi->barang_id);
+                if ($mutasi->jumlah_barang > $barangAsal->jumlah_barang && $status === 'Disetujui') {
+                    return redirect()->back()->with('error', 'Jumlah barang yang diminta melebihi stok tersedia.');
+                }
+                $barangAsal->jumlah_barang -= $mutasi->jumlah_barang;
+                $barangAsal->save();
+    
+                $barangTujuan = Barang::where('nama_barang', $barangAsal->nama_barang)
+                    ->where('ruangan_id', $mutasi->tujuan)
+                    ->where('merk_barang', $barangAsal->merk_barang)
+                    ->where('kondisi_barang', $barangAsal->kondisi_barang)
+                    ->first();
+                if ($barangTujuan) {
+                    $barangTujuan->jumlah_barang += $mutasi->jumlah_barang;
+                    $barangTujuan->save();
+                } else {
+                    Barang::create([
+                        'kode_barang' => 'BRG-' . strtoupper(Str::random(6)),
+                        'kode_asal' => $barangAsal->kode_barang,
+                        'nama_barang' => $barangAsal->nama_barang,
+                        'jenis_barang' => $barangAsal->jenis_barang,
+                        'merk_barang' => $barangAsal->merk_barang,
+                        'tahun_perolehan' => $barangAsal->tahun_perolehan,
+                        'sumber_dana' => $barangAsal->sumber_dana,
+                        'harga_perolehan' => $barangAsal->harga_perolehan,
+                        'cv_pengadaan' => $barangAsal->cv_pengadaan,
+                        'jumlah_barang' => $mutasi->jumlah_barang,
+                        'ruangan_id' => $mutasi->tujuan,
+                        'kondisi_barang' => $barangAsal->kondisi_barang,
+                        'kepemilikan_barang' => $barangAsal->kepemilikan_barang,
+                        'penanggung_jawab' => $barangAsal->penanggung_jawab,
+                        'gambar_barang' => $barangAsal->gambar_barang,
+                    ]);
+                }
             }
         } elseif ($type === 'penghapusan') {
             $ajuan = AjuanPenghapusan::find($id);
-            $barang = Barang::findOrFail($ajuan->penghapusan->barang_id);
-            $barang->jumlah_barang -= $ajuan->penghapusan->jumlah;
-            $barang->save();
+            if ($status === 'Disetujui'){
+                $barang = Barang::findOrFail($ajuan->penghapusan->barang_id);
+                $barang->jumlah_barang -= $ajuan->penghapusan->jumlah;
+                $barang->save();
+            }
         } else {
             return redirect()->back()->with('error', 'Jenis ajuan tidak valid.');
         }
