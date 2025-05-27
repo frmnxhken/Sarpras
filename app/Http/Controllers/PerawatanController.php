@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
+use App\Exports\PerawatanExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PerawatanController extends Controller
 {
@@ -99,12 +103,6 @@ class PerawatanController extends Controller
         return redirect()->back()->with('success', 'Data perawatan berhasil disimpan.');
     }
 
-    public function laporan()
-    {
-        $dataPerawatan = Perawatan::with('barang.ruangan', 'ajuan')->get();
-        return view('laporan.perawatan.app', compact('dataPerawatan'));
-    }
-
     public function update(Request $request, $id)
     {
         try {
@@ -138,23 +136,33 @@ class PerawatanController extends Controller
         return redirect()->back()->with('success', 'Data perawatan berhasil diperbarui.');
     }
 
-    // public function updateKondisi(Request $request, $id)
-    // {
-    //     $validated = $request->validate([
-    //         'kondisi' => 'required|enum:baik,rusak,berat',
-    //     ]);
-    //     $perawatan = Perawatan::findOrFail($id);
-    //     $barang = Barang::findOrFail(Perawatan::findOrFail($id)->barang_id);
-    //     $barang->update($validated);
-
-    //     return redirect()->back()->with('success', 'Kondisi perawatan berhasil diperbarui.');
-    // }
-
     public function destroy($id)
     {
         $perawatan = Perawatan::findOrFail($id);
         $perawatan->delete();
 
         return redirect()->back()->with('success', 'Data perawatan berhasil dihapus.');
+    }
+    
+    public function laporan()
+    {
+        $dataPerawatan = Perawatan::with('barang.ruangan', 'ajuan')->get();
+        return view('laporan.perawatan.app', compact('dataPerawatan'));
+    }
+
+    public function exportPDF($bulan)
+    {
+        $tanggalMulai = Carbon::now()->subMonths($bulan);
+        $dataPerawatan = Perawatan::with('barang.ruangan', 'ajuan')
+            ->where('tanggal_perawatan', '>=', $tanggalMulai)
+            ->get();
+
+        $pdf = Pdf::loadView('laporan.perawatan.pdf', compact('dataPerawatan'));
+        return $pdf->download("laporan-perawatan-{$bulan}-bulan.pdf");
+    }
+
+    public function exportExcel($bulan)
+    {
+        return Excel::download(new PerawatanExport($bulan), "laporan-perawatan-{$bulan}-bulan.xlsx");
     }
 }

@@ -11,6 +11,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PenghapusanController;
 use App\Http\Controllers\BarangRusakController;
+use App\Models\Perawatan;
 // use Dflydev\DotAccessData\Data;
 use Illuminate\Support\Facades\Route;
 
@@ -63,6 +64,10 @@ Route::middleware('auth')->group(function () {
     Route::put('/perawatan/{id}', [PerawatanController::class, 'update'])->name('perawatan.update');
     Route::delete('/perawatan/{id}', [PerawatanController::class, 'destroy'])->name('perawatan.destroy');
     Route::put('/perawatan/updateStatus/{id}', [PerawatanController::class, 'updateStatus'])->name('perawatan.updateStatus');
+
+    Route::get('/laporan/perawatan/pdf/{bulan}', [PerawatanController::class, 'exportPDF']);
+    Route::get('/laporan/perawatan/excel/{bulan}', [PerawatanController::class, 'exportExcel']);
+
 
     // Mutasi
     Route::get('/mutasi', [MutasiController::class, 'index'])->middleware('role:1,3');

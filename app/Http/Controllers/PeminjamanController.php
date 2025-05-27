@@ -47,7 +47,6 @@ class PeminjamanController extends Controller
                     });
             });
         }
-        // dd($query);
         $items = $query->get();
 
         return view('peminjaman.app', compact('items', 'barangs'));
