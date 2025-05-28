@@ -47,9 +47,10 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary px-3" data-bs-dismiss="modal">Kembali</button>
-                <button class="btn btn-primary px-3">Edit</button>
+                <button class="btn btn-primary px-3" data-bs-toggle="modal" data-bs-target="#modalEditPengadaan">Edit</button>
                 <button class="btn btn-danger px-3">Hapus</button>
             </div>
         </div>
     </div>
 </div>
+@include('pengadaan.edit')
