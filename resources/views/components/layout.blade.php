@@ -285,9 +285,9 @@
                     <!-- Role 1 dan 2: Ajuan -->
                     @if (Auth::user()->role == 1 || Auth::user()->role == 2)
                     <li class="nav-item">
-                        <a class="nav-link" href="/verivikasiAjuan">
+                        <a class="nav-link" href="/verifikasiAjuan">
                             <span class="nav-icon"><i class="ri-mail-line"></i></span>
-                            <span class="nav-text">Verivikasi Ajuan</span>
+                            <span class="nav-text">Verifikasi Ajuan</span>
                         </a>
                     </li>
                     @endif

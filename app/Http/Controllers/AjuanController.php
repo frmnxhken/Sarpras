@@ -4,14 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\AjuanMutasi;
 use App\Models\AjuanPeminjaman;
-use App\Models\AjuanPengadaan;
 use App\Models\AjuanPenghapusan;
 use App\Models\AjuanPerawatan;
 use App\Models\Barang;
 use App\Models\Mutasi;
 use App\Models\Pengadaan;
+use App\Models\Ruangans;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 
 class AjuanController extends Controller
 {
@@ -118,7 +117,7 @@ class AjuanController extends Controller
                 'status' => $item->status,
                 'ruangan' => $item->mutasi->barang->ruangan->nama_ruangan ?? '-',
                 'keterangan' => $item->mutasi->keterangan ?? '-',
-                'tambahan' => $item->mutasi->tujuan ?? '-',
+                'tambahan' => Ruangans::find($item->mutasi->tujuan)->nama_ruangan ?? '-',
             ]);
         }
         $dataAjuan = $dataAjuan

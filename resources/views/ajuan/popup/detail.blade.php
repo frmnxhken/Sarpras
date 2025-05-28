@@ -11,7 +11,9 @@
                     <dt class="col-sm-4">Nama Pengaju</dt>
                     <dd class="col-sm-8">{{ $item['pengaju'] }}</dd>
                     <dt class="col-sm-4">Unit</dt>
-                    <dd class="col-sm-8">{{ $item['ruangan'] }}</dd>
+                    <dd class="col-sm-8">{{ $item['ruangan'] }} @if ($item['jenis'] == 'Mutasi')
+                        ke {{ $item['tambahan'] }}
+                    @endif</dd>
                     <dt class="col-sm-4">Jenis Ajuan</dt>
                     <dd class="col-sm-8">{{ $item['jenis'] }}</dd>
                     <dt class="col-sm-4">Barang</dt>
@@ -23,7 +25,8 @@
                 </dl>
                 <hr>
                 <label for="catatan" class="form-label">Catatan Verifikasi</label>
-                <textarea class="form-control" id="catatan" rows="2" placeholder="(Opsional) Tambahkan alasan jika ditolak..."></textarea>
+                <textarea class="form-control" id="catatan" rows="2" placeholder="(Opsional) Tambahkan alasan jika ditolak...
+(Fitur ini belum diimplementasikan)"></textarea>
             </div>
             <div class="modal-footer">
                 {{-- <button class="btn btn-danger">Tolak</button> --}}
