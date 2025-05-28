@@ -156,29 +156,79 @@ class AjuanController extends Controller
                     if (!$barang) {
                         return redirect()->back()->with('error', 'Barang yang ingin ditambah tidak ditemukan.');
                     }
-                    $barang->jumlah_barang += $ajuan->jumlah;
-                    $barang->save();
+
+                    // Cek apakah data detail barang masih sama
+                    if (
+                        $barang->nama_barang === $ajuan->nama_barang &&
+                        $barang->merk_barang === $ajuan->merk_barang &&
+                        $barang->jenis_barang === $ajuan->jenis_barang &&
+                        $barang->ruangan_id === $ajuan->ruangan_id &&
+                        $barang->kondisi_barang === ($ajuan->kondisi_barang ?? 'baik')
+                    ) {
+                        // Jika sama, cukup tambahkan jumlah
+                        $barang->jumlah_barang += $ajuan->jumlah;
+                        $barang->save();
+                    } else {
+                        // Jika beda, buat barang baru
+                        Barang::create([
+                            'kode_barang' => 'BRG-' . strtoupper(Str::random(6)),
+                            'kode_asal' => $barang->kode_barang, // untuk tracking asal
+                            'nama_barang' => $ajuan->nama_barang,
+                            'jenis_barang' => $ajuan->jenis_barang,
+                            'merk_barang' => $ajuan->merk_barang,
+                            'tahun_perolehan' => $ajuan->tahun_perolehan,
+                            'sumber_dana' => $ajuan->sumber_dana,
+                            'harga_perolehan' => $ajuan->harga_perolehan,
+                            'cv_pengadaan' => $ajuan->cv_pengadaan,
+                            'jumlah_barang' => $ajuan->jumlah,
+                            'ruangan_id' => $ajuan->ruangan_id,
+                            'kondisi_barang' => $ajuan->kondisi_barang ?? 'baik',
+                            'kepemilikan_barang' => $ajuan->kepemilikan_barang,
+                            'penanggung_jawab' => $ajuan->penanggung_jawab,
+                            'gambar_barang' => $ajuan->gambar_barang,
+                        ]);
+                    }
                 } elseif ($ajuan->tipe_pengajuan === 'baru') {
-                    Barang::create([
-                        'kode_barang' => 'BRG-' . strtoupper(Str::random(6)),
-                        'kode_asal' => null,
-                        'nama_barang' => $ajuan->nama_barang,
-                        'jenis_barang' => $ajuan->jenis_barang,
-                        'merk_barang' => $ajuan->merk_barang,
-                        'tahun_perolehan' => $ajuan->tahun_perolehan,
-                        'sumber_dana' => $ajuan->sumber_dana,
-                        'harga_perolehan' => $ajuan->harga_perolehan,
-                        'cv_pengadaan' => $ajuan->cv_pengadaan,
-                        'jumlah_barang' => $ajuan->jumlah,
-                        'ruangan_id' => $ajuan->ruangan_id,
-                        'kondisi_barang' => $ajuan->kondisi_barang ?? 'baik',
-                        'kepemilikan_barang' => $ajuan->kepemilikan_barang,
-                        'penanggung_jawab' => $ajuan->penanggung_jawab,
-                        'gambar_barang' => $ajuan->gambar_barang,
-                    ]);
+                    // Cek apakah barang dengan detail yang sama sudah ada
+                    $existing = Barang::where('nama_barang', $ajuan->nama_barang)
+                        ->where('merk_barang', $ajuan->merk_barang)
+                        ->where('jenis_barang', $ajuan->jenis_barang)
+                        ->where('ruangan_id', $ajuan->ruangan_id)
+                        ->where('kondisi_barang', $ajuan->kondisi_barang ?? 'baik')
+                        ->first();
+
+                    if ($existing) {
+                        // Jika ada, tambahkan jumlah
+                        $existing->jumlah_barang += $ajuan->jumlah;
+                        $existing->save();
+                    } else {
+                        // Jika tidak, buat barang baru
+                        Barang::create([
+                            'kode_barang' => 'BRG-' . strtoupper(Str::random(6)),
+                            'kode_asal' => null,
+                            'nama_barang' => $ajuan->nama_barang,
+                            'jenis_barang' => $ajuan->jenis_barang,
+                            'merk_barang' => $ajuan->merk_barang,
+                            'tahun_perolehan' => $ajuan->tahun_perolehan,
+                            'sumber_dana' => $ajuan->sumber_dana,
+                            'harga_perolehan' => $ajuan->harga_perolehan,
+                            'cv_pengadaan' => $ajuan->cv_pengadaan,
+                            'jumlah_barang' => $ajuan->jumlah,
+                            'ruangan_id' => $ajuan->ruangan_id,
+                            'kondisi_barang' => $ajuan->kondisi_barang ?? 'baik',
+                            'kepemilikan_barang' => $ajuan->kepemilikan_barang,
+                            'penanggung_jawab' => $ajuan->penanggung_jawab,
+                            'gambar_barang' => $ajuan->gambar_barang,
+                        ]);
+                    }
                 }
             }
-        } elseif ($type === 'perawatan') {
+
+            $ajuan->status = $status;
+            $ajuan->save();
+            return redirect()->back()->with('success', 'Status pengajuan pengadaan berhasil diperbarui.');
+            
+        }elseif ($type === 'perawatan') {
             $ajuan = AjuanPerawatan::find($id);
             if (!$ajuan) {
                 return redirect()->back()->with('error', 'Data ajuan tidak ditemukan.');

@@ -55,6 +55,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/pengajuan/tambah-jumlah', [PengadaanController::class, 'createTambahJumlah'])->name('barang-requests.tambah-jumlah');
     Route::get('/pengajuan/tambah-baru', [PengadaanController::class, 'createTambahBaru'])->name('barang-requests.tambah-baru');
     Route::post('/pengajuan/store', [PengadaanController::class, 'store'])->name('barang-requests.store');
+    Route::put('/pengadaan/update/{id}', [PengadaanController::class, 'update'])->name('pengadaan.update');
+    Route::delete('/pengadaan/{id}', [PengadaanController::class, 'destroy'])->name('pengadaan.destroy');
 
     // Peminjaman
     Route::get('/peminjaman', [PeminjamanController::class, 'index'])->middleware('role:1,3');

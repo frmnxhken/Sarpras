@@ -7,38 +7,51 @@
             <thead class="table-light text-center">
                 <tr>
                     <th>No</th>
-                    <!-- <th>Kode Barang</th> -->
+                    <th>Tanggal Pengadaan</th>
                     <th>Nama Barang</th>
-                    <!-- <th>Jenis Barang</th> -->
                     <th>Merk / Spesifikasi</th>
                     <th>Jumlah Barang</th>
-                    <th>Tanggal Pengadaan</th>
-                    <!-- <th>Sumber Dana</th> -->
-                    <!-- <th>Supplier</th> -->
-                    <th>Harga Satuan</th>
                     <th>Total Harga</th>
+                    <th>Jenis Pengadaan</th>
                     <th>Status Pengajuan</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <!-- <td>BRG-001</td> -->
-                    <td>Proyektor Epson</td>
-                    <!-- <td>Elektronik</td> -->
-                    <td>Epson X400, 3000 lumens</td>
-                    <td>2 Unit</td>
-                    <td>15-01-2025</td>
-                    <!-- <td>BOS</td> -->
-                    <!-- <td>CV. Sinar Abadi</td> -->
-                    <td>Rp 5.000.000</td>
-                    <td>Rp 10.000.000</td>
-                    <td><span class="badge bg-warning text-dark">Menunggu</span></td>
-                    <td><button class="btn btn-primary px-2 py-1 m-0" data-bs-toggle="modal" data-bs-target="#modalDetailPengadaan">Detail</button>
-                    </td>
-                    @include('pengadaan.detail')
-                </tr>
+                @forelse ($pengadaans as $pengadaan)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $pengadaan->created_at->format('Y-m-d') }}</td>
+                        <td>{{ $pengadaan->nama_barang }}</td>
+                        <td>{{ $pengadaan->merk_barang }}</td>
+                        <td>{{ $pengadaan->jumlah }}</td>
+                        <td>Rp {{ number_format($pengadaan->harga_perolehan, 0, ',', '.') }}</td>
+                        <td>
+                            @if ($pengadaan->tipe_pengajuan === 'tambah')
+                                Tambah Jumlah
+                            @elseif ($pengadaan->tipe_pengajuan === 'baru')
+                                Barang Baru
+                            @else
+                            {{ $pengadaan->tipe_pengajuan }}
+                            @endif
+                        </td>
+                        <td>
+                            @if ($pengadaan->status == 'pending')
+                                <span class="badge bg-warning">{{ $pengadaan->status }}</span>
+                            @elseif ($pengadaan->status == 'disetujui')
+                                <span class="badge bg-success">{{ $pengadaan->status }}</span>
+                            @else
+                                <span class="badge bg-danger">{{ $pengadaan->status }}</span>
+                            @endif
+                        </td>
+                        <td>
+                            <button class="btn btn-primary px-2 py-1 m-0" data-bs-toggle="modal" data-bs-target="#modalDetailPengadaan{{ $loop->iteration }}">Detail</button>
+                        </td>
+                        @include('pengadaan.popup.detail')
+                    </tr>
+                @empty
+                    
+                @endforelse
             </tbody>
         </table>
     </div>
