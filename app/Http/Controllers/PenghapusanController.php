@@ -24,9 +24,7 @@ class PenghapusanController extends Controller
     public function laporan(Request $request)
     {
         $search = $request->input('search');
-        $query = Penghapusan::with(['barang.ruangan', 'ajuan'])->whereHas('ajuan', function ($q) {
-            $q->where('status', 'pending');
-        });
+        $query = Penghapusan::with(['barang.ruangan', 'ajuan']);
 
         // Filter berdasarkan pencarian barang
         if ($search) {

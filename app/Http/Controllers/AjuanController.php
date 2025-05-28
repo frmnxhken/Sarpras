@@ -18,7 +18,8 @@ class AjuanController extends Controller
     public function index()
     {
         $peminjaman = AjuanPeminjaman::with(['user', 'peminjaman.barang.ruangan'])->whereIn('status', ['pending', 'ditolak'])->get();
-        // $pengadaan = AjuanPengadaan::with((['user', 'barang.ruangan']))->whereIn('status', ['pending', 'ditolak'])->get();
+        $pengadaan = Pengadaan::with(['user', 'barang.ruangan'])->whereIn('status', ['pending', 'ditolak'])->where('tipe_pengajuan', 'tambah')->get();
+        $pengadaanBaru = Pengadaan::with(['user', 'barang.ruangan'])->whereIn('status', ['pending', 'ditolak'])->where('tipe_pengajuan', 'baru')->get();
         $perawatan = AjuanPerawatan::with((['user', 'perawatan.barang.ruangan']))->whereIn('status', ['pending', 'ditolak'])->get();
         $mutasi = AjuanMutasi::with((['user', 'mutasi.barang.ruangan']))->whereIn('status', ['pending', 'ditolak'])->get();
         $penghapusan = AjuanPenghapusan::with((['user', 'penghapusan.barang.ruangan']))->whereIn('status', ['pending', 'ditolak'])->get();
@@ -37,23 +38,41 @@ class AjuanController extends Controller
                 'status' => $item->status,
                 'ruangan' => $item->peminjaman->barang->ruangan->nama_ruangan ?? '-',
                 'keterangan' => $item->peminjaman->keterangan ?? '-',
+                'tambahan' => '',
             ]);
         }
 
-        // foreach ($pengadaan as $item) {
-        //     $dataAjuan->push([
-        //         'id' => $item->id,
-        //         'model_type' => 'pengadaan',
-        //         'created_at' => $item->created_at->format('Y-m-d'),
-        //         'pengaju' => $item->user->name ?? '-',
-        //         'jenis' => 'Pengadaan',
-        //         'barang' => $item->barang->nama_barang ?? '-',
-        //         'jumlah' => $item->barang->jumlah_barang ?? '-',
-        //         'status' => $item->status,
-        //         'ruangan' => $item->barang->ruangan->nama_ruangan ?? '-',
-        //         'keterangan' => '-',
-        //     ]);
-        // }
+        foreach ($pengadaan as $item) {
+            $dataAjuan->push([
+                'id' => $item->id,
+                'model_type' => 'pengadaan',
+                'created_at' => $item->created_at->format('Y-m-d'),
+                'pengaju' => $item->user->name ?? '-',
+                'jenis' => 'Pengadaan',
+                'barang' => $item->barang->nama_barang ?? '-',
+                'jumlah' => $item->jumlah ?? '-',
+                'status' => $item->status,
+                'ruangan' => $item->barang->ruangan->nama_ruangan ?? '-',
+                'keterangan' => 'Tambah jumlah barang',
+                'tambahan' => '',
+            ]);
+        }
+
+        foreach ($pengadaanBaru as $item) {
+            $dataAjuan->push([
+                'id' => $item->id,
+                'model_type' => 'pengadaan',
+                'created_at' => $item->created_at->format('Y-m-d'),
+                'pengaju' => $item->user->name ?? '-',
+                'jenis' => 'Pengadaan',
+                'barang' => $item->nama_barang ?? '-',
+                'jumlah' => $item->jumlah ?? '-',
+                'status' => $item->status,
+                'ruangan' => $item->ruangan->nama_ruangan ?? '-',
+                'keterangan' => 'Barang baru',
+                'tambahan' => $item->gambar_barang ?? '-',
+            ]);
+        }
 
         foreach ($perawatan as $item) {
             $dataAjuan->push([
@@ -67,6 +86,7 @@ class AjuanController extends Controller
                 'status' => $item->status,
                 'ruangan' => $item->perawatan->barang->ruangan->nama_ruangan ?? '-',
                 'keterangan' => $item->perawatan->keterangan ?? '-',
+                'tambahan' => '',
             ]);
         }
 
@@ -82,6 +102,7 @@ class AjuanController extends Controller
                 'status' => $item->status,
                 'ruangan' => $item->penghapusan->barang->ruangan->nama_ruangan ?? '-',
                 'keterangan' => $item->penghapusan->keterangan ?? '-',
+                'tambahan' => '',
             ]);
         }
 
@@ -97,6 +118,7 @@ class AjuanController extends Controller
                 'status' => $item->status,
                 'ruangan' => $item->mutasi->barang->ruangan->nama_ruangan ?? '-',
                 'keterangan' => $item->mutasi->keterangan ?? '-',
+                'tambahan' => $item->mutasi->tujuan ?? '-',
             ]);
         }
         $dataAjuan = $dataAjuan
@@ -198,7 +220,7 @@ class AjuanController extends Controller
                 } else {
                     Barang::create([
                         'kode_barang' => 'BRG-' . strtoupper(Str::random(6)),
-                        'kode_asal' => $barangAsal->kode_barang,
+                        'kode_asal' => $barangAsal->kode_barang . '-' . $mutasi->tujuan,
                         'nama_barang' => $barangAsal->nama_barang,
                         'jenis_barang' => $barangAsal->jenis_barang,
                         'merk_barang' => $barangAsal->merk_barang,

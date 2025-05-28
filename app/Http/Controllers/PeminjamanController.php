@@ -93,7 +93,7 @@ class PeminjamanController extends Controller
         $search = $request->input('search');
 
         // Query awal dengan relasi
-        $query = Peminjaman::with(['barang.ruangan', 'ajuan'])->where('status_peminjaman', 'Dipinjam');
+        $query = Peminjaman::with(['barang.ruangan', 'ajuan']);
 
         // Filter status jika dipilih
         if ($status) {
