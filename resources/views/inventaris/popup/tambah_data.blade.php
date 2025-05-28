@@ -9,6 +9,9 @@
         });
     </script>
 @endif
+@if ($errors->any())
+    @dd($errors->all())
+@endif
 <div class="modal fade" id="TambahData" tabindex="-1" aria-labelledby="exampleModalCenteredScrollableTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -99,6 +102,9 @@
                         <option value="Berat">Rusak Berat</option>
                     </select>
                 </div>
+                @error('kondisi')
+                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                @enderror
                 <div class="mb-3">
                     <label for="kepemilikan" class="form-label">Kepemilikan</label>
                     <select class="form-select" id="kepemilikan" name="kepemilikan">

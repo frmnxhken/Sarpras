@@ -52,7 +52,7 @@ class BarangController extends Controller
     public function show($id)
     {
         $item = Barang::with(['ruangan', 'perawatan'])->findOrFail($id);
-
+        $ruangans = Ruangans::all();
         $peminjaman = Peminjaman::where('status_peminjaman', 'Dipinjam')
             ->whereHas('ajuan', function ($query) {
                 $query->where('status', 'disetujui');
@@ -68,7 +68,7 @@ class BarangController extends Controller
         $qr = $item->kode_barang;
         $qrCode = QrCode::size(200)->generate($qr);
 
-        return view('inventaris.detail', compact('item', 'qrCode', 'perawatan', 'peminjaman'));
+        return view('inventaris.detail', compact('item', 'qrCode', 'perawatan', 'peminjaman', 'ruangans'));
     }
     public function scanResult($kode)
     {
@@ -142,18 +142,19 @@ class BarangController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_barang' => 'required|string|max:255',
-            'jenis_barang' => 'required|string|max:255',
-            'merk_barang' => 'nullable|string|max:255',
-            'tahun_perolehan' => 'required|numeric',
-            'sumber_dana' => 'required|string',
-            'harga_perolehan' => 'required|numeric',
-            'cv_pengadaan' => 'nullable|string|max:255',
-            'jumlah_barang' => 'required|numeric',
-            'kondisi' => 'required|string|max:255',
-            'kepemilikan' => 'required|string|max:255',
-            'penanggung_jawab' => 'required|string|max:255',
-            'upload' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
+                'nama_barang' => 'required|string|max:255',
+                'jenis_barang' => 'required|string|max:255',
+                'merk_barang' => 'required|string|max:255', // wajib karena tidak nullable
+                'tahun_perolehan' => 'nullable|digits:4|integer|min:1900|max:' . date('Y'),
+                'sumber_dana' => 'required|in:BOS,DAK,Hibah', // ENUM
+                'harga_perolehan' => 'nullable|numeric|min:0',
+                'cv_pengadaan' => 'nullable|string|max:255',
+                'jumlah_barang' => 'required|integer|min:1',
+                'ruangan_id' => 'required|exists:ruangans,id', // foreign key
+                'kondisi_barang' => 'required|in:baik,rusak,berat', // ENUM kondisi_barang
+                'kepemilikan' => 'required|string|max:255',
+                'penanggung_jawab' => 'nullable|string|max:255',
+                'upload' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
         ]);
 
         $barang = Barang::findOrFail($id);

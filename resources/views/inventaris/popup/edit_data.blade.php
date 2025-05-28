@@ -9,7 +9,8 @@
 <div class="modal fade" id="editData" tabindex="-1" aria-labelledby="exampleModalCenteredScrollableTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <form class="modal-content" action="{{ route('inventaris.update', $item->id) }}" method="post" enctype="multipart/form-data">
+        <form class="modal-content" action="{{ route('inventaris.update', $item->id) }}" method="post"
+            enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="modal-header">
@@ -57,14 +58,13 @@
                 <div class="mb-3">
                     <label for="sumber_dana" class="form-label">Sumber Dana</label>
                     <select class="form-select" name="sumber_dana">
-                        <option value="bos"
-                            {{ old('sumber_dana', $item->sumber_dana) === 'bos' ? 'selected' : '' }}>
+                        <option value="BOS" {{ old('sumber_dana', $item->sumber_dana) === 'BOS' ? 'selected' : '' }}>
                             BOS</option>
-                        <option value="dak"
-                            {{ old('sumber_dana', $item->sumber_dana) === 'dak' ? 'selected' : '' }}>
+                        <option value="DAK"
+                            {{ old('sumber_dana', $item->sumber_dana) === 'DAK' ? 'selected' : '' }}>
                             DAK</option>
-                        <option value="hibah"
-                            {{ old('sumber_dana', $item->sumber_dana) === 'hibah' ? 'selected' : '' }}>
+                        <option value="Hibah"
+                            {{ old('sumber_dana', $item->sumber_dana) === 'Hibah' ? 'selected' : '' }}>
                             Hibah</option>
                     </select>
                     @error('sumber_dana')
@@ -100,10 +100,31 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="kondisi" class="form-label">Kondisi</label>
-                    <input type="text" class="form-control" name="kondisi"
-                        value="{{ old('kondisi', $item->kondisi_barang) }}">
-                    @error('kondisi')
+                    <label for="ruangan_id" class="form-label">Ruangan</label>
+                    <select class="form-select" name="ruangan_id" id="ruangan_id" required>
+                        <option disabled {{ old('ruangan_id', $item->ruangan_id) ? '' : 'selected' }}>Pilih Ruangan
+                        </option>
+                        @foreach ($ruangans as $ruangan)
+                            <option value="{{ $ruangan->id }}"
+                                {{ old('ruangan_id', $item->ruangan_id) == $ruangan->id ? 'selected' : '' }}>
+                                {{ $ruangan->nama_ruangan }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('ruangan_id')
+                        <div class="alert alert-danger mt-2">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="kondisi_barang" class="form-label">Kondisi</label>
+                    <select class="form-select" id="kondisi_barang" name="kondisi_barang" required>
+                        <option disabled {{ old('kondisi_barang', $item->kondisi_barang) ? '' : 'selected' }}>Pilih Kondisi</option>
+                        <option value="baik" {{ old('kondisi_barang', $item->kondisi_barang) == 'baik' ? 'selected' : '' }}>Baik</option>
+                        <option value="rusak" {{ old('kondisi_barang', $item->kondisi_barang) == 'rusak' ? 'selected' : '' }}>Rusak</option>
+                        <option value="berat" {{ old('kondisi_barang', $item->kondisi_barang) == 'berat' ? 'selected' : '' }}>Rusak Berat</option>
+                    </select>
+                    @error('kondisi_barang')
                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                     @enderror
                 </div>
