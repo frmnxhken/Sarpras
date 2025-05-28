@@ -4,7 +4,7 @@
 <head>
     <!-- Title Meta -->
     <meta charset="utf-8" />
-    <title>Home | BrandUI - Modern UI Kit with Layout</title>
+    <title>SARPRAS SMKN 1 KERTOSONO</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="A fully responsive premium admin dashboard template, Real Estate Management Admin Template" />
@@ -391,9 +391,8 @@
                         <div class="col-12 text-center">
                             <script>
                                 document.write(new Date().getFullYear())
-                            </script> &copy; BrandUI. Crafted by <iconify-icon icon="solar:hearts-bold-duotone"
-                                class="fs-18 align-middle text-danger"></iconify-icon> <a href=""
-                                class="fw-bold footer-text" target="_blank">Techzaa</a>
+                            </script> &copy; BrandUI. Crafted by <a href=""
+                                class="fw-bold footer-text" target="_blank">PT. Imersa Solusi Teknologi</a>
                         </div>
                     </div>
                 </div>

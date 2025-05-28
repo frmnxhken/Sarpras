@@ -1,41 +1,45 @@
 <x-layout>
     <div class="row">
+        <!-- Total Barang -->
         <div class="col">
             <div class="card">
                 <div class="card-body overflow-hidden position-relative">
-                    <iconify-icon icon="solar:asteroid-bold-duotone" class="fs-36 text-info"></iconify-icon>
+                    <iconify-icon icon="mdi:package-variant-closed" class="fs-36 text-info"></iconify-icon>
                     <h3 class="mb-0 fw-bold mt-3 mb-1">{{ $totalBarang }}</h3>
                     <p class="text-muted">Total Barang</p>
                     <a class="text-reset fw-semibold fs-12" href="/inventaris">View More</a>
-                    <i class='ri-global-line widget-icon'></i>
-                </div> <!-- end card-body -->
-            </div> <!-- end card -->
-        </div> <!-- end col -->
+                    <i class="ri-archive-line widget-icon"></i>
+                </div>
+            </div>
+        </div>
 
+        <!-- Barang Rusak -->
         <div class="col">
             <div class="card">
                 <div class="card-body overflow-hidden position-relative">
-                    <iconify-icon icon="solar:black-hole-line-duotone" class="fs-36 text-success"></iconify-icon>
+                    <iconify-icon icon="mdi:alert-octagon" class="fs-36 text-danger"></iconify-icon>
                     <h3 class="mb-0 fw-bold mt-3 mb-1">{{ $barangRusak }}</h3>
-                    <p class="text-muted"> Barang Rusak</p>
+                    <p class="text-muted">Barang Rusak</p>
                     <a href="/barangRusak" class="text-reset fw-semibold fs-12">View More</a>
-                    <i class='ri-file-chart-line widget-icon'></i>
-                </div> <!-- end card-body -->
-            </div> <!-- end card -->
-        </div> <!-- end col -->
+                    <i class="ri-error-warning-line widget-icon text-danger"></i>
+                </div>
+            </div>
+        </div>
 
+        <!-- Barang Masuk -->
         <div class="col">
             <div class="card">
                 <div class="card-body overflow-hidden position-relative">
-                    <iconify-icon icon="solar:leaf-bold-duotone" class="fs-36 text-primary"></iconify-icon>
+                    <iconify-icon icon="mdi:tray-arrow-down" class="fs-36 text-primary"></iconify-icon>
                     <h3 class="mb-0 fw-bold mt-3 mb-1">{{ $barangBaru2025 }}</h3>
                     <p class="text-muted">Barang Masuk (Thn {{ \Carbon\Carbon::now()->year }})</p>
                     <a href="/barangMasuk" class="text-reset fw-semibold fs-12">View More</a>
-                    <i class='ri-drag-move-line widget-icon'></i>
-                </div> <!-- end card-body -->
-            </div> <!-- end card -->
-        </div> <!-- end col -->
-    </div> <!-- end row-->
+                    <i class="ri-download-2-line widget-icon text-primary"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -43,21 +47,6 @@
                     <div class="row g-0">
                         <div class="col-lg-12 border-start border-5">
                             <div class="p-3">
-                                <!-- <div class="d-flex justify-content-between align-items-center">
-                                    <h4 class="card-title">Performance</h4>
-                                    <div>
-                                        <button type="button" class="btn btn-sm btn-outline-light">ALL</button>
-                                        <button type="button" class="btn btn-sm btn-outline-light">1M</button>
-                                        <button type="button" class="btn btn-sm btn-outline-light">6M</button>
-                                        <button type="button" class="btn btn-sm btn-outline-light active">1Y</button>
-                                    </div>
-                                </div> 
-
-                                <div class="alert alert-info mt-3 text text-truncate mb-0" role="alert">
-                                    We regret to inform you that our server is currently
-                                    experiencing technical difficulties.
-                                </div> -->
-
                                 <div class="container mt-4">
                                     <div id="dash-performance-chart" class="apex-charts"></div>
                                 </div>
@@ -79,7 +68,7 @@
                                                 height: 350
                                             },
                                             series: [{
-                                                    name: 'Barang Baru',
+                                                    name: 'Barang Masuk',
                                                     data: @json($dataBarangBaru)
                                                 },
                                                 {
@@ -92,7 +81,7 @@
                                             },
                                             colors: ['#007bff', '#dc3545'],
                                             title: {
-                                                text: 'Jumlah Barang Baru dan Rusak per Tahun',
+                                                text: 'Jumlah Barang Masuk dan Rusak per Tahun',
                                                 align: 'center'
                                             }
                                         };
