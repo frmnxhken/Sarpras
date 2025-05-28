@@ -341,6 +341,9 @@
                         <div class="collapse" id="sidebarLaporan">
                             <ul class="nav sub-navbar-nav">
                                 <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="/laporan/pengadaan">Pengadaan</a>
+                                </li>
+                                <li class="sub-nav-item">
                                     <a class="sub-nav-link" href="/laporan/perawatan">Perawatan</a>
                                 </li>
                                 <li class="sub-nav-item">

@@ -107,6 +107,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/laporan/penghapusan/pdf/{bulan}', [PenghapusanController::class, 'exportPDF'])->name('penghapusan.pdf');
     Route::get('/laporan/penghapusan/excel/{bulan}', [PenghapusanController::class, 'exportExcel'])->name('penghapusan.excel');
 
+    
+
     // Pengaturan
     Route::get('/pengaturan/ruangan', [DataRuanganController::class, 'index'])->middleware('role:1');
     Route::get('/pengaturan/user', [UserController::class, 'index'])->middleware('role:1');
