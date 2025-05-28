@@ -9,16 +9,17 @@
         });
     </script>
 @endif
-<div class="modal fade" id="PengadaanBarang" tabindex="-1" aria-labelledby="exampleModalCenteredScrollableTitle"
+<div class="modal fade" id="PengadaanBaru" tabindex="-1" aria-labelledby="exampleModalCenteredScrollableTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <form class="modal-content" action="{{ route('inventaris.store') }}" method="post" enctype="multipart/form-data">
+        <form class="modal-content" action="{{ route('barang-requests.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalCenteredScrollableTitle">Tambah Data</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <input type="hidden" name="tipe_pengajuan" value="baru">
                 <div class="mb-3">
                     <label for="nama_barang" class="form-label">Nama Barang</label>
                     <input type="text" class="form-control" id="nama_barang" name="nama_barang"
@@ -45,7 +46,7 @@
                 @enderror
                 <div class="mb-3">
                     <label for="tahun_perolehan" class="form-label">Tahun Perolehan</label>
-                    <input type="number" min="1900" max="2099" step="1" class="form-control"
+                    <input type="number"  min="1900" max="{{ date('Y') }}" step="1" class="form-control"
                         id="tahun_perolehan" name="tahun_perolehan" value="{{ old('tahun_perolehan') }}">
                 </div>
                 @error('tahun_perolehan')
@@ -71,11 +72,11 @@
                         value="{{ old('cv_pengadaan') }}">
                 </div>
                 <div class="mb-3">
-                    <label for="jumlah_barang" class="form-label">Jumlah Barang</label>
-                    <input type="number" class="form-control" id="jumlah_barang" name="jumlah_barang"
-                        value="{{ old('jumlah_barang') }}">
+                    <label for="jumlah" class="form-label">Jumlah Barang</label>
+                    <input type="number" class="form-control" id="jumlah" name="jumlah"
+                        value="{{ old('jumlah') }}" required>
                 </div>
-                @error('jumlah_barang')
+                @error('jumlah')
                     <div class="alert alert-danger mt-2">{{ $message }}</div>
                 @enderror
                 <div class="mb-3">
@@ -91,8 +92,8 @@
                     <div class="alert alert-danger mt-2">{{ $message }}</div>
                 @enderror
                 <div class="mb-3">
-                    <label for="kondisi" class="form-label">Kondisi</label>
-                    <select class="form-select" id="kondisi" name="kondisi">
+                    <label for="kondisi_barang" class="form-label">Kondisi</label>
+                    <select class="form-select" id="kondisi_barang" name="kondisi_barang">
                         <option selected disabled>Pilih Kondisi</option>
                         <option value="Baik">Baik</option>
                         <option value="Rusak">Rusak</option>
@@ -100,15 +101,15 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="kepemilikan" class="form-label">Kepemilikan</label>
-                    <select class="form-select" id="kepemilikan" name="kepemilikan">
+                    <label for="kepemilikan_barang" class="form-label">Kepemilikan</label>
+                    <select class="form-select" id="kepemilikan_barang" name="kepemilikan_barang">
                         <option selected disabled>Pilih Kepemilikan</option>
                         <option value="sekolah">Milik Sekolah</option>
                         <option value="negara">Milik Negara</option>
                         <option value="pinjam">Pinjam</option>
                     </select>
                 </div>
-                @error('nama_barang')
+                @error('kepemilikan_barang')
                     <div class="alert alert-danger mt-2">{{ $message }}</div>
                 @enderror
                 <div class="mb-3">
@@ -120,17 +121,17 @@
                     <div class="alert alert-danger mt-2">{{ $message }}</div>
                 @enderror
                 <div class="mb-3">
-                    <label for="upload" class="form-label">Upload foto</label>
-                    <input type="file" accept="image/*" class="form-control" id="upload" name="upload"
-                        value="{{ old('upload') }}">
+                    <label for="gambar_barang" class="form-label">Upload foto</label>
+                    <input type="file" accept="image/*" class="form-control" id="gambar_barang" name="gambar_barang"
+                        value="{{ old('gambar_barang') }}">
                 </div>
-                @error('upload')
+                @error('gambar_barang')
                     <div class="alert alert-danger mt-2">{{ $message }}</div>
                 @enderror
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
-                <button type="submit" class="btn btn-primary">Simpan Data</button>
+                <button type="submit" class="btn btn-primary">Ajukan Data</button>
             </div>
         </form>
     </div>

@@ -290,6 +290,13 @@
                     <!-- Role 1 dan 3: Peminjaman, Perawatan, Mutasi, Penghapusan -->
                     @if (in_array(Auth::user()->role, [1, 3]))
                         <li class="nav-item">
+                            <a class="nav-link" href="/pengadaan">
+                                <span class="nav-icon"><i class="ri-archive-line"></i></span>
+                                <span class="nav-text">Pengadaan</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link" href="/peminjaman">
                                 <span class="nav-icon"><i class="ri-hand-coin-line"></i></span>
                                 <span class="nav-text">Peminjaman</span>

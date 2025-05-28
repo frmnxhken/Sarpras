@@ -1,18 +1,26 @@
 <x-layout>
     <div class="row mb-3">
         <div class="col-md-6">
-            @if (in_array(auth()->user()->role, [1, 3]))
+            @if (in_array(auth()->user()->role, [1]))
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#TambahData">
                 <i class="bi bi-plus-circle me-2"></i>Tambah Data
             </button>
             @include('inventaris.popup.tambah_data')
             @endif
-            {{-- @if (in_array(auth()->user()->role, [1, 3]))
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#TambahData">
-                <i class="bi bi-plus-circle me-2"></i>Tambah Data
-            </button>
-            @include('inventaris.popup.pengadaan_data')
-            @endif --}}
+            @if (in_array(auth()->user()->role, [1, 3]))
+                <div class="btn-group me-2">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="bi bi-plus-circle me-2"></i>Pengadaan Data
+                    </button>
+                    <ul class="dropdown-menu bg-primary" style=" min-width: 100%;">
+                        <li><a type="button" class="dropdown-item text-white" data-bs-toggle="modal" data-bs-target="#Pengadaan">Barang yang sudah ada</a></li>
+                        <li><a type="button" class="dropdown-item text-white" data-bs-toggle="modal" data-bs-target="#PengadaanBaru">Barang baru</a></li>
+                    </ul>
+                </div>
+                @include('inventaris.popup.pengadaan')
+                @include('inventaris.popup.pengadaan_baru')
+            @endif
         </div>
         <div class="col-md-6 text-end">
             <a href="/scan" class="btn btn-outline-primary d-inline-flex align-items-center">

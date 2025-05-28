@@ -11,6 +11,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PenghapusanController;
 use App\Http\Controllers\BarangRusakController;
+use App\Http\Controllers\PengadaanController;
+use App\Models\Pengadaan;
 use App\Models\Perawatan;
 // use Dflydev\DotAccessData\Data;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +39,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/inventaris/hapus/{id}', [BarangController::class, 'destroy'])->name('inventaris.destroy');
     Route::delete('/inventaris/ajukanHapus/{id}', [BarangController::class, 'destroyApp'])->name('inventaris.destroy.app');
 
+    Route::post('/inventaris/pengadaan', [BarangController::class, 'pengadaan'])->name('inventaris.pengadaan');
+    Route::post('/inventaris/pengadaan/baru', [BarangController::class, 'pengadaanBaru'])->name('inventaris.pengadaan.baru');
+
     Route::get('/barang/scan/result/{kode}', [BarangController::class, 'scanResult']);
     Route::view('/scan', 'inventaris.scan');
 
@@ -44,6 +49,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/ruang', [DataRuanganController::class, 'index'])->middleware('role:1');
     Route::post('/ruang/tambah', [DataRuanganController::class, 'store']);
     Route::post('/ruang/ubah/{id}', [DataRuanganController::class, 'edit']);
+
+    //pengadaan
+    Route::get('/pengadaan', [PengadaanController::class, 'index'])->middleware('role:1,3');
+    Route::get('/pengajuan/tambah-jumlah', [PengadaanController::class, 'createTambahJumlah'])->name('barang-requests.tambah-jumlah');
+    Route::get('/pengajuan/tambah-baru', [PengadaanController::class, 'createTambahBaru'])->name('barang-requests.tambah-baru');
+    Route::post('/pengajuan/store', [PengadaanController::class, 'store'])->name('barang-requests.store');
 
     // Peminjaman
     Route::get('/peminjaman', [PeminjamanController::class, 'index'])->middleware('role:1,3');

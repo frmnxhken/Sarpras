@@ -9,6 +9,7 @@ use App\Models\AjuanPenghapusan;
 use App\Models\AjuanPerawatan;
 use App\Models\Barang;
 use App\Models\Mutasi;
+use App\Models\Pengadaan;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class AjuanController extends Controller
     public function index()
     {
         $peminjaman = AjuanPeminjaman::with(['user', 'peminjaman.barang.ruangan'])->whereIn('status', ['pending', 'ditolak'])->get();
-        $pengadaan = AjuanPengadaan::with((['user', 'barang.ruangan']))->whereIn('status', ['pending', 'ditolak'])->get();
+        // $pengadaan = AjuanPengadaan::with((['user', 'barang.ruangan']))->whereIn('status', ['pending', 'ditolak'])->get();
         $perawatan = AjuanPerawatan::with((['user', 'perawatan.barang.ruangan']))->whereIn('status', ['pending', 'ditolak'])->get();
         $mutasi = AjuanMutasi::with((['user', 'mutasi.barang.ruangan']))->whereIn('status', ['pending', 'ditolak'])->get();
         $penghapusan = AjuanPenghapusan::with((['user', 'penghapusan.barang.ruangan']))->whereIn('status', ['pending', 'ditolak'])->get();
@@ -39,20 +40,20 @@ class AjuanController extends Controller
             ]);
         }
 
-        foreach ($pengadaan as $item) {
-            $dataAjuan->push([
-                'id' => $item->id,
-                'model_type' => 'pengadaan',
-                'created_at' => $item->created_at->format('Y-m-d'),
-                'pengaju' => $item->user->name ?? '-',
-                'jenis' => 'Pengadaan',
-                'barang' => $item->barang->nama_barang ?? '-',
-                'jumlah' => $item->barang->jumlah_barang ?? '-',
-                'status' => $item->status,
-                'ruangan' => $item->barang->ruangan->nama_ruangan ?? '-',
-                'keterangan' => '-',
-            ]);
-        }
+        // foreach ($pengadaan as $item) {
+        //     $dataAjuan->push([
+        //         'id' => $item->id,
+        //         'model_type' => 'pengadaan',
+        //         'created_at' => $item->created_at->format('Y-m-d'),
+        //         'pengaju' => $item->user->name ?? '-',
+        //         'jenis' => 'Pengadaan',
+        //         'barang' => $item->barang->nama_barang ?? '-',
+        //         'jumlah' => $item->barang->jumlah_barang ?? '-',
+        //         'status' => $item->status,
+        //         'ruangan' => $item->barang->ruangan->nama_ruangan ?? '-',
+        //         'keterangan' => '-',
+        //     ]);
+        // }
 
         foreach ($perawatan as $item) {
             $dataAjuan->push([
@@ -110,7 +111,10 @@ class AjuanController extends Controller
     {
         if ($type === 'peminjaman') {
             $ajuan = AjuanPeminjaman::find($id);
-            if ($status === 'Disetujui'){
+        if (!$ajuan) {
+            return redirect()->back()->with('error', 'Data ajuan tidak ditemukan.');
+        }
+            if ($status === 'Disetujui') {
                 $peminjaman = $ajuan->peminjaman;
                 $barang = Barang::findOrFail($peminjaman->barang_id);
                 if ($peminjaman->jumlah_barang > $barang->jumlah_barang) {
@@ -120,33 +124,69 @@ class AjuanController extends Controller
                 $barang->save();
             }
         } elseif ($type === 'pengadaan') {
-            $ajuan = AjuanPengadaan::find($id);
-            
+            $ajuan = Pengadaan::find($id);
+            if (!$ajuan) {
+                return redirect()->back()->with('error', 'Data pengadaan tidak ditemukan.');
+            }
+
+            if ($status === 'Disetujui') {
+                if ($ajuan->tipe_pengajuan === 'tambah') {
+                    $barang = Barang::find($ajuan->barang_id);
+                    if (!$barang) {
+                        return redirect()->back()->with('error', 'Barang yang ingin ditambah tidak ditemukan.');
+                    }
+                    $barang->jumlah_barang += $ajuan->jumlah;
+                    $barang->save();
+                } elseif ($ajuan->tipe_pengajuan === 'baru') {
+                    Barang::create([
+                        'kode_barang' => 'BRG-' . strtoupper(Str::random(6)),
+                        'kode_asal' => null,
+                        'nama_barang' => $ajuan->nama_barang,
+                        'jenis_barang' => $ajuan->jenis_barang,
+                        'merk_barang' => $ajuan->merk_barang,
+                        'tahun_perolehan' => $ajuan->tahun_perolehan,
+                        'sumber_dana' => $ajuan->sumber_dana,
+                        'harga_perolehan' => $ajuan->harga_perolehan,
+                        'cv_pengadaan' => $ajuan->cv_pengadaan,
+                        'jumlah_barang' => $ajuan->jumlah,
+                        'ruangan_id' => $ajuan->ruangan_id,
+                        'kondisi_barang' => $ajuan->kondisi_barang ?? 'baik',
+                        'kepemilikan_barang' => $ajuan->kepemilikan_barang,
+                        'penanggung_jawab' => $ajuan->penanggung_jawab,
+                        'gambar_barang' => $ajuan->gambar_barang,
+                    ]);
+                }
+            }
         } elseif ($type === 'perawatan') {
             $ajuan = AjuanPerawatan::find($id);
-            if ($status === 'Disetujui'){
+            if (!$ajuan) {
+                return redirect()->back()->with('error', 'Data ajuan tidak ditemukan.');
+            }
+            if ($status === 'Disetujui') {
                 $barang = Barang::findOrFail($ajuan->perawatan->barang_id);
                 if ($barang->jumlah_barang < $ajuan->perawatan->jumlah) {
                     return redirect()->back()->with('error', 'Jumlah barang tidak mencukupi untuk perawatan.');
-                }else {
+                } else {
                     $barang->jumlah_barang -= $ajuan->perawatan->jumlah;
                     $barang->save();
                 }
             }
-
         } elseif ($type === 'mutasi') {
             $ajuan = AjuanMutasi::find($id);
-            if ($status === 'Disetujui'){
+            if (!$ajuan) {
+                return redirect()->back()->with('error', 'Data ajuan tidak ditemukan.');
+            }
+            if ($status === 'Disetujui') {
                 $mutasi_id = $ajuan->mutasi;
                 $mutasi = Mutasi::findOrFail($mutasi_id->id);
-    
+
                 $barangAsal = Barang::findOrFail($mutasi->barang_id);
                 if ($mutasi->jumlah_barang > $barangAsal->jumlah_barang && $status === 'Disetujui') {
                     return redirect()->back()->with('error', 'Jumlah barang yang diminta melebihi stok tersedia.');
                 }
                 $barangAsal->jumlah_barang -= $mutasi->jumlah_barang;
                 $barangAsal->save();
-    
+
                 $barangTujuan = Barang::where('nama_barang', $barangAsal->nama_barang)
                     ->where('ruangan_id', $mutasi->tujuan)
                     ->where('merk_barang', $barangAsal->merk_barang)
@@ -177,17 +217,16 @@ class AjuanController extends Controller
             }
         } elseif ($type === 'penghapusan') {
             $ajuan = AjuanPenghapusan::find($id);
-            if ($status === 'Disetujui'){
+            if (!$ajuan) {
+                return redirect()->back()->with('error', 'Data ajuan tidak ditemukan.');
+            }
+            if ($status === 'Disetujui') {
                 $barang = Barang::findOrFail($ajuan->penghapusan->barang_id);
                 $barang->jumlah_barang -= $ajuan->penghapusan->jumlah;
                 $barang->save();
             }
         } else {
             return redirect()->back()->with('error', 'Jenis ajuan tidak valid.');
-        }
-
-        if (!$ajuan) {
-            return redirect()->back()->with('error', 'Data ajuan tidak ditemukan.');
         }
 
         $ajuan->status = $status;

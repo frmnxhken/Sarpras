@@ -27,6 +27,7 @@ class BarangController extends Controller
     public function index(Request $request)
     {
         $query = Barang::with('ruangan')->where('jumlah_barang', '>', 0);
+        $barangs = Barang::with('ruangan')->get();
 
         // Filter berdasarkan ruangan_id
         if ($request->filled('ruangan_id')) {
@@ -45,7 +46,7 @@ class BarangController extends Controller
         $dataInventaris = $query->paginate(8)->appends($request->query());
 
         $ruangan = Ruangans::all();
-        return view('inventaris.app', compact('dataInventaris', 'ruangan'));
+        return view('inventaris.app', compact('dataInventaris', 'ruangan', 'barangs'));
     }
 
     public function show($id)
@@ -129,10 +130,10 @@ class BarangController extends Controller
         $barang = Barang::create($validated);
 
         // Simpan pengajuan
-        AjuanPengadaan::create([
-            'user_id'   => Auth::id(),
-            'barang_id' => $barang->id,
-        ]);
+        // AjuanPengadaan::create([
+        //     'user_id'   => Auth::id(),
+        //     'barang_id' => $barang->id,
+        // ]);
 
         return redirect('/inventaris')->with('success', 'Data inventaris berhasil ditambahkan.');
     }
