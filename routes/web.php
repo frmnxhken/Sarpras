@@ -92,9 +92,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/penghapusan/{id}', [PenghapusanController::class, 'destroy'])->name('penghapusan.destroy');
 
     // Laporan
-    Route::get('/laporan/perawatan', [PerawatanController::class, 'laporan'])->middleware('role:1,2,4')->name('perawatan.laporan');
-    Route::get('/laporan/peminjaman', [PeminjamanController::class, 'laporan'])->name('peminjaman.laporan');
-    Route::get('/laporan/mutasi', [MutasiController::class, 'laporan'])->name('mutasi.laporan');
+    Route::get('/laporan/pengadaan', [PengadaanController::class, 'laporan'])->middleware('role:1,2,4')->name('pengadaan.laporan');
+    Route::get('/laporan/perawatan', [PerawatanController::class, 'laporan'])->middleware('role:1,2,4')->middleware('role:1,2,4')->name('perawatan.laporan');
+    Route::get('/laporan/peminjaman', [PeminjamanController::class, 'laporan'])->middleware('role:1,2,4')->name('peminjaman.laporan');
+    Route::get('/laporan/mutasi', [MutasiController::class, 'laporan'])->middleware('role:1,2,4')->name('mutasi.laporan');
     Route::get('/laporan/penghapusan', [PenghapusanController::class, 'laporan'])->name('penghapusan.laporan');
 
     Route::get('/laporan/perawatan/pdf/{bulan}', [PerawatanController::class, 'exportPDF']);
@@ -109,7 +110,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/laporan/penghapusan/pdf/{bulan}', [PenghapusanController::class, 'exportPDF'])->name('penghapusan.pdf');
     Route::get('/laporan/penghapusan/excel/{bulan}', [PenghapusanController::class, 'exportExcel'])->name('penghapusan.excel');
 
-    
+    Route::get('/laporan/pengadaan/pdf/{bulan}', [PengadaanController::class, 'exportPDF'])->name('pengadaan.pdf');
+    Route::get('/laporan/pengadaan/excel/{bulan}', [PengadaanController::class, 'exportExcel'])->name('pengadaan.excel');
+
 
     // Pengaturan
     Route::get('/pengaturan/ruangan', [DataRuanganController::class, 'index'])->middleware('role:1');

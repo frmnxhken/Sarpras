@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AjuanPengadaan;
 use App\Models\AjuanPenghapusan;
 use App\Models\Barang;
 use App\Models\Peminjaman;
@@ -17,12 +16,6 @@ use Illuminate\Validation\ValidationException;
 
 class BarangController extends Controller
 {
-    // public function index()
-    // {
-    //     $dataInventaris = Barang::with('ruangan')->where('jumlah_barang', '>', 0)->paginate(8);
-    //     $ruangan = Ruangans::all();
-    //     return view('inventaris.app', compact('dataInventaris', 'ruangan'));
-    // }
 
     public function index(Request $request)
     {
